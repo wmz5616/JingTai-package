@@ -1,0 +1,191 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import ProductCard from '../../components/ProductCard.astro';
+import Badge from '../../components/Badge.astro';
+import products from '../../data/products.json';
+import site from '../../data/site.json';
+
+const categories = [
+  { slug: 'all', label: 'All Packaging' },
+  { slug: 'dropper', label: 'Dropper Bottles' },
+  { slug: 'pump', label: 'Pump & Lotion' },
+  { slug: 'jar', label: 'Cream & Treatment Jars' },
+  { slug: 'spray', label: 'Mist Spray & Perfume' },
+];
+---
+
+<Layout
+  title={`Cosmetic Glass Bottle Catalog | ${site.name}`}
+  description="Explore our complete line of cosmetic glass packaging: dropper bottles, treatment pump bottles, thick-wall cream pots, and perfume flacons. Low MOQ from 1,000 pcs, DDP worldwide delivery."
+>
+  <!-- Page Header -->
+  <section class="bg-brand-dark text-white py-16 border-b border-neutral-800">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="max-w-3xl space-y-4">
+        <Badge variant="gold" size="sm">Wholesale B2B Catalog</Badge>
+        <h1 class="font-serif text-3xl sm:text-5xl font-bold tracking-tight text-white">
+          Cosmetic Glass Packaging Collections
+        </h1>
+        <p class="text-sm sm:text-base text-neutral-300 font-light leading-relaxed">
+          Engineered for international beauty brands and clinical dermatologists. All models feature standard DIN thread finishes, negative-pressure leak resistance, and customizable surface treatments.
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Filter & Catalog Body -->
+  <section class="py-12 bg-[#faf9f6]">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      
+      <!-- Filter Toolbar -->
+      <div class="bg-white p-4 sm:p-6 rounded-sm border border-neutral-200 shadow-sm mb-10 flex flex-col md:flex-row items-center justify-between gap-4">
+        
+        <!-- Category Filter Pills -->
+        <div class="flex flex-wrap items-center gap-2 w-full md:w-auto" id="category-filter-buttons">
+          {categories.map((cat) => (
+            <button
+              type="button"
+              class="filter-btn px-4 py-2 text-xs font-semibold rounded-sm border transition-all duration-200"
+              data-category={cat.slug}
+            >
+              {cat.label}
+            </button>
+          ))}
+        </div>
+
+        <!-- Keyword Search Input -->
+        <div class="relative w-full md:w-72">
+          <input
+            type="text"
+            id="catalog-search"
+            placeholder="Search by size, material, or keyword..."
+            class="w-full pl-9 pr-4 py-2 text-xs bg-neutral-50 border border-neutral-300 rounded-sm focus:ring-2 focus:ring-brand-gold focus:border-brand-gold"
+          />
+          <svg class="w-4 h-4 text-neutral-400 absolute left-3 top-1/2 -translate-y-1/2" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"></path></svg>
+        </div>
+
+      </div>
+
+      <!-- Active Count & Results Notice -->
+      <div class="flex items-center justify-between text-xs text-neutral-500 mb-6 px-1">
+        <div>
+          Showing <span id="visible-count" class="font-bold text-neutral-800">{products.length}</span> packaging models
+        </div>
+        <div class="hidden sm:block">
+          Need custom volume or mold? <button type="button" class="quick-quote-btn text-brand-gold-dark font-semibold underline hover:text-brand-dark" data-product-title="Custom Mould Inquiry">Inquire for Bespoke Tooling</button>
+        </div>
+      </div>
+
+      <!-- Products Grid Container -->
+      <div id="products-grid" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+        {products.map((product) => (
+          <div
+            class="product-item"
+            data-category={product.categorySlug}
+            data-search={`${product.name} ${product.subtitle || ''} ${product.volume} ${product.specs.neckSize} ${product.category}`.toLowerCase()}
+          >
+            <ProductCard product={product} />
+          </div>
+        ))}
+      </div>
+
+      <!-- No Products Found State -->
+      <div id="no-results-message" class="hidden py-20 text-center space-y-3 bg-white rounded border border-neutral-200">
+        <p class="font-serif text-lg font-bold text-neutral-800">No matching packaging found</p>
+        <p class="text-xs text-neutral-500">Try adjusting your category filter or search terms, or ask our Guangzhou engineers for custom sourcing.</p>
+        <button
+          type="button"
+          id="reset-filter-btn"
+          class="px-4 py-2 bg-brand-dark text-white text-xs font-semibold rounded-sm hover:bg-neutral-800 transition-colors"
+        >
+          Reset All Filters
+        </button>
+      </div>
+
+    </div>
+  </section>
+</Layout>
+
+<script>
+  const filterButtons = document.querySelectorAll('.filter-btn');
+  const searchInput = document.getElementById('catalog-search') as HTMLInputElement;
+  const productItems = document.querySelectorAll('.product-item');
+  const visibleCount = document.getElementById('visible-count');
+  const noResultsMsg = document.getElementById('no-results-message');
+  const resetBtn = document.getElementById('reset-filter-btn');
+
+  let currentCategory = 'all';
+  let searchQuery = '';
+
+  // Initialize from URL params if present (e.g. /products?category=dropper)
+  const urlParams = new URLSearchParams(window.location.search);
+  const categoryParam = urlParams.get('category');
+  if (categoryParam) {
+    currentCategory = categoryParam;
+  }
+
+  function applyFilters() {
+    let count = 0;
+
+    // Update filter button styling
+    filterButtons.forEach((btn) => {
+      const cat = btn.getAttribute('data-category');
+      if (cat === currentCategory) {
+        btn.className = 'filter-btn px-4 py-2 text-xs font-semibold rounded-sm border bg-brand-dark text-white border-brand-dark shadow-sm';
+      } else {
+        btn.className = 'filter-btn px-4 py-2 text-xs font-semibold rounded-sm border bg-white text-neutral-700 border-neutral-200 hover:border-brand-gold hover:text-brand-gold';
+      }
+    });
+
+    productItems.forEach((item) => {
+      const itemEl = item as HTMLElement;
+      const itemCat = itemEl.dataset.category || '';
+      const itemSearch = itemEl.dataset.search || '';
+
+      const matchCategory = currentCategory === 'all' || itemCat === currentCategory;
+      const matchSearch = !searchQuery || itemSearch.includes(searchQuery);
+
+      if (matchCategory && matchSearch) {
+        itemEl.style.display = '';
+        count++;
+      } else {
+        itemEl.style.display = 'none';
+      }
+    });
+
+    if (visibleCount) visibleCount.innerText = count.toString();
+    if (noResultsMsg) {
+      if (count === 0) {
+        noResultsMsg.classList.remove('hidden');
+      } else {
+        noResultsMsg.classList.add('hidden');
+      }
+    }
+  }
+
+  filterButtons.forEach((btn) => {
+    btn.addEventListener('click', () => {
+      currentCategory = btn.getAttribute('data-category') || 'all';
+      // update URL state without page reload
+      const newUrl = currentCategory === 'all' ? '/products' : `/products?category=${currentCategory}`;
+      window.history.replaceState({}, '', newUrl);
+      applyFilters();
+    });
+  });
+
+  searchInput?.addEventListener('input', (e) => {
+    searchQuery = (e.target as HTMLInputElement).value.toLowerCase().trim();
+    applyFilters();
+  });
+
+  resetBtn?.addEventListener('click', () => {
+    currentCategory = 'all';
+    searchQuery = '';
+    if (searchInput) searchInput.value = '';
+    window.history.replaceState({}, '', '/products');
+    applyFilters();
+  });
+
+  // Run on initial load
+  applyFilters();
+</script>

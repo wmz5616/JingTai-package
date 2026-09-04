@@ -1,0 +1,333 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import Badge from '../../components/Badge.astro';
+import Button from '../../components/Button.astro';
+import ProductCard from '../../components/ProductCard.astro';
+import products from '../../data/products.json';
+import site from '../../data/site.json';
+
+export async function getStaticPaths() {
+  return products.map((product) => ({
+    params: { id: product.id },
+    props: { product },
+  }));
+}
+
+const { product } = Astro.props;
+
+// Related products
+const relatedProducts = products
+  .filter((p) => p.categorySlug === product.categorySlug && p.id !== product.id)
+  .slice(0, 3);
+
+// Product Schema.org JSON-LD
+const productSchema = {
+  '@context': 'https://schema.org/',
+  '@type': 'Product',
+  name: product.name,
+  image: product.images,
+  description: product.description,
+  sku: product.id,
+  mpn: product.id,
+  brand: {
+    '@type': 'Brand',
+    name: site.name,
+  },
+  category: product.category,
+  offers: {
+    '@type': 'AggregateOffer',
+    priceCurrency: 'USD',
+    lowPrice: '0.25',
+    highPrice: '1.45',
+    priceValidUntil: '2027-12-31',
+    offerCount: '100000',
+    itemCondition: 'https://schema.org/NewCondition',
+    availability: 'https://schema.org/InStock',
+    eligibleQuantity: {
+      '@type': 'QuantitativeValue',
+      minValue: product.moq,
+      unitCode: 'C62',
+    },
+  },
+};
+---
+
+<Layout
+  title={`${product.name} Wholesale | ${site.name}`}
+  description={`${product.name} wholesale supply by Aura Packaging. ${product.description} MOQ: ${product.moq} pcs. Fast DDP delivery from Guangzhou.`}
+  image={product.images[0]}
+  type="product"
+  schemaJson={productSchema}
+>
+  <!-- Breadcrumb Navigation -->
+  <nav class="bg-white border-b border-neutral-200 py-3 text-xs text-neutral-500">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex items-center space-x-2">
+      <a href="/" class="hover:text-brand-dark">Home</a>
+      <span>/</span>
+      <a href="/products" class="hover:text-brand-dark">Products</a>
+      <span>/</span>
+      <a href={`/products?category=${product.categorySlug}`} class="hover:text-brand-dark">{product.category}</a>
+      <span>/</span>
+      <span class="text-neutral-900 font-medium truncate max-w-xs">{product.name}</span>
+    </div>
+  </nav>
+
+  <!-- Product Main Showcase Section -->
+  <section class="py-12 sm:py-16 bg-[#faf9f6]">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="grid grid-cols-1 lg:grid-cols-12 gap-12 items-start">
+        
+        <!-- Left: Image Gallery (Col 6) -->
+        <div class="lg:col-span-6 space-y-4">
+          <!-- Main Hero Image Container -->
+          <div class="relative aspect-square w-full bg-white rounded-sm border border-neutral-200 overflow-hidden shadow-sm">
+            <img
+              id="main-product-image"
+              src={product.images[0]}
+              alt={product.name}
+              class="w-full h-full object-cover object-center transition-all duration-300"
+            />
+            
+            <div class="absolute top-4 left-4 flex flex-col gap-2 pointer-events-none">
+              {product.badge && (
+                <Badge variant="gold" size="sm">{product.badge}</Badge>
+              )}
+              <Badge variant="light" size="sm">{product.volume}</Badge>
+            </div>
+          </div>
+
+          <!-- Thumbnails Selector -->
+          {product.images.length > 1 && (
+            <div class="grid grid-cols-4 gap-3">
+              {product.images.map((img, idx) => (
+                <button
+                  type="button"
+                  class={`gallery-thumb aspect-square bg-white rounded-sm border-2 overflow-hidden transition-all ${idx === 0 ? 'border-brand-gold ring-2 ring-brand-gold/30' : 'border-neutral-200 hover:border-neutral-400'}`}
+                  data-src={img}
+                >
+                  <img src={img} alt={`View ${idx + 1}`} class="w-full h-full object-cover" />
+                </button>
+              ))}
+            </div>
+          )}
+
+          <!-- Quick Action Buttons: Dieline & RFQ Basket -->
+          <div class="pt-4 grid grid-cols-2 gap-3">
+            <button
+              type="button"
+              class="add-to-rfq-btn py-3 px-4 bg-brand-dark hover:bg-neutral-800 text-white font-semibold text-xs rounded-sm transition-colors flex items-center justify-center space-x-2 shadow-sm"
+              data-id={product.id}
+              data-name={product.name}
+              data-volume={product.volume}
+              data-image={product.images[0]}
+              data-moq={product.moq}
+            >
+              <svg class="w-4 h-4 text-brand-gold" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M16 11V7a4 4 0 00-8 0v4M5 9h14l1 12H4L5 9z"></path></svg>
+              <span>Add to RFQ Basket</span>
+            </button>
+
+            <a
+              href="/sample-kit"
+              class="py-3 px-4 bg-white hover:bg-amber-50 text-amber-900 border border-amber-300 font-semibold text-xs rounded-sm transition-colors flex items-center justify-center space-x-1.5 shadow-sm text-center"
+            >
+              <span>Request Free Sample Box</span>
+              <span class="text-[10px] bg-amber-200 px-1 py-0.2 rounded font-bold">FREE</span>
+            </a>
+          </div>
+
+          <!-- Dieline Download Notice -->
+          <div class="p-4 bg-white border border-neutral-200 rounded-sm flex items-center justify-between text-xs">
+            <div class="flex items-center space-x-2">
+              <span class="text-brand-gold font-mono text-base">📐</span>
+              <div>
+                <strong class="text-neutral-900 block font-sans">Vector CAD Dieline Available</strong>
+                <span class="text-neutral-500">Includes 1:1 scale neck finish and printable bottle surface template.</span>
+              </div>
+            </div>
+            <button
+              type="button"
+              class="quick-quote-btn text-brand-gold-dark font-semibold hover:underline flex-shrink-0 ml-2"
+              data-product-title={`Dieline Request: ${product.name}`}
+            >
+              Request Dieline →
+            </button>
+          </div>
+        </div>
+
+        <!-- Right: Technical Details & Inquiry Form (Col 6) -->
+        <div class="lg:col-span-6 space-y-6">
+          
+          <div class="space-y-2">
+            <div class="flex items-center space-x-3 text-xs font-mono uppercase tracking-wider text-neutral-500">
+              <span class="text-brand-gold font-semibold">{product.category}</span>
+              <span>•</span>
+              <span>SKU: {product.id}</span>
+            </div>
+
+            <h1 class="font-serif text-2xl sm:text-3xl lg:text-4xl font-bold text-brand-dark leading-tight">
+              {product.name}
+            </h1>
+
+            {product.subtitle && (
+              <p class="text-sm text-neutral-600 font-medium">
+                {product.subtitle}
+              </p>
+            )}
+          </div>
+
+          <!-- Value Pill Highlights -->
+          <div class="flex flex-wrap gap-2 text-xs">
+            <span class="px-3 py-1 bg-emerald-50 text-emerald-800 border border-emerald-200 rounded font-medium">
+              ✓ In-Stock Trial MOQ: {product.inStockMoq || 1000} pcs
+            </span>
+            <span class="px-3 py-1 bg-neutral-100 text-neutral-700 border border-neutral-200 rounded font-medium">
+              ✓ Custom Run MOQ: {product.moq} pcs
+            </span>
+            <span class="px-3 py-1 bg-neutral-100 text-neutral-700 border border-neutral-200 rounded font-medium">
+              ✓ Lead Time: {product.leadTime}
+            </span>
+          </div>
+
+          <!-- Product Detailed Description -->
+          <p class="text-xs sm:text-sm text-neutral-600 leading-relaxed">
+            {product.description}
+          </p>
+
+          <!-- Core Feature Bullets -->
+          <div class="p-4 bg-white rounded-sm border border-neutral-200 space-y-2">
+            <span class="block text-xs font-mono font-bold text-brand-dark uppercase tracking-wider">
+              Engineering & Performance Highlights:
+            </span>
+            <ul class="space-y-1.5 text-xs text-neutral-600">
+              {product.features?.map((feat) => (
+                <li class="flex items-start space-x-2">
+                  <span class="text-brand-gold font-bold">✓</span>
+                  <span>{feat}</span>
+                </li>
+              ))}
+            </ul>
+          </div>
+
+          <!-- Complete Technical Specification Table -->
+          <div class="space-y-2">
+            <h2 class="text-xs font-mono font-bold uppercase tracking-wider text-neutral-800">
+              Engineering Specifications
+            </h2>
+            <div class="bg-white rounded-sm border border-neutral-200 overflow-hidden text-xs">
+              <table class="w-full text-left border-collapse">
+                <tbody>
+                  <tr class="border-b border-neutral-100">
+                    <th class="py-2.5 px-4 font-mono font-semibold text-neutral-500 bg-neutral-50/70 w-1/3">Neck Thread Standard</th>
+                    <td class="py-2.5 px-4 font-medium text-neutral-900">{product.specs.neckSize}</td>
+                  </tr>
+                  <tr class="border-b border-neutral-100">
+                    <th class="py-2.5 px-4 font-mono font-semibold text-neutral-500 bg-neutral-50/70">Glass Material</th>
+                    <td class="py-2.5 px-4 font-medium text-neutral-900">{product.specs.material}</td>
+                  </tr>
+                  <tr class="border-b border-neutral-100">
+                    <th class="py-2.5 px-4 font-mono font-semibold text-neutral-500 bg-neutral-50/70">Total Height & Diameter</th>
+                    <td class="py-2.5 px-4 font-medium text-neutral-900">{product.specs.height} × {product.specs.diameter}</td>
+                  </tr>
+                  <tr class="border-b border-neutral-100">
+                    <th class="py-2.5 px-4 font-mono font-semibold text-neutral-500 bg-neutral-50/70">Empty Container Weight</th>
+                    <td class="py-2.5 px-4 font-medium text-neutral-900">{product.specs.weight}</td>
+                  </tr>
+                  <tr class="border-b border-neutral-100">
+                    <th class="py-2.5 px-4 font-mono font-semibold text-neutral-500 bg-neutral-50/70">Brimful Capacity</th>
+                    <td class="py-2.5 px-4 font-medium text-neutral-900">{product.specs.brimfulCapacity}</td>
+                  </tr>
+                  <tr class="border-b border-neutral-100">
+                    <th class="py-2.5 px-4 font-mono font-semibold text-neutral-500 bg-neutral-50/70">Compatible Closures</th>
+                    <td class="py-2.5 px-4 font-medium text-neutral-900">{product.specs.closureTypes?.join(', ')}</td>
+                  </tr>
+                  <tr>
+                    <th class="py-2.5 px-4 font-mono font-semibold text-neutral-500 bg-neutral-50/70">Surface Options</th>
+                    <td class="py-2.5 px-4 font-medium text-neutral-900">{product.specs.surfaceHandling?.join(', ')}</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+
+          <!-- Direct Quotation Trigger Card -->
+          <div class="p-6 bg-brand-dark text-white rounded-sm space-y-4 shadow-lg border border-neutral-800">
+            <div class="flex items-center justify-between">
+              <div>
+                <span class="text-xs font-mono text-brand-gold uppercase">Direct Factory Quotation</span>
+                <h3 class="font-serif text-lg font-bold text-white">Get Volume Pricing for This Model</h3>
+              </div>
+              <span class="text-xs text-neutral-400">Guangzhou Hub</span>
+            </div>
+            <p class="text-xs text-neutral-300">
+              Tell us your estimated quantity and target shipping country. Receive official price quotation and DDP air/sea freight breakdown within 2-4 hours.
+            </p>
+            <div class="flex flex-col sm:flex-row gap-3 pt-1">
+              <button
+                type="button"
+                class="quick-quote-btn flex-1 py-3 bg-brand-gold hover:bg-brand-gold-light text-brand-dark font-bold text-xs rounded-sm tracking-wide transition-colors"
+                data-product-title={product.name}
+                data-product-id={product.id}
+              >
+                Request Wholesale Quote Now →
+              </button>
+              <a
+                href={site.whatsappDirectUrl}
+                target="_blank"
+                rel="noopener noreferrer"
+                class="py-3 px-4 bg-emerald-600 hover:bg-emerald-700 text-white font-semibold text-xs rounded-sm flex items-center justify-center space-x-1.5 transition-colors"
+              >
+                <span>WhatsApp Us</span>
+              </a>
+            </div>
+          </div>
+
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- Related Packaging Models -->
+  {relatedProducts.length > 0 && (
+    <section class="py-16 bg-white border-t border-neutral-200">
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="flex items-center justify-between mb-8">
+          <div>
+            <span class="text-xs font-mono text-brand-gold uppercase">Explore Alternatives</span>
+            <h2 class="font-serif text-2xl font-bold text-brand-dark mt-1">
+              Related {product.category}
+            </h2>
+          </div>
+          <a href="/products" class="text-xs font-semibold text-neutral-600 hover:text-brand-dark">
+            View All →
+          </a>
+        </div>
+
+        <div class="grid grid-cols-1 sm:grid-cols-3 gap-6">
+          {relatedProducts.map((rel) => (
+            <ProductCard product={rel} />
+          ))}
+        </div>
+      </div>
+    </section>
+  )}
+</Layout>
+
+<script>
+  // Image gallery switcher
+  const mainImage = document.getElementById('main-product-image') as HTMLImageElement;
+  const thumbnails = document.querySelectorAll('.gallery-thumb');
+
+  thumbnails.forEach((thumb) => {
+    thumb.addEventListener('click', () => {
+      const newSrc = thumb.getAttribute('data-src');
+      if (newSrc && mainImage) {
+        mainImage.src = newSrc;
+        thumbnails.forEach((t) => {
+          t.className = 'gallery-thumb aspect-square bg-white rounded-sm border-2 overflow-hidden transition-all border-neutral-200 hover:border-neutral-400';
+        });
+        thumb.className = 'gallery-thumb aspect-square bg-white rounded-sm border-2 overflow-hidden transition-all border-brand-gold ring-2 ring-brand-gold/30';
+      }
+    });
+  });
+</script>

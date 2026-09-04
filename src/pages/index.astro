@@ -1,0 +1,488 @@
+---
+import Layout from '../layouts/Layout.astro';
+import ProductCard from '../components/ProductCard.astro';
+import Button from '../components/Button.astro';
+import Badge from '../components/Badge.astro';
+import products from '../data/products.json';
+import site from '../data/site.json';
+
+const featuredProducts = products.filter(p => p.isFeatured);
+---
+
+<Layout
+  title={`${site.name} | Luxury Cosmetic Glass Packaging & Turnkey Supply Chain`}
+  description={site.description}
+>
+  <!-- 1. HERO SECTION -->
+  <section class="relative bg-brand-dark text-white overflow-hidden py-24 sm:py-32 lg:py-36 border-b border-neutral-800">
+    <!-- Atmospheric Ambient Glows -->
+    <div class="absolute top-0 right-1/4 w-96 h-96 bg-brand-gold/10 rounded-full blur-3xl pointer-events-none"></div>
+    <div class="absolute bottom-0 left-10 w-80 h-80 bg-neutral-800/40 rounded-full blur-2xl pointer-events-none"></div>
+
+    <div class="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-8 items-center">
+        
+        <!-- Hero Text Content -->
+        <div class="lg:col-span-7 space-y-7 text-center lg:text-left">
+          
+          <div class="inline-flex items-center space-x-2 px-3 py-1.5 rounded-full bg-white/5 border border-white/10 text-xs text-neutral-300">
+            <span class="w-2 h-2 rounded-full bg-brand-gold animate-ping"></span>
+            <span class="text-brand-gold font-semibold uppercase tracking-wider" data-i18n="hero_tag">Guangzhou Supply Chain Hub • ISO 9001 & GMP Certified Alliances</span>
+          </div>
+
+          <h1 class="font-serif text-3xl sm:text-5xl lg:text-6xl font-bold tracking-tight text-white leading-[1.15]" data-i18n="hero_title">
+            Architectural Glass Packaging for Prestige Skincare & Perfumery
+          </h1>
+
+          <p class="text-base sm:text-lg text-neutral-300 max-w-2xl mx-auto lg:mx-0 font-light leading-relaxed" data-i18n="hero_desc">
+            Your turnkey cosmetic packaging partner in Guangzhou. Engineered for indie beauty founders, clinical formulators, and luxury skincare brands. We supply high-flint glass bottles, precision dispensing systems, custom surface decoration, and DDP door-to-door shipping with flexible low MOQ from 1,000 pcs.
+          </p>
+
+          <!-- CTAs -->
+          <div class="pt-2 flex flex-col sm:flex-row items-center justify-center lg:justify-start gap-4">
+            <Button href="/sample-kit" variant="gold" size="lg" class="w-full sm:w-auto shadow-gold">
+              <span data-i18n="hero_cta_sample">Order Free Sample Kit</span>
+              <span class="bg-brand-dark/20 text-brand-dark text-xs px-2 py-0.5 rounded font-bold ml-1" data-i18n="nav_free_badge">FREE</span>
+            </Button>
+            <Button href="/products" variant="outline" size="lg" class="w-full sm:w-auto text-white border-neutral-600 hover:border-brand-gold hover:text-brand-gold">
+              <span data-i18n="hero_cta_catalog">Explore 2026 Catalog →</span>
+            </Button>
+          </div>
+
+          <!-- Trust Value Pillars -->
+          <div class="pt-6 border-t border-white/10 grid grid-cols-2 sm:grid-cols-4 gap-4 text-left">
+            <div>
+              <span class="block text-2xl font-bold font-serif text-brand-gold">48H</span>
+              <span class="text-xs text-neutral-400" data-i18n="stat_48h">Sample Dispatch</span>
+            </div>
+            <div>
+              <span class="block text-2xl font-bold font-serif text-brand-gold">1,000+</span>
+              <span class="text-xs text-neutral-400" data-i18n="stat_1000">Low Trial MOQ</span>
+            </div>
+            <div>
+              <span class="block text-2xl font-bold font-serif text-brand-gold">100%</span>
+              <span class="text-xs text-neutral-400" data-i18n="stat_100">Leak Vacuum QA</span>
+            </div>
+            <div>
+              <span class="block text-2xl font-bold font-serif text-brand-gold">DDP</span>
+              <span class="text-xs text-neutral-400" data-i18n="stat_ddp">Door-to-Door US/EU</span>
+            </div>
+          </div>
+
+
+        </div>
+
+        <!-- Hero Visual Showcase -->
+        <div class="lg:col-span-5 relative flex justify-center">
+          <div class="relative w-full max-w-md aspect-[4/5] rounded-sm overflow-hidden border border-white/10 shadow-2xl group">
+            <img
+              src="https://images.unsplash.com/photo-1608248597359-52e4cf52538b?auto=format&fit=crop&w=1000&q=85"
+              alt="Luxury cosmetic glass bottles showcase"
+              class="w-full h-full object-cover object-center transform group-hover:scale-105 transition-transform duration-700"
+            />
+            
+            <!-- Glass Floating Info Badge -->
+            <div class="absolute bottom-4 inset-x-4 glass-dark p-4 rounded-sm border border-white/10 space-y-1">
+              <div class="flex items-center justify-between text-xs text-brand-gold font-mono">
+                <span>PRESTIGE DROPPER LINE</span>
+                <span>DIN 18/410</span>
+              </div>
+              <p class="text-xs text-neutral-300">
+                USP Type III high flint amber glass with precision pipette & gold collar. Zero leaching guarantee.
+              </p>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- 2. QUICK CATEGORY HUBS -->
+  <section class="py-12 bg-white border-b border-neutral-200">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="grid grid-cols-2 lg:grid-cols-4 gap-4">
+        
+        <a href="/products?category=dropper" class="p-5 rounded-sm border border-neutral-200 hover:border-brand-gold hover:shadow-md transition-all group bg-neutral-50/50 hover:bg-white">
+          <div class="flex items-center justify-between mb-2">
+            <span class="text-xs font-mono font-semibold text-brand-gold uppercase">01 / Dropper</span>
+            <span class="text-xs text-neutral-400 group-hover:text-brand-gold group-hover:translate-x-1 transition-transform">→</span>
+          </div>
+          <h3 class="font-serif font-bold text-neutral-900 text-base group-hover:text-brand-gold transition-colors">
+            Dropper Bottles
+          </h3>
+          <p class="text-xs text-neutral-500 mt-1">15ml, 30ml, 50ml for Serums & Oils</p>
+        </a>
+
+        <a href="/products?category=pump" class="p-5 rounded-sm border border-neutral-200 hover:border-brand-gold hover:shadow-md transition-all group bg-neutral-50/50 hover:bg-white">
+          <div class="flex items-center justify-between mb-2">
+            <span class="text-xs font-mono font-semibold text-brand-gold uppercase">02 / Pump</span>
+            <span class="text-xs text-neutral-400 group-hover:text-brand-gold group-hover:translate-x-1 transition-transform">→</span>
+          </div>
+          <h3 class="font-serif font-bold text-neutral-900 text-base group-hover:text-brand-gold transition-colors">
+            Pump & Lotion Bottles
+          </h3>
+          <p class="text-xs text-neutral-500 mt-1">External-spring treatment pumps</p>
+        </a>
+
+        <a href="/products?category=jar" class="p-5 rounded-sm border border-neutral-200 hover:border-brand-gold hover:shadow-md transition-all group bg-neutral-50/50 hover:bg-white">
+          <div class="flex items-center justify-between mb-2">
+            <span class="text-xs font-mono font-semibold text-brand-gold uppercase">03 / Jars</span>
+            <span class="text-xs text-neutral-400 group-hover:text-brand-gold group-hover:translate-x-1 transition-transform">→</span>
+          </div>
+          <h3 class="font-serif font-bold text-neutral-900 text-base group-hover:text-brand-gold transition-colors">
+            Cream & Face Jars
+          </h3>
+          <p class="text-xs text-neutral-500 mt-1">Heavy bottom thick-wall cosmetic pots</p>
+        </a>
+
+        <a href="/products?category=spray" class="p-5 rounded-sm border border-neutral-200 hover:border-brand-gold hover:shadow-md transition-all group bg-neutral-50/50 hover:bg-white">
+          <div class="flex items-center justify-between mb-2">
+            <span class="text-xs font-mono font-semibold text-brand-gold uppercase">04 / Spray</span>
+            <span class="text-xs text-neutral-400 group-hover:text-brand-gold group-hover:translate-x-1 transition-transform">→</span>
+          </div>
+          <h3 class="font-serif font-bold text-neutral-900 text-base group-hover:text-brand-gold transition-colors">
+            Perfume & Mist Sprayers
+          </h3>
+          <p class="text-xs text-neutral-500 mt-1">Ultra-fine micro atomization flacons</p>
+        </a>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- 3. FEATURED PACKAGING LINE (PRODUCTS GRID) -->
+  <section class="py-20 bg-[#faf9f6]">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      
+      <div class="flex flex-col md:flex-row md:items-end justify-between mb-12 gap-4">
+        <div class="space-y-2">
+          <div class="flex items-center space-x-2 text-xs font-mono text-brand-gold uppercase tracking-widest">
+            <span>Signature Line</span>
+            <span>•</span>
+            <span>Ready for Bulk Run</span>
+          </div>
+          <h2 class="font-serif text-3xl sm:text-4xl font-bold text-brand-dark">
+            Best-Selling Packaging Collections
+          </h2>
+          <p class="text-sm text-neutral-600 max-w-xl">
+            Pharmaceutical-grade glass bottles engineered for clean beauty, anti-aging serums, and dermatological formulations.
+          </p>
+        </div>
+
+        <a
+          href="/products"
+          class="inline-flex items-center space-x-2 text-sm font-semibold text-brand-dark hover:text-brand-gold transition-colors pb-1 border-b border-neutral-300 hover:border-brand-gold"
+        >
+          <span>View All 10+ Models & Specifications</span>
+          <span>→</span>
+        </a>
+      </div>
+
+      <!-- Product Cards Grid -->
+      <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+        {featuredProducts.map((product) => (
+          <ProductCard product={product} />
+        ))}
+      </div>
+
+    </div>
+  </section>
+
+  <!-- 4. TURNKEY CUSTOMIZATION & SURFACE FINISHES SHOWCASE -->
+  <section id="customization" class="py-20 bg-white border-y border-neutral-200">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      
+      <div class="text-center max-w-3xl mx-auto space-y-3 mb-16">
+        <Badge variant="gold" size="sm">Bespoke OEM / ODM Capabilities</Badge>
+        <h2 class="font-serif text-3xl sm:text-4xl font-bold text-brand-dark">
+          Surface Finishing & Decoration Artistry
+        </h2>
+        <p class="text-sm sm:text-base text-neutral-600">
+          Transform standard glass bottles into iconic prestige packaging. Our Guangzhou finishing facilities offer precise Pantone color matching, tactile texturing, and luxury metal accents.
+        </p>
+      </div>
+
+      <!-- 6 Key Finishing Techniques Grid -->
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+        
+        <div class="p-6 rounded-sm border border-neutral-200 bg-neutral-50/60 hover:bg-white hover:border-brand-gold hover:shadow-lg transition-all space-y-3">
+          <div class="w-10 h-10 rounded-sm bg-neutral-900 text-brand-gold flex items-center justify-center font-serif font-bold text-lg">
+            01
+          </div>
+          <h3 class="font-serif font-bold text-lg text-brand-dark">Acid Frosted & Satin Etching</h3>
+          <p class="text-xs text-neutral-600 leading-relaxed">
+            Uniform velvet-touch matte texture that resists fingerprints and creates an ethereal frosted glow for sensitive retinol and vitamin serums.
+          </p>
+          <span class="inline-block text-[11px] font-mono text-brand-gold-dark font-medium">MOQ: 3,000 pcs • Sample in 5 days</span>
+        </div>
+
+        <div class="p-6 rounded-sm border border-neutral-200 bg-neutral-50/60 hover:bg-white hover:border-brand-gold hover:shadow-lg transition-all space-y-3">
+          <div class="w-10 h-10 rounded-sm bg-neutral-900 text-brand-gold flex items-center justify-center font-serif font-bold text-lg">
+            02
+          </div>
+          <h3 class="font-serif font-bold text-brand-dark">Precision Silk-Screen Printing</h3>
+          <p class="text-xs text-neutral-600 leading-relaxed">
+            High-definition organic and ceramic ink printing with crisp typography down to 4pt font. Scratch-resistant curing tested with 3M adhesive tape peel tests.
+          </p>
+          <span class="inline-block text-[11px] font-mono text-brand-gold-dark font-medium">Pantone C Match • 1-4 Spot Colors</span>
+        </div>
+
+        <div class="p-6 rounded-sm border border-neutral-200 bg-neutral-50/60 hover:bg-white hover:border-brand-gold hover:shadow-lg transition-all space-y-3">
+          <div class="w-10 h-10 rounded-sm bg-neutral-900 text-brand-gold flex items-center justify-center font-serif font-bold text-lg">
+            03
+          </div>
+          <h3 class="font-serif font-bold text-brand-dark">Hot Foil Stamping (Gold / Rose)</h3>
+          <p class="text-xs text-neutral-600 leading-relaxed">
+            Genuine metallic foil applied under high pressure and heat. Yields brilliant mirror-reflective luxury branding that elevates price perception in Sephora and Ulta.
+          </p>
+          <span class="inline-block text-[11px] font-mono text-brand-gold-dark font-medium">Gold, Silver, Rose Gold, Holographic</span>
+        </div>
+
+        <div class="p-6 rounded-sm border border-neutral-200 bg-neutral-50/60 hover:bg-white hover:border-brand-gold hover:shadow-lg transition-all space-y-3">
+          <div class="w-10 h-10 rounded-sm bg-neutral-900 text-brand-gold flex items-center justify-center font-serif font-bold text-lg">
+            04
+          </div>
+          <h3 class="font-serif font-bold text-brand-dark">Gradient Spray Coating</h3>
+          <p class="text-xs text-neutral-600 leading-relaxed">
+            Smooth ombre transitions from opaque base to transparent shoulder. Water-based eco-friendly lacquer compliant with European REACH heavy metal standards.
+          </p>
+          <span class="inline-block text-[11px] font-mono text-brand-gold-dark font-medium">Glossy, Semi-Matte, or Velvet Finish</span>
+        </div>
+
+        <div class="p-6 rounded-sm border border-neutral-200 bg-neutral-50/60 hover:bg-white hover:border-brand-gold hover:shadow-lg transition-all space-y-3">
+          <div class="w-10 h-10 rounded-sm bg-neutral-900 text-brand-gold flex items-center justify-center font-serif font-bold text-lg">
+            05
+          </div>
+          <h3 class="font-serif font-bold text-brand-dark">Vacuum Metallization & Electroplating</h3>
+          <p class="text-xs text-neutral-600 leading-relaxed">
+            Flawless mirror-finish chrome and champagne gold coatings for dropper collars, push buttons, and perfume caps. Tested with 48H salt spray corrosion resistance.
+          </p>
+          <span class="inline-block text-[11px] font-mono text-brand-gold-dark font-medium">Aluminum, Zamac, & UV Plastic Plating</span>
+        </div>
+
+        <div class="p-6 rounded-sm border border-neutral-200 bg-neutral-50/60 hover:bg-white hover:border-brand-gold hover:shadow-lg transition-all space-y-3">
+          <div class="w-10 h-10 rounded-sm bg-neutral-900 text-brand-gold flex items-center justify-center font-serif font-bold text-lg">
+            06
+          </div>
+          <h3 class="font-serif font-bold text-brand-dark">Turnkey Secondary Box Packaging</h3>
+          <p class="text-xs text-neutral-600 leading-relaxed">
+            Complete the unboxing experience. Custom rigid gift boxes, folding cartons, embossed sleeves, and EVA / paper pulp inserts custom-engineered for exact bottle fit.
+          </p>
+          <span class="inline-block text-[11px] font-mono text-brand-gold-dark font-medium">One-Stop Turnkey Assembly in Guangzhou</span>
+        </div>
+
+      </div>
+
+    </div>
+  </section>
+
+  <!-- 5. GUANGZHOU ADVANTAGE & QUALITY ASSURANCE SHIELD -->
+  <section class="py-20 bg-brand-dark text-white relative overflow-hidden">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      
+      <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-16 items-center">
+        
+        <!-- Left Column: Why Guangzhou Supply Chain Wins -->
+        <div class="space-y-6">
+          <Badge variant="gold" size="sm">Your Eyes & Ears in China</Badge>
+          
+          <h2 class="font-serif text-3xl sm:text-4xl font-bold leading-tight">
+            Why Global Brands Choose Our <span class="gold-gradient-text">Guangzhou Supply Chain Hub</span>
+          </h2>
+
+          <p class="text-sm text-neutral-300 leading-relaxed">
+            Single-line glass factories only sell bare glass bottles with rigid 50,000 MOQs and zero customization. Located in Guangzhou—the undisputed epicenter of the world's cosmetic supply chain—we bridge this gap by delivering <strong class="text-white">turnkey, matched packaging systems</strong> with Western-grade quality management.
+          </p>
+
+          <div class="space-y-4 pt-2">
+            <div class="flex items-start space-x-3">
+              <div class="w-6 h-6 rounded-full bg-brand-gold/20 text-brand-gold flex items-center justify-center flex-shrink-0 mt-0.5 font-bold text-xs">✓</div>
+              <div>
+                <h3 class="text-sm font-bold text-white">Full-Match Turnkey Integration</h3>
+                <p class="text-xs text-neutral-400">Bottle + Dropper/Pump + Decoration + Secondary Box. 100% thread compatibility guaranteed with zero leaks.</p>
+              </div>
+            </div>
+
+            <div class="flex items-start space-x-3">
+              <div class="w-6 h-6 rounded-full bg-brand-gold/20 text-brand-gold flex items-center justify-center flex-shrink-0 mt-0.5 font-bold text-xs">✓</div>
+              <div>
+                <h3 class="text-sm font-bold text-white">Rigorous Pre-Shipment Inspection (AQL 2.5)</h3>
+                <p class="text-xs text-neutral-400">Every production run undergoes -0.08 MPa vacuum leak testing and ISTA 3A drop testing. Comprehensive photo/video reports provided before you pay the balance.</p>
+              </div>
+            </div>
+
+            <div class="flex items-start space-x-3">
+              <div class="w-6 h-6 rounded-full bg-brand-gold/20 text-brand-gold flex items-center justify-center flex-shrink-0 mt-0.5 font-bold text-xs">✓</div>
+              <div>
+                <h3 class="text-sm font-bold text-white">Flexible Trial Runs (Low MOQ 1,000 Pcs)</h3>
+                <p class="text-xs text-neutral-400">We support startup indie brands with low-risk batch sizes and consolidated multi-SKU sea container shipments.</p>
+              </div>
+            </div>
+
+            <div class="flex items-start space-x-3">
+              <div class="w-6 h-6 rounded-full bg-brand-gold/20 text-brand-gold flex items-center justify-center flex-shrink-0 mt-0.5 font-bold text-xs">✓</div>
+              <div>
+                <h3 class="text-sm font-bold text-white">Hassle-Free DDP Door-to-Door Delivery</h3>
+                <p class="text-xs text-neutral-400">We handle export customs, ocean/air freight, import clearance, and deliver directly to your warehouse in the US, Canada, UK, or Europe.</p>
+              </div>
+            </div>
+          </div>
+
+          <div class="pt-4">
+            <Button href="/about" variant="gold" size="md">
+              Learn More About Our Quality Lab →
+            </Button>
+          </div>
+        </div>
+
+        <!-- Right Column: Export Packaging & Drop-Test Graphic -->
+        <div class="bg-neutral-900 border border-neutral-800 p-8 rounded-sm space-y-6">
+          <div class="border-b border-neutral-800 pb-4">
+            <span class="text-xs font-mono text-brand-gold uppercase">Export Safe Standards</span>
+            <h3 class="font-serif text-xl font-bold text-white mt-1">Zero Breakage Guarantee</h3>
+          </div>
+
+          <div class="space-y-4 text-xs text-neutral-300">
+            <div class="p-4 bg-neutral-950 rounded border border-neutral-800 space-y-1">
+              <span class="font-bold text-brand-gold block font-mono">1. Cell-Divider Egg-Crate Cartons</span>
+              <p class="text-neutral-400">Individual corrugated partitions prevent glass-on-glass collision during thousands of nautical miles.</p>
+            </div>
+
+            <div class="p-4 bg-neutral-950 rounded border border-neutral-800 space-y-1">
+              <span class="font-bold text-brand-gold block font-mono">2. Vacuum Leak Testing (-0.08 MPa)</span>
+              <p class="text-neutral-400">Simulates high-altitude cargo hold depressurization. Zero liquid seepage after 30 continuous minutes.</p>
+            </div>
+
+            <div class="p-4 bg-neutral-950 rounded border border-neutral-800 space-y-1">
+              <span class="font-bold text-brand-gold block font-mono">3. Fumigated Wooden Pallet Wrap</span>
+              <p class="text-neutral-400">Heavy-duty heat-shrink wrap and corner protectors. 100% compliant with ISPM 15 international entry laws.</p>
+            </div>
+          </div>
+
+          <div class="p-4 bg-emerald-950/40 border border-emerald-800/40 rounded flex items-center justify-between">
+            <div class="flex items-center space-x-2">
+              <span class="w-2 h-2 rounded-full bg-emerald-400"></span>
+              <span class="text-xs text-emerald-300 font-medium">Damage Rate Below 0.1% Globally</span>
+            </div>
+            <span class="text-[11px] font-mono text-neutral-400">Transit Insured</span>
+          </div>
+        </div>
+
+      </div>
+
+    </div>
+  </section>
+
+  <!-- 6. FREQUENTLY ASKED QUESTIONS (FAQ) -->
+  <section id="faq" class="py-20 bg-white">
+    <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+      
+      <div class="text-center space-y-3 mb-12">
+        <Badge variant="outline" size="sm">Procurement FAQs</Badge>
+        <h2 class="font-serif text-3xl sm:text-4xl font-bold text-brand-dark">
+          Frequently Asked B2B Trade Questions
+        </h2>
+        <p class="text-xs sm:text-sm text-neutral-500">
+          Everything overseas procurement directors and indie founders need to know about working with us.
+        </p>
+      </div>
+
+      <div class="space-y-4">
+        
+        <details class="group p-5 bg-neutral-50 rounded-sm border border-neutral-200 transition-colors open:bg-white open:border-brand-gold/60">
+          <summary class="font-serif font-bold text-base text-neutral-900 cursor-pointer flex items-center justify-between list-none">
+            <span>What is your Minimum Order Quantity (MOQ)?</span>
+            <span class="text-brand-gold group-open:rotate-180 transition-transform">▼</span>
+          </summary>
+          <div class="mt-3 text-xs sm:text-sm text-neutral-600 leading-relaxed space-y-1 border-t border-neutral-100 pt-3">
+            <p>We provide a flexible two-tier MOQ structure:</p>
+            <ul class="list-disc pl-5 space-y-1">
+              <li><strong>In-Stock Standard Blank Bottles:</strong> 1,000 to 3,000 pcs (ideal for brand launches & formulation testing).</li>
+              <li><strong>Custom Color Spray & Silk-Screen Printing:</strong> 3,000 to 5,000 pcs per artwork.</li>
+              <li><strong>Bespoke Private Moulds:</strong> 30,000+ pcs with mold development in 15-20 days.</li>
+            </ul>
+          </div>
+        </details>
+
+        <details class="group p-5 bg-neutral-50 rounded-sm border border-neutral-200 transition-colors open:bg-white open:border-brand-gold/60">
+          <summary class="font-serif font-bold text-base text-neutral-900 cursor-pointer flex items-center justify-between list-none">
+            <span>How does your Free Sample Kit program work?</span>
+            <span class="text-brand-gold group-open:rotate-180 transition-transform">▼</span>
+          </summary>
+          <div class="mt-3 text-xs sm:text-sm text-neutral-600 leading-relaxed border-t border-neutral-100 pt-3">
+            <p>
+              Stock bottle samples and closure assortments are 100% free of charge! You only cover the express courier fee ($25–$35 USD via DHL/FedEx with 3-5 day delivery from Guangzhou). <strong>100% of this courier fee will be credited back as a discount on your first bulk order.</strong>
+            </p>
+          </div>
+        </details>
+
+        <details class="group p-5 bg-neutral-50 rounded-sm border border-neutral-200 transition-colors open:bg-white open:border-brand-gold/60">
+          <summary class="font-serif font-bold text-base text-neutral-900 cursor-pointer flex items-center justify-between list-none">
+            <span>Can you ship DDP (Delivered Duty Paid) to the US or Europe?</span>
+            <span class="text-brand-gold group-open:rotate-180 transition-transform">▼</span>
+          </summary>
+          <div class="mt-3 text-xs sm:text-sm text-neutral-600 leading-relaxed border-t border-neutral-100 pt-3">
+            <p>
+              Yes! Over 80% of our Western clients choose our DDP door-to-door service. We handle Chinese export customs, ocean or air freight, destination customs clearance, and local trucking directly to your designated facility or Amazon FBA warehouse. You don't have to worry about complex tariff codes or customs brokers.
+            </p>
+          </div>
+        </details>
+
+        <details class="group p-5 bg-neutral-50 rounded-sm border border-neutral-200 transition-colors open:bg-white open:border-brand-gold/60">
+          <summary class="font-serif font-bold text-base text-neutral-900 cursor-pointer flex items-center justify-between list-none">
+            <span>How do you guarantee formula compatibility and zero leaking?</span>
+            <span class="text-brand-gold group-open:rotate-180 transition-transform">▼</span>
+          </summary>
+          <div class="mt-3 text-xs sm:text-sm text-neutral-600 leading-relaxed border-t border-neutral-100 pt-3">
+            <p>
+              Our bottles are manufactured with USP Type III medical-grade high-flint soda lime glass or amber glass, which is chemically inert and lead-free (Prop 65 & EU 1223/2009 compliant). We conduct 30-minute -0.08 MPa negative pressure vacuum leak tests on every cap/bottle pairing before mass dispatch.
+            </p>
+          </div>
+        </details>
+
+        <details class="group p-5 bg-neutral-50 rounded-sm border border-neutral-200 transition-colors open:bg-white open:border-brand-gold/60">
+          <summary class="font-serif font-bold text-base text-neutral-900 cursor-pointer flex items-center justify-between list-none">
+            <span>What are your production lead times?</span>
+            <span class="text-brand-gold group-open:rotate-180 transition-transform">▼</span>
+          </summary>
+          <div class="mt-3 text-xs sm:text-sm text-neutral-600 leading-relaxed border-t border-neutral-100 pt-3">
+            <p>
+              • In-Stock Blank Glass: Dispatched in <strong>48–72 hours</strong>.<br/>
+              • Custom Color & Silk-Screen Printing: <strong>15–20 business days</strong>.<br/>
+              • Custom Tooling & Mould Development: <strong>20–25 days</strong> for pre-production samples.
+            </p>
+          </div>
+        </details>
+
+      </div>
+
+    </div>
+  </section>
+
+  <!-- 7. HIGH CONVERSION CTA BANNER -->
+  <section class="py-20 bg-brand-dark text-white text-center relative border-t border-neutral-800">
+    <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 space-y-6">
+      <Badge variant="gold" size="sm">Start Your Packaging Project</Badge>
+      <h2 class="font-serif text-3xl sm:text-5xl font-bold tracking-tight text-white">
+        Request Your Custom Quotation or Free Sample Kit
+      </h2>
+      <p class="text-sm sm:text-base text-neutral-300 max-w-2xl mx-auto font-light leading-relaxed">
+        Speak directly with our Guangzhou packaging engineers. Receive CAD dieline templates, wholesale volume tiers, and fast sample shipping within 2-4 business hours.
+      </p>
+      <div class="pt-4 flex flex-col sm:flex-row items-center justify-center gap-4">
+        <Button href="/sample-kit" variant="gold" size="lg" class="shadow-gold w-full sm:w-auto">
+          Order Free Sample Kit (Credited) →
+        </Button>
+        <button
+          type="button"
+          class="quick-quote-btn w-full sm:w-auto px-7 py-3.5 bg-transparent text-white border border-neutral-600 hover:border-brand-gold hover:text-brand-gold font-medium rounded-sm text-base transition-colors"
+          data-product-title="Homepage Direct Inbound Inquiry"
+        >
+          Request General Wholesale Quote
+        </button>
+      </div>
+    </div>
+  </section>
+
+</Layout>

@@ -1,0 +1,182 @@
+---
+import Layout from '../layouts/Layout.astro';
+import Button from '../components/Button.astro';
+import Badge from '../components/Badge.astro';
+import site from '../data/site.json';
+---
+
+<Layout
+  title={`About Us & Guangzhou Hub | ${site.name}`}
+  description="Learn how Aura Packaging provides turnkey cosmetic packaging solutions, pre-shipment quality assurance, and agile Guangzhou supply chain management for global beauty brands."
+>
+  <!-- Hero Section -->
+  <section class="bg-brand-dark text-white py-20 border-b border-neutral-800">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center space-y-4">
+      <Badge variant="gold" size="sm">Our Story & Infrastructure</Badge>
+      <h1 class="font-serif text-3xl sm:text-5xl font-bold tracking-tight text-white">
+        Your Turnkey Packaging & <span class="gold-gradient-text">Quality Guardian</span> in China
+      </h1>
+      <p class="text-sm sm:text-base text-neutral-300 max-w-2xl mx-auto font-light leading-relaxed">
+        Headquartered in Guangzhou—the global heartland of cosmetic manufacturing—Aura Packaging bridges the gap between massive Chinese glass manufacturing capacity and the exacting standards of Western prestige beauty brands.
+      </p>
+    </div>
+  </section>
+
+  <!-- Core Positioning: The Modern Packaging Partner -->
+  <section class="py-20 bg-white border-b border-neutral-200">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-16 items-center">
+        
+        <div class="space-y-6">
+          <Badge variant="outline" size="sm">The Sourcing Dilemma Solved</Badge>
+          <h2 class="font-serif text-3xl sm:text-4xl font-bold text-brand-dark leading-tight">
+            Why Single-Line Factories Fail Modern Beauty Brands
+          </h2>
+          <div class="space-y-4 text-sm text-neutral-600 leading-relaxed">
+            <p>
+              In traditional manufacturing, glass furnaces only mold empty bottles. They do not manufacture dispensing pumps, they do not produce real bamboo collars, and they do not print secondary rigid boxes. When overseas buyers attempt to manage 4 different factories in China, a 0.2mm thread mismatch results in leaking containers, thousands of ruined formulations, and catastrophic delivery delays.
+            </p>
+            <p>
+              <strong class="text-brand-dark">Aura Packaging operates differently.</strong> We function as your integrated turnkey packaging engineering team. We manage the entire ecosystem: high-flint glass container, precision-matched closures, surface decoration, custom outer boxes, and independent pre-shipment laboratory testing.
+            </p>
+          </div>
+
+          <div class="pt-2 grid grid-cols-2 gap-4">
+            <div class="p-4 bg-neutral-50 rounded border border-neutral-200">
+              <span class="block text-xl font-serif font-bold text-brand-gold">100%</span>
+              <span class="text-xs text-neutral-600">Thread & Leak Compatibility</span>
+            </div>
+            <div class="p-4 bg-neutral-50 rounded border border-neutral-200">
+              <span class="block text-xl font-serif font-bold text-brand-gold">AQL 2.5</span>
+              <span class="text-xs text-neutral-600">Batch Inspection Standards</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="relative rounded-sm overflow-hidden border border-neutral-200 shadow-xl aspect-[4/3]">
+          <img
+            src="https://images.unsplash.com/photo-1581091226825-a6a2a5aee158?auto=format&fit=crop&w=1000&q=80"
+            alt="Engineers inspecting cosmetic packaging quality"
+            class="w-full h-full object-cover"
+          />
+          <div class="absolute inset-0 bg-gradient-to-t from-brand-dark/80 via-transparent to-transparent flex items-end p-6">
+            <p class="text-white text-xs font-mono">
+              In-house inspection: Dimensional caliper verification and negative pressure testing before container loading.
+            </p>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- The Guangzhou Supply Chain Advantage -->
+  <section id="guangzhou-hub" class="py-20 bg-[#faf9f6] border-b border-neutral-200">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      
+      <div class="text-center max-w-3xl mx-auto space-y-3 mb-16">
+        <Badge variant="gold" size="sm">Strategic Location</Badge>
+        <h2 class="font-serif text-3xl sm:text-4xl font-bold text-brand-dark">
+          The Guangzhou Advantage: Speed, Agility & Selection
+        </h2>
+        <p class="text-sm sm:text-base text-neutral-600">
+          Guangzhou (Baiyun District) is home to over 4,000 cosmetic and packaging enterprises. Operating at the epicenter of this cluster gives our clients unbeatable advantages.
+        </p>
+      </div>
+
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+        
+        <div class="bg-white p-8 rounded-sm border border-neutral-200 shadow-sm space-y-4">
+          <div class="w-12 h-12 bg-brand-gold/15 text-brand-gold-dark rounded-sm flex items-center justify-center font-bold text-xl">
+            ✈️
+          </div>
+          <h3 class="font-serif font-bold text-lg text-brand-dark">48-Hour Sample Dispatch</h3>
+          <p class="text-xs text-neutral-600 leading-relaxed">
+            While remote inland factories take weeks to prepare physical samples, we pull directly from Guangzhou’s massive component repositories and express courier via DHL from Baiyun Airport in 48 hours.
+          </p>
+        </div>
+
+        <div class="bg-white p-8 rounded-sm border border-neutral-200 shadow-sm space-y-4">
+          <div class="w-12 h-12 bg-brand-gold/15 text-brand-gold-dark rounded-sm flex items-center justify-center font-bold text-xl">
+            🚢
+          </div>
+          <h3 class="font-serif font-bold text-lg text-brand-dark">Port Proximity & DDP Ocean Logistics</h3>
+          <p class="text-xs text-neutral-600 leading-relaxed">
+            Immediate access to Guangzhou Nansha Port and Shenzhen Yantian Port allows us to book fast-track sea lanes to Long Beach, Oakland, and Rotterdam, reducing ocean transit times by 7-10 days.
+          </p>
+        </div>
+
+        <div class="bg-white p-8 rounded-sm border border-neutral-200 shadow-sm space-y-4">
+          <div class="w-12 h-12 bg-brand-gold/15 text-brand-gold-dark rounded-sm flex items-center justify-center font-bold text-xl">
+            🎨
+          </div>
+          <h3 class="font-serif font-bold text-lg text-brand-dark">Master Finishing Facilities</h3>
+          <p class="text-xs text-neutral-600 leading-relaxed">
+            The world's highest density of advanced coating, silk printing, and electroplating lines ensures immediate access to the latest finishing trends and rapid Pantone lab strike-offs.
+          </p>
+        </div>
+
+      </div>
+
+    </div>
+  </section>
+
+  <!-- Quality Assurance Lab Protocols -->
+  <section class="py-20 bg-white">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      
+      <div class="text-center max-w-3xl mx-auto space-y-3 mb-16">
+        <Badge variant="outline" size="sm">Laboratory Standards</Badge>
+        <h2 class="font-serif text-3xl sm:text-4xl font-bold text-brand-dark">
+          Our 4-Stage Pre-Shipment Quality Protocol
+        </h2>
+        <p class="text-sm text-neutral-600">
+          Every production run must clear our internal QA laboratory before we issue commercial shipping release.
+        </p>
+      </div>
+
+      <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 text-left">
+        
+        <div class="p-6 bg-neutral-50 rounded border border-neutral-200 space-y-3">
+          <span class="text-xs font-mono font-bold text-brand-gold">STAGE 01</span>
+          <h3 class="font-serif font-bold text-base text-neutral-900">Vacuum Leak Testing</h3>
+          <p class="text-xs text-neutral-600 leading-relaxed">
+            -0.08 MPa chamber depressurization for 30 minutes. Verifies that pumps, droppers, and jars remain hermetically sealed under international cargo pressure changes.
+          </p>
+        </div>
+
+        <div class="p-6 bg-neutral-50 rounded border border-neutral-200 space-y-3">
+          <span class="text-xs font-mono font-bold text-brand-gold">STAGE 02</span>
+          <h3 class="font-serif font-bold text-base text-neutral-900">Thread & Dimension Calipers</h3>
+          <p class="text-xs text-neutral-600 leading-relaxed">
+            Digital optical comparators verify mouth diameter, wall thickness, and DIN 18/410 thread pitch to ensure 100% smooth automated filling line clearance.
+          </p>
+        </div>
+
+        <div class="p-6 bg-neutral-50 rounded border border-neutral-200 space-y-3">
+          <span class="text-xs font-mono font-bold text-brand-gold">STAGE 03</span>
+          <h3 class="font-serif font-bold text-base text-neutral-900">3M Tape Adhesion & Curing</h3>
+          <p class="text-xs text-neutral-600 leading-relaxed">
+            ASTM D3359 cross-hatch tape pull tests on silk-screen printed typography and metallic hot foil to guarantee graphics do not peel under daily use.
+          </p>
+        </div>
+
+        <div class="p-6 bg-neutral-50 rounded border border-neutral-200 space-y-3">
+          <span class="text-xs font-mono font-bold text-brand-gold">STAGE 04</span>
+          <h3 class="font-serif font-bold text-base text-neutral-900">ISTA 3A Drop Testing</h3>
+          <p class="text-xs text-neutral-600 leading-relaxed">
+            Full export carton drop tests from 1.0m height on all 6 faces, edges, and corners. Ensures reinforced cell-divided cartons arrive intact at your facility.
+          </p>
+        </div>
+
+      </div>
+
+      <div class="mt-12 text-center">
+        <Button href="/sample-kit" variant="gold" size="lg">
+          Request Free Sample Kit for Lab Evaluation →
+        </Button>
+      </div>
+
+    </div>
+  </section>
+</Layout>

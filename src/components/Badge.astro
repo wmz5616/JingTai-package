@@ -1,0 +1,36 @@
+---
+interface Props {
+  variant?: 'gold' | 'dark' | 'green' | 'blue' | 'light' | 'outline';
+  size?: 'xs' | 'sm' | 'md';
+  class?: string;
+}
+
+const {
+  variant = 'gold',
+  size = 'sm',
+  class: className = '',
+} = Astro.props;
+
+const baseStyles = 'inline-flex items-center uppercase tracking-widest font-semibold rounded-full';
+
+const sizeStyles = {
+  xs: 'text-[10px] px-2 py-0.5',
+  sm: 'text-xs px-2.5 py-1',
+  md: 'text-xs px-3.5 py-1.5',
+};
+
+const variantStyles = {
+  gold: 'bg-brand-gold/15 text-brand-gold-dark border border-brand-gold/30',
+  dark: 'bg-brand-dark text-white border border-neutral-700',
+  green: 'bg-emerald-50 text-emerald-700 border border-emerald-200',
+  blue: 'bg-sky-50 text-sky-700 border border-sky-200',
+  light: 'bg-white/90 text-neutral-700 border border-neutral-200 shadow-sm backdrop-blur-sm',
+  outline: 'bg-transparent text-neutral-600 border border-neutral-300',
+};
+
+const finalClass = `${baseStyles} ${sizeStyles[size]} ${variantStyles[variant]} ${className}`;
+---
+
+<span class={finalClass}>
+  <slot />
+</span>

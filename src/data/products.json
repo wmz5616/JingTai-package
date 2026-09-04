@@ -1,0 +1,352 @@
+[
+  {
+    "id": "frosted-amber-dropper-30ml",
+    "name": "30ml Frosted Amber Glass Dropper Bottle",
+    "subtitle": "UV-Protection Pipette Bottle for Active Serums & Retinol",
+    "category": "Dropper Bottles",
+    "categorySlug": "dropper",
+    "volume": "30ml (1.0 fl oz)",
+    "moq": 3000,
+    "inStockMoq": 1000,
+    "leadTime": "15-20 business days (48H for blank stock)",
+    "images": [
+      "https://images.unsplash.com/photo-1608248597359-52e4cf52538b?auto=format&fit=crop&w=900&q=80",
+      "https://images.unsplash.com/photo-1620916566398-39f1143ab7be?auto=format&fit=crop&w=900&q=80"
+    ],
+    "specs": {
+      "neckSize": "18/410 DIN Standard",
+      "material": "USP Type III Amber Flint Glass",
+      "height": "92.5 mm (Bottle only)",
+      "diameter": "33.0 mm",
+      "weight": "48.5 g (Heavy Flint Glass)",
+      "brimfulCapacity": "35.2 ml",
+      "surfaceHandling": ["Acid Frosted Etch", "Silk-screen Print", "Metallic Hot Stamping", "Custom Color Spray"],
+      "closureTypes": ["Medical NBR Rubber Pipette", "Child-Resistant CRC Cap", "Electroplated Gold Collar", "FSC Bamboo Collar"]
+    },
+    "features": [
+      "99.4% UV Light Barrier: Shields Vitamin C, Retinol & Essential Oils from photo-oxidation",
+      "Negative Pressure Leak-Tested: Verified at -0.08 MPa for 30 minutes with zero seepage",
+      "Precision German Calibrated Pipette: Exact 0.5ml - 1.0ml dosage distribution",
+      "DIN 18/410 Standard Thread: 100% compatible with international automated filling lines"
+    ],
+    "description": "Architected specifically for clean skincare formulations and active dermatological serums. Made with high-flint recyclable amber glass providing pharmaceutical-grade UV blocking performance. Perfectly weighted with a thick bottom for exceptional luxury hand-feel.",
+    "dielineUrl": "#download-dieline",
+    "isFeatured": true,
+    "badge": "Best Seller"
+  },
+  {
+    "id": "nordic-clear-dropper-50ml",
+    "name": "50ml Crystal Clear Heavy-Base Pipette Bottle",
+    "subtitle": "High-Transparency Thick Bottom Serum Packaging",
+    "category": "Dropper Bottles",
+    "categorySlug": "dropper",
+    "volume": "50ml (1.7 fl oz)",
+    "moq": 3000,
+    "inStockMoq": 1000,
+    "leadTime": "18-22 business days (48H for blank stock)",
+    "images": [
+      "https://images.unsplash.com/photo-1620916566398-39f1143ab7be?auto=format&fit=crop&w=900&q=80",
+      "https://images.unsplash.com/photo-1608248597359-52e4cf52538b?auto=format&fit=crop&w=900&q=80"
+    ],
+    "specs": {
+      "neckSize": "20/410 Standard",
+      "material": "Super Flint Extra-Clear Soda Lime Glass",
+      "height": "114.0 mm",
+      "diameter": "38.2 mm",
+      "weight": "86.0 g (Extra Heavy Base)",
+      "brimfulCapacity": "56.8 ml",
+      "surfaceHandling": ["Gradual Spray Coating", "Frosted Finish", "Gold/Silver Hot Stamping", "Offset Silk Printing"],
+      "closureTypes": ["Push-button Aluminum Dropper", "White Silicone Pipette", "Matte Black Anodized Collar"]
+    },
+    "features": [
+      "Optical Super-Flint Clarity: Showcases colored serums, dual-phase oils, and botanical essences",
+      "Ultra-Thick Bottom (14mm Base): Substantial prestige presence with superior tip-over resistance",
+      "Air-tight Dropper Seal: Leak-proof silicone gasket tested under extreme altitude transport",
+      "Chemical Inertness: Zero formula interaction or chemical leaching verified by SGS lab"
+    ],
+    "description": "The Nordic Clear collection features a distinctive 14mm solid glass base and crisp cylindrical silhouette. Crafted from optical-grade super flint glass, this bottle is the gold standard for high-end hydrating serums, facial oils, and botanical elixirs.",
+    "dielineUrl": "#download-dieline",
+    "isFeatured": true,
+    "badge": "Prestige Line"
+  },
+  {
+    "id": "matte-black-push-dropper-30ml",
+    "name": "30ml Matte Black Push-Button Dropper Bottle",
+    "subtitle": "Aesthetic Light-Blocking Packaging with Metered Dispensing",
+    "category": "Dropper Bottles",
+    "categorySlug": "dropper",
+    "volume": "30ml (1.0 fl oz)",
+    "moq": 5000,
+    "inStockMoq": 2000,
+    "leadTime": "20-25 business days",
+    "images": [
+      "https://images.unsplash.com/photo-1598440947619-2c35fc9aa908?auto=format&fit=crop&w=900&q=80",
+      "https://images.unsplash.com/photo-1608248597359-52e4cf52538b?auto=format&fit=crop&w=900&q=80"
+    ],
+    "specs": {
+      "neckSize": "18/410 DIN Standard",
+      "material": "High Flint Glass with Soft-Touch Ceramic Coating",
+      "height": "95.0 mm",
+      "diameter": "32.8 mm",
+      "weight": "51.0 g",
+      "brimfulCapacity": "34.5 ml",
+      "surfaceHandling": ["Velvet Matte Finish", "Glossy UV Silk Screen", "Embossed Foil", "Metallic Trim"],
+      "closureTypes": ["Engineered Push-Button Pipette", "Screw Dropper", "Anodized Aluminum Shroud"]
+    },
+    "features": [
+      "Complete 100% Total Opaque Protection: Ideal for sensitive retinol and peptide solutions",
+      "Tactile Soft-Touch Velvet Feel: Ultra-luxurious unboxing experience for prestige brands",
+      "Automatic Dosage Metering: Button charges exact 0.5ml per single depression",
+      "No-Spill Seal Mechanism: Engineered internal wiper prevents product build-up on bottle neck"
+    ],
+    "description": "Engineered for medical-grade and clinical cosmetics. The opaque matte black ceramic finish shields delicate compounds from all ambient light while delivering an irresistible tactile sensation in the consumer's hand.",
+    "dielineUrl": "#download-dieline",
+    "isFeatured": false,
+    "badge": "Clinical Aesthetic"
+  },
+  {
+    "id": "emerald-bamboo-dropper-15ml",
+    "name": "15ml Emerald Green Bottle with Natural Bamboo Dropper",
+    "subtitle": "Eco-Luxury Packaging for Clean & Organic Beauty Brands",
+    "category": "Dropper Bottles",
+    "categorySlug": "dropper",
+    "volume": "15ml (0.5 fl oz)",
+    "moq": 3000,
+    "inStockMoq": 1000,
+    "leadTime": "15-20 business days",
+    "images": [
+      "https://images.unsplash.com/photo-1617897903246-719242758050?auto=format&fit=crop&w=900&q=80",
+      "https://images.unsplash.com/photo-1608248597359-52e4cf52538b?auto=format&fit=crop&w=900&q=80"
+    ],
+    "specs": {
+      "neckSize": "18/410 Standard",
+      "material": "Colored Flint Glass (Emerald Tint) + FSC Bamboo",
+      "height": "78.0 mm",
+      "diameter": "28.5 mm",
+      "weight": "36.0 g",
+      "brimfulCapacity": "18.2 ml",
+      "surfaceHandling": ["Frosted Surface", "Soy-based Ink Printing", "Hot Stamping", "Laser Engraved Bamboo"],
+      "closureTypes": ["FSC-Certified Real Bamboo Collar", "White TPE Pipette Bulb", "Recyclable Glass Tube"]
+    },
+    "features": [
+      "FSC-Certified Sustainable Bamboo: Resonates strongly with US & European Eco-conscious buyers",
+      "Solid Emerald Tinting: Color is integrated into molten glass batch, will not peel or flake",
+      "Travel-Friendly 15ml Size: Perfect for luxury eye serums, blemish treatments, and trial kits",
+      "Compliant with EU 1223/2009 Clean Beauty Packaging Guidelines"
+    ],
+    "description": "Combining sustainable forestry materials with recyclable emerald flint glass. Tailored for organic, vegan, and clean skincare startups looking to communicate sustainability without compromising on shelf presence.",
+    "dielineUrl": "#download-dieline",
+    "isFeatured": false,
+    "badge": "Eco Certified"
+  },
+  {
+    "id": "frosted-lotion-pump-50ml",
+    "name": "50ml Luxury Frosted Glass Serum Pump Bottle",
+    "subtitle": "Prestige Treatment Bottle with External-Spring Lotion Pump",
+    "category": "Pump & Lotion Bottles",
+    "categorySlug": "pump",
+    "volume": "50ml (1.7 fl oz)",
+    "moq": 3000,
+    "inStockMoq": 1000,
+    "leadTime": "18-22 business days",
+    "images": [
+      "https://images.unsplash.com/photo-1556228720-195a672e8a03?auto=format&fit=crop&w=900&q=80",
+      "https://images.unsplash.com/photo-1620916566398-39f1143ab7be?auto=format&fit=crop&w=900&q=80"
+    ],
+    "specs": {
+      "neckSize": "20/410 DIN Thread",
+      "material": "High Flint Glass with Fine Satin Frosting",
+      "height": "128.5 mm (With Pump & Overcap)",
+      "diameter": "36.2 mm",
+      "weight": "98.0 g",
+      "brimfulCapacity": "55.0 ml",
+      "surfaceHandling": ["Silk Printing", "Hot Stamp Logo", "UV Spot Varnish", "Color Gradient Spray"],
+      "closureTypes": ["External Metal-Free Pump (0.2ml/stroke)", "Anodized Champagne Gold Collar", "Clear PETG Overcap"]
+    },
+    "features": [
+      "Zero Formula Contact with Metal Spring: Prevents oxidation of active ingredients",
+      "Smooth High-Viscosity Dispensing: Handles emulsion, creamy lotions, and dense serums flawlessly",
+      "Snug-Fit Protective Overcap: Prevents accidental pump depression during e-commerce shipping",
+      "High Wall Uniformity: Engineered with automated blow-and-blow molding for zero internal waves"
+    ],
+    "description": "A bestseller among dermatological and anti-aging brands. Equipped with a patented external spring pump where the lotion never touches metal parts. Satin frosted finish provides a finger-print resistant, velvety touch.",
+    "dielineUrl": "#download-dieline",
+    "isFeatured": true,
+    "badge": "Best Seller"
+  },
+  {
+    "id": "heavy-base-lotion-100ml",
+    "name": "100ml Heavy-Base Glass Toner & Emulsion Bottle",
+    "subtitle": "Large Capacity Luxury Glass Container for Toners & Body Care",
+    "category": "Pump & Lotion Bottles",
+    "categorySlug": "pump",
+    "volume": "100ml (3.4 fl oz)",
+    "moq": 5000,
+    "inStockMoq": 1500,
+    "leadTime": "20-25 business days",
+    "images": [
+      "https://images.unsplash.com/photo-1608248597359-52e4cf52538b?auto=format&fit=crop&w=900&q=80",
+      "https://images.unsplash.com/photo-1556228720-195a672e8a03?auto=format&fit=crop&w=900&q=80"
+    ],
+    "specs": {
+      "neckSize": "24/410 Standard",
+      "material": "Extra-Flint Heavy Base Glass",
+      "height": "148.0 mm",
+      "diameter": "45.0 mm",
+      "weight": "165.0 g (Substantial Weight)",
+      "brimfulCapacity": "108.0 ml",
+      "surfaceHandling": ["Full Color Coating", "Silk-screen Decal", "Electrolytic Gold Plating", "Laser Etch"],
+      "closureTypes": ["0.5ml High-Output Lotion Pump", "Fine Mist Sprayer", "Disc Top Cap", "Screw Cap with Reducer Plug"]
+    },
+    "features": [
+      "Substantial 165g Heavy-Base Weight: Communicates immense luxury in the consumer's bathroom",
+      "24/410 Universal Neck: Highly versatile for both high-viscosity pumps and fine spray nozzles",
+      "AQL 2.5 Batch Quality Guarantee: Individually checked for dimensional accuracy and clarity",
+      "Bulk Sea/Air DDP Ready: Packed in reinforced cell-divided cartons with fumigated pallets"
+    ],
+    "description": "Crafted for prestige toners, micellar cleansers, and body oils. The 165g heavyweight glass delivers commanding shelf presence and an unmistakable feeling of quality in the consumer's hand.",
+    "dielineUrl": "#download-dieline",
+    "isFeatured": false,
+    "badge": "Heavyweight"
+  },
+  {
+    "id": "heavy-base-cream-jar-50g",
+    "name": "50g Heavy-Base Frosted Glass Face Cream Jar",
+    "subtitle": "Thick Bottom Wide-Mouth Cosmetic Pot with Shive Gasket",
+    "category": "Cream & Treatment Jars",
+    "categorySlug": "jar",
+    "volume": "50g / 50ml (1.7 oz)",
+    "moq": 3000,
+    "inStockMoq": 1000,
+    "leadTime": "15-20 business days",
+    "images": [
+      "https://images.unsplash.com/photo-1571781926291-c477ebfd024b?auto=format&fit=crop&w=900&q=80",
+      "https://images.unsplash.com/photo-1620916566398-39f1143ab7be?auto=format&fit=crop&w=900&q=80"
+    ],
+    "specs": {
+      "neckSize": "GCMI 400/53 Wide Mouth",
+      "material": "Ultra-Thick High Flint Glass",
+      "height": "48.5 mm (With Cap)",
+      "diameter": "61.0 mm",
+      "weight": "142.0 g (Solid Heavyweight)",
+      "brimfulCapacity": "58.0 ml",
+      "surfaceHandling": ["Frosted Acid Etching", "Silk Printing", "Hot Foil Stamping", "Interior Color Coating"],
+      "closureTypes": ["Aluminum Electroplated Gold/Silver Cap", "Matte Wood/Bamboo Lid", "PP White Disc Liner"]
+    },
+    "features": [
+      "Airtight Sealing Disc Included: Pull-tab PE/PP shive prevents cream drying and leaks in transit",
+      "Solid 142g Weight: Substantial tactile luxury for premium day and night moisturizers",
+      "Wide-Mouth Ergonomic Opening: Effortless finger access and automated filling nozzle clearance",
+      "FDA Food-Contact & California Prop 65 Compliant: 100% lead and cadmium free"
+    ],
+    "description": "The quintessential packaging for prestige face creams, rich sleeping masks, and rejuvenating balms. Designed with a 15mm thick base that elevates the perceived value of your formulation on retail shelves.",
+    "dielineUrl": "#download-dieline",
+    "isFeatured": true,
+    "badge": "Prestige Jar"
+  },
+  {
+    "id": "amber-uv-face-cream-jar-30g",
+    "name": "30g Amber Glass Cream Jar with Tamper-Evident Liner",
+    "subtitle": "Apothecary-Inspired UV-Safe Container for Organic Balms",
+    "category": "Cream & Treatment Jars",
+    "categorySlug": "jar",
+    "volume": "30g / 30ml (1.0 oz)",
+    "moq": 3000,
+    "inStockMoq": 1000,
+    "leadTime": "15-20 business days",
+    "images": [
+      "https://images.unsplash.com/photo-1598440947619-2c35fc9aa908?auto=format&fit=crop&w=900&q=80",
+      "https://images.unsplash.com/photo-1571781926291-c477ebfd024b?auto=format&fit=crop&w=900&q=80"
+    ],
+    "specs": {
+      "neckSize": "48/400 Thread",
+      "material": "High Flint Amber Soda-Lime Glass",
+      "height": "42.0 mm",
+      "diameter": "52.0 mm",
+      "weight": "92.0 g",
+      "brimfulCapacity": "36.0 ml",
+      "surfaceHandling": ["Matte Finish", "High Gloss Amber", "Gold Stamping", "White Screen Print"],
+      "closureTypes": ["Matte Black Phenolic Cap", "Bakelite Dome Lid", "Real Bamboo Lid", "Induction Heat Seal Liner"]
+    },
+    "features": [
+      "Amber UV Protection: Keeps essential oil balms and antioxidant salves fresh without degradation",
+      "Apothecary Clean Aesthetic: Trending look for indie clinical brands and botanical laboratories",
+      "Multi-Liner Compatibility: Compatible with pressure-sensitive, induction foil, or standard foam liners",
+      "Guangzhou 48H Stock Dispatch: Thousands in stock for rapid brand launch"
+    ],
+    "description": "Ideal for clean, apothecary-inspired skincare, healing salves, and lip treatments. The amber glass blocks 99% of harmful light rays while offering a timeless vintage luxury visual appeal.",
+    "dielineUrl": "#download-dieline",
+    "isFeatured": false,
+    "badge": "Apothecary Line"
+  },
+  {
+    "id": "luxury-perfume-spray-50ml",
+    "name": "50ml Rectangular Crystal Perfume Glass Bottle",
+    "subtitle": "Heavy Square Perfume Flacon with Crimpless Invisible Tube Pump",
+    "category": "Perfume & Mist Spray",
+    "categorySlug": "spray",
+    "volume": "50ml (1.7 fl oz)",
+    "moq": 5000,
+    "inStockMoq": 1000,
+    "leadTime": "25-30 business days",
+    "images": [
+      "https://images.unsplash.com/photo-1547887537-6158d64c35b3?auto=format&fit=crop&w=900&q=80",
+      "https://images.unsplash.com/photo-1598440947619-2c35fc9aa908?auto=format&fit=crop&w=900&q=80"
+    ],
+    "specs": {
+      "neckSize": "FEA 15 Crimpless Standard",
+      "material": "Super-Flint Crystal Clear Glass with Polished Facets",
+      "height": "106.0 mm",
+      "diameter": "48.0 x 32.0 mm (Rectangular)",
+      "weight": "178.0 g (Substantial Luxury Weight)",
+      "brimfulCapacity": "54.5 ml",
+      "surfaceHandling": ["Hand Polishing", "Color Gradient Lacquer", "Gold Metallization", "Embossed Metal Label"],
+      "closureTypes": ["Heavy Magnetic Zamac Cap", "Crystal Surlyn Cap", "Aluminum Crimpless Pump"]
+    },
+    "features": [
+      "Optically Clear Invisible Dip Tube: Tube disappears when submerged in fragrance oil",
+      "Hand-Polished Super Flint Glass: Zero mold seams or cooling striations on front panel",
+      "Ultra-Fine 0.08ml Micro-Mist Atomizer: Even perfume cloud distribution with zero dripping",
+      "Magnetic Zamac Cap Option: Distinctive snap click that signals ultra-luxury tier pricing"
+    ],
+    "description": "Engineered for niche perfume houses and boutique fragrance lines. Featuring diamond-polished rectangular geometry, ultra-thick crystal glass base, and an invisible dip tube that creates an ethereal luxury presentation on retail counters.",
+    "dielineUrl": "#download-dieline",
+    "isFeatured": true,
+    "badge": "Haute Parfumerie"
+  },
+  {
+    "id": "frosted-toner-mist-100ml",
+    "name": "100ml Frosted Cylindrical Fine Mist Spray Glass Bottle",
+    "subtitle": "Micro-Atomization Glass Spray for Face Mists & Hydrating Waters",
+    "category": "Perfume & Mist Spray",
+    "categorySlug": "spray",
+    "volume": "100ml (3.4 fl oz)",
+    "moq": 3000,
+    "inStockMoq": 1000,
+    "leadTime": "18-22 business days",
+    "images": [
+      "https://images.unsplash.com/photo-1608248597359-52e4cf52538b?auto=format&fit=crop&w=900&q=80",
+      "https://images.unsplash.com/photo-1547887537-6158d64c35b3?auto=format&fit=crop&w=900&q=80"
+    ],
+    "specs": {
+      "neckSize": "20/410 DIN Standard",
+      "material": "High Flint Glass with Satin Frosting",
+      "height": "142.0 mm",
+      "diameter": "40.5 mm",
+      "weight": "135.0 g",
+      "brimfulCapacity": "106.0 ml",
+      "surfaceHandling": ["Satin Frosting", "Silk-screen Typography", "Metallic Hot Stamping", "Color Tinting"],
+      "closureTypes": ["Micro Fine-Mist Pump (Gold/Silver/Black)", "Full Cover Clear Cap", "Bamboo Sprayer Overcap"]
+    },
+    "features": [
+      "Ultra-Fine Micro Particle Spray: Generates a soft hydrating cloud without wetting clothes",
+      "Finger-print Resistant Satin Frosting: Maintains immaculate aesthetic even with daily use",
+      "Leak-Tested Thread: Precision molded thread prevents liquid seepage during pressurized air cargo",
+      "Standard 100ml Travel Size: Compliant with airline carry-on regulations"
+    ],
+    "description": "The ideal partner for hydrating facial mists, floral waters, and setting sprays. Fitted with an ultra-fine atomizing pump that produces a velvety mist cloud, packaged in an elegant satin-frosted cylindrical glass flacon.",
+    "dielineUrl": "#download-dieline",
+    "isFeatured": false,
+    "badge": "Fine Mist"
+  }
+]

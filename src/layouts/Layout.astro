@@ -1,0 +1,156 @@
+---
+import Header from '../components/Header.astro';
+import Footer from '../components/Footer.astro';
+import QuoteModal from '../components/QuoteModal.astro';
+import InquiryDrawer from '../components/InquiryDrawer.astro';
+import WhatsAppButton from '../components/WhatsAppButton.astro';
+import site from '../data/site.json';
+import '../styles/global.css';
+
+interface Props {
+  title?: string;
+  description?: string;
+  keywords?: string;
+  image?: string;
+  type?: 'website' | 'product' | 'article';
+  schemaJson?: any;
+}
+
+const {
+  title = `${site.name} | Luxury Cosmetic Glass Packaging & Turnkey Supply Chain`,
+  description = site.description,
+  keywords = 'cosmetic glass bottles, dropper bottles wholesale, glass serum bottles, cream jars manufacturer, cosmetic packaging supplier china, guangzhou packaging supplier, DDP glass packaging, low moq glass bottles',
+  image = 'https://images.unsplash.com/photo-1608248597359-52e4cf52538b?auto=format&fit=crop&w=1200&q=80',
+  type = 'website',
+  schemaJson,
+} = Astro.props;
+
+const canonicalURL = new URL(Astro.url.pathname, site.url);
+
+// Global Organization Schema
+const orgSchema = {
+  '@context': 'https://schema.org',
+  '@type': 'Organization',
+  name: site.companyName,
+  alternateName: site.name,
+  url: site.url,
+  logo: `${site.url}/favicon.svg`,
+  description: site.description,
+  address: {
+    '@type': 'PostalAddress',
+    addressLocality: 'Guangzhou',
+    addressRegion: 'Guangdong',
+    addressCountry: 'CN',
+  },
+  contactPoint: {
+    '@type': 'ContactPoint',
+    telephone: site.whatsapp,
+    contactType: 'Customer Support & B2B Sales',
+    availableLanguage: ['English', 'Chinese'],
+  },
+};
+---
+
+<!doctype html>
+<html lang="en" class="scroll-smooth">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <meta name="generator" content={Astro.generator} />
+
+    <!-- Primary Meta Tags -->
+    <title>{title}</title>
+    <meta name="title" content={title} />
+    <meta name="description" content={description} />
+    <meta name="keywords" content={keywords} />
+    <link rel="canonical" href={canonicalURL} />
+
+    <!-- Open Graph / Facebook -->
+    <meta property="og:type" content={type} />
+    <meta property="og:url" content={canonicalURL} />
+    <meta property="og:title" content={title} />
+    <meta property="og:description" content={description} />
+    <meta property="og:image" content={image} />
+
+    <!-- Twitter -->
+    <meta property="twitter:card" content="summary_large_image" />
+    <meta property="twitter:url" content={canonicalURL} />
+    <meta property="twitter:title" content={title} />
+    <meta property="twitter:description" content={description} />
+    <meta property="twitter:image" content={image} />
+
+    <!-- Preconnect to Google Fonts & CDN -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link rel="preconnect" href="https://images.unsplash.com" />
+
+    <!-- Organization Structured Data -->
+    <script type="application/ld+json" set:html={JSON.stringify(orgSchema)} />
+
+    <!-- Optional Page Specific Structured Data (Product / Breadcrumbs) -->
+    {schemaJson && (
+      <script type="application/ld+json" set:html={JSON.stringify(schemaJson)} />
+    )}
+
+    <!-- Immediate Inline Language Pre-detection (Browser > IP, prevents FOIC) -->
+    <script is:inline>
+      (function() {
+        try {
+          var saved = localStorage.getItem('aura_preferred_lang');
+          if (saved && ['en', 'zh', 'es', 'fr', 'de'].indexOf(saved) !== -1) {
+            document.documentElement.lang = saved;
+            return;
+          }
+          var navLang = (navigator.languages && navigator.languages[0]) || navigator.language || '';
+          var l = navLang.toLowerCase();
+          var target = 'en';
+          if (l.indexOf('zh') === 0) target = 'zh';
+          else if (l.indexOf('es') === 0) target = 'es';
+          else if (l.indexOf('fr') === 0) target = 'fr';
+          else if (l.indexOf('de') === 0) target = 'de';
+          document.documentElement.lang = target;
+        } catch (e) {}
+      })();
+    </script>
+
+    <!-- Client-side i18n Runtime & IP Geolocation Resolver -->
+    <script>
+      import { resolveLanguage, applyTranslations } from '../i18n/i18n-client';
+      
+      async function initI18n() {
+        const lang = await resolveLanguage();
+        applyTranslations(lang);
+      }
+      
+      if (document.readyState === 'loading') {
+        document.addEventListener('DOMContentLoaded', initI18n);
+      } else {
+        initI18n();
+      }
+    </script>
+  </head>
+
+  <body class="min-h-screen flex flex-col bg-[#faf9f6] text-neutral-900 font-sans antialiased selection:bg-brand-gold selection:text-brand-dark">
+    <!-- Main Global Header -->
+    <Header />
+
+    <!-- Page Body Content -->
+    <main class="flex-1">
+      <slot />
+    </main>
+
+    <!-- Global B2B Footer -->
+    <Footer />
+
+    <!-- Global RFQ Quote Modal -->
+    <QuoteModal />
+
+    <!-- Multi-Product RFQ Basket Drawer -->
+    <InquiryDrawer />
+
+    <!-- Global Floating WhatsApp Contact -->
+    <WhatsAppButton />
+  </body>
+</html>
+

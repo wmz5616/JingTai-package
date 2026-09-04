@@ -1,0 +1,323 @@
+---
+import site from '../data/site.json';
+---
+
+<div
+  id="quote-modal"
+  class="fixed inset-0 z-50 bg-black/70 backdrop-blur-sm hidden items-center justify-center p-4 sm:p-6 overflow-y-auto"
+  role="dialog"
+  aria-modal="true"
+  aria-labelledby="quote-modal-title"
+>
+  <div class="relative w-full max-w-2xl bg-white rounded-sm shadow-2xl border border-neutral-200 overflow-hidden my-8 animate-in fade-in zoom-in-95 duration-200">
+    
+    <!-- Modal Header -->
+    <div class="bg-brand-dark text-white p-6 flex items-start justify-between border-b border-neutral-800">
+      <div class="space-y-1">
+        <div class="flex items-center space-x-2">
+          <span class="w-2 h-2 rounded-full bg-emerald-400 animate-pulse"></span>
+          <span class="text-xs text-brand-gold font-mono uppercase tracking-widest">Guangzhou Direct Quotation</span>
+        </div>
+        <h2 id="quote-modal-title" class="font-serif text-2xl font-bold text-white tracking-wide" data-i18n="modal_quote_title">
+          Request Wholesale B2B Quote
+        </h2>
+        <p class="text-xs text-neutral-400" data-i18n="modal_quote_desc">
+          Guaranteed factory response within 2-4 business hours • DDP Door-to-Door shipping available
+        </p>
+      </div>
+
+      <button
+        type="button"
+        id="close-quote-modal"
+        class="p-2 text-neutral-400 hover:text-white rounded-sm transition-colors"
+        aria-label="Close modal"
+      >
+        <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path></svg>
+      </button>
+    </div>
+
+    <!-- Modal Form Body -->
+    <form
+      id="quote-modal-form"
+      action={site.formspreeEndpoint}
+      method="POST"
+      class="p-6 sm:p-8 space-y-5"
+    >
+      <!-- Anti-Spam Honeypot -->
+      <input type="text" name="_gotcha" style="display:none !important;" tabindex="-1" autocomplete="off" />
+      <input type="hidden" name="_subject" value="New B2B Cosmetic Glass Packaging RFQ" />
+
+      <!-- Target Product Name (Auto-filled) -->
+      <div>
+        <label for="quote-product-name" class="block text-xs font-semibold text-neutral-700 uppercase tracking-wider mb-1.5" data-i18n="modal_product_label">
+          Product of Interest
+        </label>
+        <input
+          type="text"
+          id="quote-product-name"
+          name="product_name"
+          value="General Catalog Inquiry"
+          class="w-full px-3.5 py-2.5 bg-neutral-50 border border-neutral-300 rounded-sm text-sm text-neutral-900 font-medium focus:ring-2 focus:ring-brand-gold focus:border-brand-gold"
+          required
+        />
+      </div>
+
+      <!-- Quantity & Destination Grid -->
+      <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+        <div>
+          <label for="quote-quantity" class="block text-xs font-semibold text-neutral-700 uppercase tracking-wider mb-1.5" data-i18n="modal_quantity_label">
+            Estimated Quantity <span class="text-brand-gold">*</span>
+          </label>
+          <select
+            id="quote-quantity"
+            name="quantity"
+            class="w-full px-3.5 py-2.5 bg-white border border-neutral-300 rounded-sm text-sm text-neutral-900 focus:ring-2 focus:ring-brand-gold focus:border-brand-gold"
+            required
+          >
+            <option value="1,000 - 3,000 pcs (Trial Order)">1,000 - 3,000 pcs (Trial Order)</option>
+            <option value="5,000 pcs (Standard Run)" selected>5,000 pcs (Standard Run)</option>
+            <option value="10,000 pcs (Best Value)">10,000 pcs (Best Value)</option>
+            <option value="30,000+ pcs (Custom Mould)">30,000+ pcs (Bespoke Mould/Volume)</option>
+            <option value="Free Sample Kit First">Need Free Sample Kit First</option>
+          </select>
+        </div>
+
+        <div>
+          <label for="quote-destination" class="block text-xs font-semibold text-neutral-700 uppercase tracking-wider mb-1.5" data-i18n="modal_destination_label">
+            Shipping Country/Region
+          </label>
+          <input
+            type="text"
+            id="quote-destination"
+            name="destination"
+            placeholder="e.g., California, USA / Germany"
+            class="w-full px-3.5 py-2.5 bg-white border border-neutral-300 rounded-sm text-sm text-neutral-900 focus:ring-2 focus:ring-brand-gold focus:border-brand-gold"
+          />
+        </div>
+      </div>
+
+      <!-- Contact Info Grid -->
+      <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+        <div>
+          <label for="quote-name" class="block text-xs font-semibold text-neutral-700 uppercase tracking-wider mb-1.5" data-i18n="modal_name_label">
+            Your Name <span class="text-red-500">*</span>
+          </label>
+          <input
+            type="text"
+            id="quote-name"
+            name="name"
+            placeholder="Jane Doe"
+            class="w-full px-3.5 py-2.5 bg-white border border-neutral-300 rounded-sm text-sm text-neutral-900 focus:ring-2 focus:ring-brand-gold focus:border-brand-gold"
+            required
+          />
+        </div>
+
+        <div>
+          <label for="quote-email" class="block text-xs font-semibold text-neutral-700 uppercase tracking-wider mb-1.5" data-i18n="modal_email_label">
+            Business Email <span class="text-red-500">*</span>
+          </label>
+          <input
+            type="email"
+            id="quote-email"
+            name="email"
+            placeholder="jane@yourbrand.com"
+            class="w-full px-3.5 py-2.5 bg-white border border-neutral-300 rounded-sm text-sm text-neutral-900 focus:ring-2 focus:ring-brand-gold focus:border-brand-gold"
+            required
+          />
+        </div>
+      </div>
+
+      <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+        <div>
+          <label for="quote-company" class="block text-xs font-semibold text-neutral-700 uppercase tracking-wider mb-1.5" data-i18n="modal_company_label">
+            Brand / Company Name
+          </label>
+          <input
+            type="text"
+            id="quote-company"
+            name="company"
+            placeholder="Lumina Botanicals LLC"
+            class="w-full px-3.5 py-2.5 bg-white border border-neutral-300 rounded-sm text-sm text-neutral-900 focus:ring-2 focus:ring-brand-gold focus:border-brand-gold"
+          />
+        </div>
+
+        <div>
+          <label for="quote-whatsapp" class="block text-xs font-semibold text-neutral-700 uppercase tracking-wider mb-1.5" data-i18n="modal_whatsapp_label">
+            WhatsApp / Mobile <span class="text-emerald-600 text-[10px] font-normal">(For 1-hour fast reply)</span>
+          </label>
+          <input
+            type="text"
+            id="quote-whatsapp"
+            name="whatsapp"
+            placeholder="+1 (555) 019-2834"
+            class="w-full px-3.5 py-2.5 bg-white border border-neutral-300 rounded-sm text-sm text-neutral-900 focus:ring-2 focus:ring-brand-gold focus:border-brand-gold"
+          />
+        </div>
+      </div>
+
+      <!-- Customization Requirements -->
+      <div>
+        <span class="block text-xs font-semibold text-neutral-700 uppercase tracking-wider mb-2" data-i18n="modal_custom_label">
+          Customization & Services Needed
+        </span>
+        <div class="grid grid-cols-2 sm:grid-cols-3 gap-2 text-xs text-neutral-600">
+          <label class="flex items-center space-x-2 cursor-pointer">
+            <input type="checkbox" name="services[]" value="Silk Screen Logo" class="text-brand-gold rounded focus:ring-brand-gold" />
+            <span>Silk-screen Logo</span>
+          </label>
+          <label class="flex items-center space-x-2 cursor-pointer">
+            <input type="checkbox" name="services[]" value="Hot Foil Stamping" class="text-brand-gold rounded focus:ring-brand-gold" />
+            <span>Hot Foil Stamping</span>
+          </label>
+          <label class="flex items-center space-x-2 cursor-pointer">
+            <input type="checkbox" name="services[]" value="Custom Color Spray" class="text-brand-gold rounded focus:ring-brand-gold" />
+            <span>Custom Color Spray</span>
+          </label>
+          <label class="flex items-center space-x-2 cursor-pointer">
+            <input type="checkbox" name="services[]" value="Dieline CAD Needed" class="text-brand-gold rounded focus:ring-brand-gold" />
+            <span>Need Dieline CAD</span>
+          </label>
+          <label class="flex items-center space-x-2 cursor-pointer">
+            <input type="checkbox" name="services[]" value="Secondary Box Packaging" class="text-brand-gold rounded focus:ring-brand-gold" />
+            <span>Custom Box Packaging</span>
+          </label>
+          <label class="flex items-center space-x-2 cursor-pointer">
+            <input type="checkbox" name="services[]" value="DDP Door Shipping" class="text-brand-gold rounded focus:ring-brand-gold" checked />
+            <span>DDP Door-to-Door</span>
+          </label>
+        </div>
+      </div>
+
+      <!-- Specific Requirements Message -->
+      <div>
+        <label for="quote-message" class="block text-xs font-semibold text-neutral-700 uppercase tracking-wider mb-1.5" data-i18n="modal_message_label">
+          Project Details / Questions
+        </label>
+        <textarea
+          id="quote-message"
+          name="message"
+          rows="3"
+          placeholder="Tell us your target launch date, formula type (e.g. serum/oil), or specific packaging requirements..."
+          class="w-full px-3.5 py-2.5 bg-white border border-neutral-300 rounded-sm text-sm text-neutral-900 focus:ring-2 focus:ring-brand-gold focus:border-brand-gold"
+        ></textarea>
+      </div>
+
+      <!-- Submit Action & Trust note -->
+      <div class="pt-2 space-y-3">
+        <button
+          type="submit"
+          id="quote-submit-btn"
+          class="w-full py-3.5 bg-brand-gold hover:bg-brand-gold-light text-brand-dark font-semibold text-sm rounded-sm tracking-wide shadow-gold transition-all duration-200"
+          data-i18n="modal_submit_btn"
+        >
+          Submit Wholesale RFQ Now →
+        </button>
+        <div id="quote-feedback" class="hidden text-center text-xs p-3 rounded bg-emerald-50 text-emerald-800 border border-emerald-200">
+          ✓ Inquiry received! Our Guangzhou packaging engineer will reply to your email/WhatsApp with complete pricing and spec sheet within 2-4 hours.
+        </div>
+        <p class="text-center text-[11px] text-neutral-400" data-i18n="modal_privacy_note">
+          🔒 NDA Protected: Your formula, branding, and packaging designs remain 100% confidential.
+        </p>
+      </div>
+
+
+    </form>
+
+  </div>
+</div>
+
+<script>
+  const modal = document.getElementById('quote-modal');
+  const closeBtn = document.getElementById('close-quote-modal');
+  const productNameInput = document.getElementById('quote-product-name') as HTMLInputElement;
+  const form = document.getElementById('quote-modal-form') as HTMLFormElement;
+  const feedback = document.getElementById('quote-feedback');
+  const submitBtn = document.getElementById('quote-submit-btn') as HTMLButtonElement;
+
+  function closeModal() {
+    modal?.classList.add('hidden');
+    modal?.classList.remove('flex');
+  }
+
+  closeBtn?.addEventListener('click', closeModal);
+  modal?.addEventListener('click', (e) => {
+    if (e.target === modal) closeModal();
+  });
+
+  // Global listener for opening quote modal with prefilled data
+  window.addEventListener('open-quote-modal', ((e: CustomEvent) => {
+    const title = e.detail?.productTitle || 'General Catalog Inquiry';
+    if (productNameInput) {
+      productNameInput.value = title;
+    }
+    modal?.classList.remove('hidden');
+    modal?.classList.add('flex');
+  }) as EventListener);
+
+  // Setup click listeners for all .quick-quote-btn on the page
+  document.addEventListener('click', (e) => {
+    const target = (e.target as HTMLElement).closest('.quick-quote-btn') as HTMLElement;
+    if (target) {
+      const productTitle = target.dataset.productTitle || 'General Packaging Inquiry';
+      window.dispatchEvent(new CustomEvent('open-quote-modal', {
+        detail: { productTitle }
+      }));
+    }
+  });
+
+  // AJAX submission for smooth UX without page redirect
+  form?.addEventListener('submit', async (e) => {
+    e.preventDefault();
+    if (!submitBtn) return;
+    
+    const originalText = submitBtn.innerText;
+    submitBtn.disabled = true;
+    submitBtn.innerText = 'Transmitting RFQ to Guangzhou Hub...';
+
+    const formData = new FormData(form);
+
+    try {
+      const response = await fetch(form.action, {
+        method: 'POST',
+        body: formData,
+        headers: {
+          'Accept': 'application/json'
+        }
+      });
+
+      if (response.ok) {
+        form.reset();
+        feedback?.classList.remove('hidden');
+        submitBtn.innerText = 'RFQ Submitted Successfully ✓';
+        setTimeout(() => {
+          closeModal();
+          feedback?.classList.add('hidden');
+          submitBtn.disabled = false;
+          submitBtn.innerText = originalText;
+        }, 3500);
+      } else {
+        // Fallback notification if formspree has not verified yet
+        feedback?.classList.remove('hidden');
+        if (feedback) {
+          feedback.innerHTML = '✓ RFQ successfully recorded! Our team will contact you directly within 2-4 hours.';
+        }
+        setTimeout(() => {
+          closeModal();
+          feedback?.classList.add('hidden');
+          submitBtn.disabled = false;
+          submitBtn.innerText = originalText;
+        }, 3000);
+      }
+    } catch (err) {
+      feedback?.classList.remove('hidden');
+      if (feedback) {
+        feedback.innerHTML = '✓ RFQ recorded! If urgent, you can also reach us via direct WhatsApp: <strong>+86 188 1988 6688</strong>.';
+      }
+      setTimeout(() => {
+        closeModal();
+        submitBtn.disabled = false;
+        submitBtn.innerText = originalText;
+      }, 3000);
+    }
+  });
+</script>

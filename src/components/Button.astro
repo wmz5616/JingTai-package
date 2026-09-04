@@ -1,0 +1,53 @@
+---
+interface Props {
+  href?: string;
+  variant?: 'primary' | 'gold' | 'outline' | 'secondary' | 'dark';
+  size?: 'sm' | 'md' | 'lg';
+  class?: string;
+  id?: string;
+  type?: 'button' | 'submit' | 'reset';
+  target?: string;
+  [key: string]: any;
+}
+
+const {
+  href,
+  variant = 'primary',
+  size = 'md',
+  class: className = '',
+  id,
+  type = 'button',
+  target,
+  ...rest
+} = Astro.props;
+
+const baseStyles = 'inline-flex items-center justify-center font-medium tracking-wide transition-all duration-300 rounded-sm cursor-pointer select-none focus:outline-none focus:ring-2 focus:ring-offset-2';
+
+const sizeStyles = {
+  sm: 'text-xs px-3.5 py-2 space-x-1.5',
+  md: 'text-sm px-5 py-2.5 space-x-2',
+  lg: 'text-base px-7 py-3.5 space-x-2.5 font-semibold',
+};
+
+const variantStyles = {
+  primary: 'bg-brand-dark text-white hover:bg-neutral-800 border border-brand-dark shadow-sm hover:shadow-md focus:ring-brand-dark',
+  gold: 'bg-brand-gold text-brand-dark hover:bg-brand-gold-light border border-brand-gold font-semibold shadow-gold hover:shadow-lg focus:ring-brand-gold',
+  outline: 'bg-transparent text-brand-dark border border-neutral-300 hover:border-brand-gold hover:text-brand-gold hover:bg-neutral-50 focus:ring-brand-gold',
+  secondary: 'bg-neutral-100 text-neutral-800 hover:bg-neutral-200 border border-transparent focus:ring-neutral-400',
+  dark: 'bg-neutral-900 text-white hover:bg-black border border-neutral-800 hover:border-brand-gold focus:ring-brand-gold',
+};
+
+const finalClass = `${baseStyles} ${sizeStyles[size]} ${variantStyles[variant]} ${className}`;
+---
+
+{
+  href ? (
+    <a href={href} class={finalClass} id={id} target={target} {...rest}>
+      <slot />
+    </a>
+  ) : (
+    <button type={type} class={finalClass} id={id} {...rest}>
+      <slot />
+    </button>
+  )
+}

@@ -1,0 +1,23 @@
+# 写入常见的 Astro / Node 忽略规则
+cat << 'EOF' > .gitignore
+# 构建产物与缓存
+dist/
+.astro/
+
+# 依赖包
+node_modules/
+
+# 环境变量与本地配置
+.env
+.env.*
+!.env.example
+
+# 系统与编辑器缓存
+.DS_Store
+Thumbs.db
+.vscode/*
+!.vscode/settings.json
+!.vscode/tasks.json
+!.vscode/launch.json
+!.vscode/extensions.json
+EOF
