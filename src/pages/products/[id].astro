@@ -1,7 +1,6 @@
 ---
 import Layout from '../../layouts/Layout.astro';
 import Badge from '../../components/Badge.astro';
-import Button from '../../components/Button.astro';
 import ProductCard from '../../components/ProductCard.astro';
 import products from '../../data/products.json';
 import site from '../../data/site.json';
@@ -50,11 +49,15 @@ const productSchema = {
     },
   },
 };
+
+const fallbackImg = 'https://images.unsplash.com/photo-1620916566398-39f1143ab7be?auto=format&fit=crop&w=900&q=80';
 ---
 
 <Layout
   title={`${product.name} Wholesale | ${site.name}`}
-  description={`${product.name} wholesale supply by Aura Packaging. ${product.description} MOQ: ${product.moq} pcs. Fast DDP delivery from Guangzhou.`}
+  title_zh={`${product.name_zh || product.name} 工厂批发采购 | ${site.name}`}
+  description={`${product.name} wholesale supply by ${site.name}. ${product.description} MOQ: ${product.moq} pcs. Fast DDP delivery from Guangzhou.`}
+  description_zh={`${product.name_zh || product.name} 广州源头工厂直供。${product.description_zh || product.description} 起订量：${product.moq} 只。支持欧美全球 DDP 门到门送达。`}
   image={product.images[0]}
   type="product"
   schemaJson={productSchema}
@@ -62,13 +65,17 @@ const productSchema = {
   <!-- Breadcrumb Navigation -->
   <nav class="bg-white border-b border-neutral-200 py-3 text-xs text-neutral-500">
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex items-center space-x-2">
-      <a href="/" class="hover:text-brand-dark">Home</a>
+      <a href="/" class="hover:text-brand-dark" data-i18n="prod_breadcrumb_home">Home</a>
       <span>/</span>
-      <a href="/products" class="hover:text-brand-dark">Products</a>
+      <a href="/products" class="hover:text-brand-dark" data-i18n="prod_breadcrumb_products">Products</a>
       <span>/</span>
-      <a href={`/products?category=${product.categorySlug}`} class="hover:text-brand-dark">{product.category}</a>
+      <a href={`/products?category=${product.categorySlug}`} class="hover:text-brand-dark">
+        <span data-en={product.category} data-zh={product.category_zh || product.category}>{product.category}</span>
+      </a>
       <span>/</span>
-      <span class="text-neutral-900 font-medium truncate max-w-xs">{product.name}</span>
+      <span class="text-neutral-900 font-medium truncate max-w-xs" data-en={product.name} data-zh={product.name_zh || product.name}>
+        {product.name}
+      </span>
     </div>
   </nav>
 
@@ -83,16 +90,21 @@ const productSchema = {
           <div class="relative aspect-square w-full bg-white rounded-sm border border-neutral-200 overflow-hidden shadow-sm">
             <img
               id="main-product-image"
-              src={product.images[0]}
+              src={product.images[0] || fallbackImg}
               alt={product.name}
+              onerror={`this.onerror=null; this.src='${fallbackImg}';`}
               class="w-full h-full object-cover object-center transition-all duration-300"
             />
             
             <div class="absolute top-4 left-4 flex flex-col gap-2 pointer-events-none">
               {product.badge && (
-                <Badge variant="gold" size="sm">{product.badge}</Badge>
+                <Badge variant="gold" size="sm">
+                  <span data-en={product.badge} data-zh={product.badge_zh || product.badge}>{product.badge}</span>
+                </Badge>
               )}
-              <Badge variant="light" size="sm">{product.volume}</Badge>
+              <Badge variant="light" size="sm">
+                <span data-en={product.volume} data-zh={product.volume_zh || product.volume}>{product.volume}</span>
+              </Badge>
             </div>
           </div>
 
@@ -105,7 +117,12 @@ const productSchema = {
                   class={`gallery-thumb aspect-square bg-white rounded-sm border-2 overflow-hidden transition-all ${idx === 0 ? 'border-brand-gold ring-2 ring-brand-gold/30' : 'border-neutral-200 hover:border-neutral-400'}`}
                   data-src={img}
                 >
-                  <img src={img} alt={`View ${idx + 1}`} class="w-full h-full object-cover" />
+                  <img
+                    src={img}
+                    alt={`View ${idx + 1}`}
+                    onerror={`this.onerror=null; this.src='${fallbackImg}';`}
+                    class="w-full h-full object-cover"
+                  />
                 </button>
               ))}
             </div>
@@ -118,36 +135,42 @@ const productSchema = {
               class="add-to-rfq-btn py-3 px-4 bg-brand-dark hover:bg-neutral-800 text-white font-semibold text-xs rounded-sm transition-colors flex items-center justify-center space-x-2 shadow-sm"
               data-id={product.id}
               data-name={product.name}
+              data-name-zh={product.name_zh || product.name}
               data-volume={product.volume}
-              data-image={product.images[0]}
+              data-image={product.images[0] || fallbackImg}
               data-moq={product.moq}
             >
               <svg class="w-4 h-4 text-brand-gold" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M16 11V7a4 4 0 00-8 0v4M5 9h14l1 12H4L5 9z"></path></svg>
-              <span>Add to RFQ Basket</span>
+              <span data-i18n="card_add_to_rfq">Add to RFQ Basket</span>
             </button>
 
             <a
               href="/sample-kit"
               class="py-3 px-4 bg-white hover:bg-amber-50 text-amber-900 border border-amber-300 font-semibold text-xs rounded-sm transition-colors flex items-center justify-center space-x-1.5 shadow-sm text-center"
             >
-              <span>Request Free Sample Box</span>
-              <span class="text-[10px] bg-amber-200 px-1 py-0.2 rounded font-bold">FREE</span>
+              <span data-i18n="prod_sample_box_btn">Request Free Sample Box</span>
+              <span class="text-[10px] bg-amber-200 px-1 py-0.2 rounded font-bold" data-i18n="nav_free_badge">FREE</span>
             </a>
           </div>
 
           <!-- Dieline Download Notice -->
           <div class="p-4 bg-white border border-neutral-200 rounded-sm flex items-center justify-between text-xs">
-            <div class="flex items-center space-x-2">
-              <span class="text-brand-gold font-mono text-base">📐</span>
+            <div class="flex items-center space-x-3">
+              <div class="w-8 h-8 rounded bg-brand-gold/15 flex items-center justify-center flex-shrink-0">
+                <svg class="w-4 h-4 text-brand-gold-dark" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.8" d="M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-5m-9 0H3m2 0h5M9 7h1m-1 4h1m-1 4h1m-1 4h1m5-10h1m-1 4h1m-1 4h1m-1 4h1" />
+                </svg>
+              </div>
               <div>
-                <strong class="text-neutral-900 block font-sans">Vector CAD Dieline Available</strong>
-                <span class="text-neutral-500">Includes 1:1 scale neck finish and printable bottle surface template.</span>
+                <strong class="text-neutral-900 block font-sans" data-i18n="prod_dieline_title">Vector CAD Dieline Available</strong>
+                <span class="text-neutral-500" data-i18n="prod_dieline_desc">Includes 1:1 scale neck finish and printable bottle surface template.</span>
               </div>
             </div>
             <button
               type="button"
               class="quick-quote-btn text-brand-gold-dark font-semibold hover:underline flex-shrink-0 ml-2"
               data-product-title={`Dieline Request: ${product.name}`}
+              data-i18n="prod_request_dieline"
             >
               Request Dieline →
             </button>
@@ -159,17 +182,19 @@ const productSchema = {
           
           <div class="space-y-2">
             <div class="flex items-center space-x-3 text-xs font-mono uppercase tracking-wider text-neutral-500">
-              <span class="text-brand-gold font-semibold">{product.category}</span>
+              <span class="text-brand-gold font-semibold" data-en={product.category} data-zh={product.category_zh || product.category}>
+                {product.category}
+              </span>
               <span>•</span>
               <span>SKU: {product.id}</span>
             </div>
 
-            <h1 class="font-serif text-2xl sm:text-3xl lg:text-4xl font-bold text-brand-dark leading-tight">
+            <h1 class="font-serif text-2xl sm:text-3xl lg:text-4xl font-bold text-brand-dark leading-tight" data-en={product.name} data-zh={product.name_zh || product.name}>
               {product.name}
             </h1>
 
             {product.subtitle && (
-              <p class="text-sm text-neutral-600 font-medium">
+              <p class="text-sm text-neutral-600 font-medium" data-en={product.subtitle} data-zh={product.subtitle_zh || product.subtitle}>
                 {product.subtitle}
               </p>
             )}
@@ -178,31 +203,33 @@ const productSchema = {
           <!-- Value Pill Highlights -->
           <div class="flex flex-wrap gap-2 text-xs">
             <span class="px-3 py-1 bg-emerald-50 text-emerald-800 border border-emerald-200 rounded font-medium">
-              ✓ In-Stock Trial MOQ: {product.inStockMoq || 1000} pcs
+              ✓ <span data-i18n="prod_moq_stock">In-Stock Trial MOQ:</span> {product.inStockMoq || 1000} pcs
             </span>
             <span class="px-3 py-1 bg-neutral-100 text-neutral-700 border border-neutral-200 rounded font-medium">
-              ✓ Custom Run MOQ: {product.moq} pcs
+              ✓ <span data-i18n="prod_moq_custom">Custom Run MOQ:</span> {product.moq} pcs
             </span>
             <span class="px-3 py-1 bg-neutral-100 text-neutral-700 border border-neutral-200 rounded font-medium">
-              ✓ Lead Time: {product.leadTime}
+              ✓ <span data-i18n="prod_lead_time_label">Lead Time:</span> <span data-en={product.leadTime} data-zh={product.leadTime_zh || product.leadTime}>{product.leadTime}</span>
             </span>
           </div>
 
           <!-- Product Detailed Description -->
-          <p class="text-xs sm:text-sm text-neutral-600 leading-relaxed">
+          <p class="text-xs sm:text-sm text-neutral-600 leading-relaxed" data-en={product.description} data-zh={product.description_zh || product.description}>
             {product.description}
           </p>
 
           <!-- Core Feature Bullets -->
           <div class="p-4 bg-white rounded-sm border border-neutral-200 space-y-2">
-            <span class="block text-xs font-mono font-bold text-brand-dark uppercase tracking-wider">
+            <span class="block text-xs font-mono font-bold text-brand-dark uppercase tracking-wider" data-i18n="prod_eng_highlights">
               Engineering & Performance Highlights:
             </span>
             <ul class="space-y-1.5 text-xs text-neutral-600">
-              {product.features?.map((feat) => (
+              {(product.features_zh || product.features)?.map((feat, i) => (
                 <li class="flex items-start space-x-2">
                   <span class="text-brand-gold font-bold">✓</span>
-                  <span>{feat}</span>
+                  <span data-en={product.features?.[i] || feat} data-zh={product.features_zh?.[i] || feat}>
+                    {feat}
+                  </span>
                 </li>
               ))}
             </ul>
@@ -210,38 +237,38 @@ const productSchema = {
 
           <!-- Complete Technical Specification Table -->
           <div class="space-y-2">
-            <h2 class="text-xs font-mono font-bold uppercase tracking-wider text-neutral-800">
+            <h2 class="text-xs font-mono font-bold uppercase tracking-wider text-neutral-800" data-i18n="prod_eng_specs">
               Engineering Specifications
             </h2>
             <div class="bg-white rounded-sm border border-neutral-200 overflow-hidden text-xs">
-              <table class="w-full text-left border-collapse">
+              <table class="w-full text-left border-collapse table-fixed">
                 <tbody>
                   <tr class="border-b border-neutral-100">
-                    <th class="py-2.5 px-4 font-mono font-semibold text-neutral-500 bg-neutral-50/70 w-1/3">Neck Thread Standard</th>
+                    <th class="py-2.5 px-4 font-mono font-semibold text-neutral-500 bg-neutral-50/70 w-44 sm:w-52 whitespace-nowrap" data-i18n="prod_spec_neck">Neck Thread Standard</th>
                     <td class="py-2.5 px-4 font-medium text-neutral-900">{product.specs.neckSize}</td>
                   </tr>
                   <tr class="border-b border-neutral-100">
-                    <th class="py-2.5 px-4 font-mono font-semibold text-neutral-500 bg-neutral-50/70">Glass Material</th>
+                    <th class="py-2.5 px-4 font-mono font-semibold text-neutral-500 bg-neutral-50/70 w-44 sm:w-52 whitespace-nowrap" data-i18n="prod_spec_material">Glass Material</th>
                     <td class="py-2.5 px-4 font-medium text-neutral-900">{product.specs.material}</td>
                   </tr>
                   <tr class="border-b border-neutral-100">
-                    <th class="py-2.5 px-4 font-mono font-semibold text-neutral-500 bg-neutral-50/70">Total Height & Diameter</th>
+                    <th class="py-2.5 px-4 font-mono font-semibold text-neutral-500 bg-neutral-50/70 w-44 sm:w-52 whitespace-nowrap" data-i18n="prod_spec_dimensions">Total Height & Diameter</th>
                     <td class="py-2.5 px-4 font-medium text-neutral-900">{product.specs.height} × {product.specs.diameter}</td>
                   </tr>
                   <tr class="border-b border-neutral-100">
-                    <th class="py-2.5 px-4 font-mono font-semibold text-neutral-500 bg-neutral-50/70">Empty Container Weight</th>
+                    <th class="py-2.5 px-4 font-mono font-semibold text-neutral-500 bg-neutral-50/70 w-44 sm:w-52 whitespace-nowrap" data-i18n="prod_spec_weight">Empty Container Weight</th>
                     <td class="py-2.5 px-4 font-medium text-neutral-900">{product.specs.weight}</td>
                   </tr>
                   <tr class="border-b border-neutral-100">
-                    <th class="py-2.5 px-4 font-mono font-semibold text-neutral-500 bg-neutral-50/70">Brimful Capacity</th>
+                    <th class="py-2.5 px-4 font-mono font-semibold text-neutral-500 bg-neutral-50/70 w-44 sm:w-52 whitespace-nowrap" data-i18n="prod_spec_capacity">Brimful Capacity</th>
                     <td class="py-2.5 px-4 font-medium text-neutral-900">{product.specs.brimfulCapacity}</td>
                   </tr>
                   <tr class="border-b border-neutral-100">
-                    <th class="py-2.5 px-4 font-mono font-semibold text-neutral-500 bg-neutral-50/70">Compatible Closures</th>
+                    <th class="py-2.5 px-4 font-mono font-semibold text-neutral-500 bg-neutral-50/70 w-44 sm:w-52 whitespace-nowrap" data-i18n="prod_spec_closures">Compatible Closures</th>
                     <td class="py-2.5 px-4 font-medium text-neutral-900">{product.specs.closureTypes?.join(', ')}</td>
                   </tr>
                   <tr>
-                    <th class="py-2.5 px-4 font-mono font-semibold text-neutral-500 bg-neutral-50/70">Surface Options</th>
+                    <th class="py-2.5 px-4 font-mono font-semibold text-neutral-500 bg-neutral-50/70 w-44 sm:w-52 whitespace-nowrap" data-i18n="prod_spec_surfaces">Surface Options</th>
                     <td class="py-2.5 px-4 font-medium text-neutral-900">{product.specs.surfaceHandling?.join(', ')}</td>
                   </tr>
                 </tbody>
@@ -253,12 +280,12 @@ const productSchema = {
           <div class="p-6 bg-brand-dark text-white rounded-sm space-y-4 shadow-lg border border-neutral-800">
             <div class="flex items-center justify-between">
               <div>
-                <span class="text-xs font-mono text-brand-gold uppercase">Direct Factory Quotation</span>
-                <h3 class="font-serif text-lg font-bold text-white">Get Volume Pricing for This Model</h3>
+                <span class="text-xs font-mono text-brand-gold uppercase" data-i18n="prod_direct_quote_tag">Direct Factory Quotation</span>
+                <h3 class="font-serif text-lg font-bold text-white" data-i18n="prod_direct_quote_title">Get Volume Pricing for This Model</h3>
               </div>
-              <span class="text-xs text-neutral-400">Guangzhou Hub</span>
+              <span class="text-xs text-neutral-400" data-i18n="nav_guangzhou_hub">Guangzhou Hub</span>
             </div>
-            <p class="text-xs text-neutral-300">
+            <p class="text-xs text-neutral-300" data-i18n="prod_direct_quote_desc">
               Tell us your estimated quantity and target shipping country. Receive official price quotation and DDP air/sea freight breakdown within 2-4 hours.
             </p>
             <div class="flex flex-col sm:flex-row gap-3 pt-1">
@@ -267,16 +294,30 @@ const productSchema = {
                 class="quick-quote-btn flex-1 py-3 bg-brand-gold hover:bg-brand-gold-light text-brand-dark font-bold text-xs rounded-sm tracking-wide transition-colors"
                 data-product-title={product.name}
                 data-product-id={product.id}
+                data-i18n="prod_quote_btn"
               >
                 Request Wholesale Quote Now →
               </button>
+              <!-- WeChat in Chinese mode -->
+              <button
+                type="button"
+                data-open-wechat
+                class="contact-lang-zh py-3 px-4 bg-[#07C160] hover:bg-[#06ad56] text-white font-semibold text-xs rounded-sm flex items-center justify-center space-x-1.5 transition-colors cursor-pointer"
+              >
+                <svg class="w-4 h-4 fill-current" viewBox="0 0 24 24">
+                  <path d="M8.691 2.188C3.891 2.188 0 5.478 0 9.532c0 2.212 1.157 4.205 2.972 5.568l-.75 2.748 3.19-1.636c1.02.28 2.12.44 3.279.44.204 0 .405-.008.607-.021-.24-.707-.373-1.464-.373-2.253 0-4.054 3.891-7.344 8.691-7.344.296 0 .588.014.877.038C17.336 4.795 13.34 2.188 8.691 2.188zm-2.316 4.148c.677 0 1.226.549 1.226 1.226s-.549 1.226-1.226 1.226c-.676 0-1.225-.549-1.225-1.226s.549-1.226 1.225-1.226zm5.18 0c.677 0 1.226.549 1.226 1.226s-.549 1.226-1.226 1.226c-.677 0-1.226-.549-1.226-1.226s.549-1.226 1.226-1.226zm5.94 4.544c-4.106 0-7.435 2.82-7.435 6.297 0 3.478 3.329 6.297 7.435 6.297.915 0 1.792-.137 2.607-.386l2.454 1.258-.577-2.113c1.558-1.047 2.548-2.58 2.548-4.301 0-3.477-3.329-6.297-7.432-6.297zm-2.316 3.555c.58 0 1.05.47 1.05 1.051 0 .58-.47 1.05-1.05 1.05-.581 0-1.051-.47-1.051-1.05 0-.581.47-1.051 1.051-1.051zm4.436 0c.58 0 1.051.47 1.051 1.051 0 .58-.471 1.05-1.051 1.05-.58 0-1.05-.47-1.05-1.05 0-.581.47-1.051 1.05-1.051z"/>
+                </svg>
+                <span>微信咨询 / 索样</span>
+              </button>
+
+              <!-- WhatsApp in English mode -->
               <a
                 href={site.whatsappDirectUrl}
                 target="_blank"
                 rel="noopener noreferrer"
-                class="py-3 px-4 bg-emerald-600 hover:bg-emerald-700 text-white font-semibold text-xs rounded-sm flex items-center justify-center space-x-1.5 transition-colors"
+                class="contact-lang-en py-3 px-4 bg-emerald-600 hover:bg-emerald-700 text-white font-semibold text-xs rounded-sm flex items-center justify-center space-x-1.5 transition-colors"
               >
-                <span>WhatsApp Us</span>
+                <span data-i18n="prod_whatsapp_btn">WhatsApp Us</span>
               </a>
             </div>
           </div>
@@ -293,12 +334,12 @@ const productSchema = {
       <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div class="flex items-center justify-between mb-8">
           <div>
-            <span class="text-xs font-mono text-brand-gold uppercase">Explore Alternatives</span>
-            <h2 class="font-serif text-2xl font-bold text-brand-dark mt-1">
-              Related {product.category}
+            <span class="text-xs font-mono text-brand-gold uppercase" data-i18n="prod_rel_tag">Explore Alternatives</span>
+            <h2 class="font-serif text-2xl font-bold text-brand-dark mt-1" data-i18n="prod_rel_title">
+              Related Packaging Models
             </h2>
           </div>
-          <a href="/products" class="text-xs font-semibold text-neutral-600 hover:text-brand-dark">
+          <a href="/products" class="text-xs font-semibold text-neutral-600 hover:text-brand-dark" data-i18n="prod_view_all">
             View All →
           </a>
         </div>

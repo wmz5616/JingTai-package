@@ -6,7 +6,9 @@ import site from '../data/site.json';
 
 <Layout
   title={`Request Free Packaging Sample Kit | ${site.name}`}
+  title_zh={`申请免费化妆品玻璃瓶样品盒 | ${site.name}`}
   description="Order a curated cosmetics glass bottle sample kit. Free physical samples with 100% courier fee credited back on your first wholesale order. Dispatched from Guangzhou in 48 hours."
+  description_zh="免费申请高品质化妆品玻璃瓶、滴管与乳液泵物理实物样品盒。48小时广州极速寄出，首笔大货订单100%全额抵扣返还国际快递运费。"
 >
   <!-- Hero Section -->
   <section class="bg-brand-dark text-white py-16 sm:py-24 border-b border-neutral-800 relative overflow-hidden">
@@ -15,43 +17,46 @@ import site from '../data/site.json';
         
         <div class="lg:col-span-7 space-y-6 text-center lg:text-left">
           <div class="inline-flex items-center space-x-2 px-3 py-1 rounded-full bg-amber-500/10 border border-amber-500/30 text-amber-300 text-xs font-semibold">
-            <span>✨ 100% Free Samples • Dispatched in 48 Hours</span>
+            <svg class="w-3.5 h-3.5 text-brand-gold flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 3v4M3 5h4M6 17v4m-2-2h4m5-16l2.286 6.857L21 12l-5.714 2.143L13 21l-2.286-6.857L5 12l5.714-2.143L13 3z"></path></svg>
+            <span data-i18n="sample_hero_tag">100% Free Samples • Dispatched in 48 Hours</span>
           </div>
 
-          <h1 class="font-serif text-3xl sm:text-5xl font-bold tracking-tight text-white leading-tight">
-            Touch, Test & Verify: Request Your <span class="gold-gradient-text">Free Sample Box</span>
+          <h1 class="font-serif text-3xl sm:text-5xl font-bold tracking-tight text-white leading-tight" data-i18n="sample_hero_title">
+            Touch, Test & Verify: Request Your Free Sample Box
           </h1>
 
-          <p class="text-sm sm:text-base text-neutral-300 font-light leading-relaxed max-w-xl">
+          <p class="text-sm sm:text-base text-neutral-300 font-light leading-relaxed max-w-xl" data-i18n="sample_hero_desc">
             Never commit to bulk production without holding the glass in your hands. Test formula viscosity, verify drop calibration, and evaluate our heavy-base clarity with your own clinical formulations.
           </p>
 
           <!-- The Irresistible Offer Callout Box -->
           <div class="p-5 bg-neutral-900 border border-brand-gold/40 rounded-sm text-left space-y-2">
             <div class="flex items-center space-x-2">
-              <span class="text-brand-gold font-bold text-base">★ The Zero-Risk Guarantee:</span>
+              <svg class="w-4 h-4 text-brand-gold flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z"></path></svg>
+              <span class="text-brand-gold font-bold text-base" data-i18n="sample_guarantee_title">The Zero-Risk Guarantee:</span>
             </div>
-            <p class="text-xs sm:text-sm text-neutral-300 leading-relaxed">
-              Physical packaging samples are completely <strong>FREE</strong>. You only cover the express DHL courier charge ($25–$35 USD). <strong>100% of this courier fee is credited back as an immediate cash discount on your first bulk order!</strong>
+            <p class="text-xs sm:text-sm text-neutral-300 leading-relaxed" data-i18n="sample_guarantee_text">
+              Physical packaging samples are completely FREE. You only cover the express DHL courier charge ($25–$35 USD). 100% of this courier fee is credited back as an immediate cash discount on your first bulk order!
             </p>
           </div>
 
           <div class="pt-2 flex flex-wrap gap-4 text-xs text-neutral-400 justify-center lg:justify-start">
-            <span class="flex items-center">✓ 48H DHL Dispatch from Guangzhou</span>
-            <span class="flex items-center">✓ Custom Neck Finishes Included</span>
-            <span class="flex items-center">✓ Surface Finish Swatches</span>
+            <span class="flex items-center" data-zh="✓ 广州 48 小时极速寄样" data-en="✓ 48H DHL Dispatch from Guangzhou">✓ 48H DHL Dispatch from Guangzhou</span>
+            <span class="flex items-center" data-zh="✓ 配套多种口径螺牙泵盖" data-en="✓ Custom Neck Finishes Included">✓ Custom Neck Finishes Included</span>
+            <span class="flex items-center" data-zh="✓ 附带真实表面工艺色板" data-en="✓ Surface Finish Swatches">✓ Surface Finish Swatches</span>
           </div>
         </div>
 
         <div class="lg:col-span-5 relative">
           <div class="aspect-[4/3] rounded-sm overflow-hidden border border-white/10 shadow-2xl relative">
             <img
-              src="https://images.unsplash.com/photo-1608248597359-52e4cf52538b?auto=format&fit=crop&w=800&q=80"
+              src="https://images.unsplash.com/photo-1620916566398-39f1143ab7be?auto=format&fit=crop&w=800&q=80"
               alt="Cosmetic glass packaging sample kit contents"
+              onerror="this.onerror=null; this.src='https://images.unsplash.com/photo-1556228720-195a672e8a03?auto=format&fit=crop&w=800&q=80';"
               class="w-full h-full object-cover"
             />
             <div class="absolute inset-x-0 bottom-0 bg-gradient-to-t from-black/90 to-transparent p-4">
-              <p class="text-xs text-brand-gold font-mono">
+              <p class="text-xs text-brand-gold font-mono" data-zh="样品盒配置：4款代表性瓶身 + 6套配套盖头 + 真实工艺质感色板" data-en="Sample Kit: 4 Bottle Styles + 6 Closures + Surface Color Chips">
                 Sample Kit: 4 Bottle Styles + 6 Closures + Surface Color Chips
               </p>
             </div>
@@ -67,55 +72,65 @@ import site from '../data/site.json';
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
       
       <div class="text-center max-w-2xl mx-auto space-y-2 mb-12">
-        <Badge variant="gold" size="sm">Unboxing Experience</Badge>
-        <h2 class="font-serif text-2xl sm:text-3xl font-bold text-brand-dark">
+        <Badge variant="gold" size="sm">
+          <span data-i18n="sample_inside_badge">Unboxing Experience</span>
+        </Badge>
+        <h2 class="font-serif text-2xl sm:text-3xl font-bold text-brand-dark" data-i18n="sample_inside_title">
           What is Included in Your Free Sample Box?
         </h2>
-        <p class="text-xs sm:text-sm text-neutral-500">
+        <p class="text-xs sm:text-sm text-neutral-500" data-i18n="sample_inside_desc">
           Curated specifically to match your formulation category and volume requirements.
         </p>
       </div>
 
       <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 text-left">
         
-        <div class="p-5 bg-neutral-50 border border-neutral-200 rounded-sm space-y-2">
-          <div class="w-8 h-8 rounded bg-brand-gold/20 text-brand-dark flex items-center justify-center font-bold text-sm">
-            01
+        <div class="p-5 bg-neutral-50 border border-neutral-200 rounded-sm flex flex-col justify-between h-full">
+          <div>
+            <div class="w-8 h-8 rounded bg-brand-gold/20 text-brand-dark flex items-center justify-center font-bold text-sm mb-3">
+              01
+            </div>
+            <h3 class="font-serif font-bold text-base text-neutral-900 leading-snug min-h-[1.5rem]" data-i18n="sample_in_1_title">Glass Bottle Samples</h3>
+            <p class="text-xs text-neutral-600 leading-relaxed mt-2 min-h-[4rem]" data-i18n="sample_in_1_desc">
+              3 to 5 physical glass containers in your target capacity (15ml, 30ml, 50ml, or 100ml) in Amber, Crystal Clear, and Frosted finishes.
+            </p>
           </div>
-          <h3 class="font-serif font-bold text-base text-neutral-900">Glass Bottle Samples</h3>
-          <p class="text-xs text-neutral-600 leading-relaxed">
-            3 to 5 physical glass containers in your target capacity (15ml, 30ml, 50ml, or 100ml) in Amber, Crystal Clear, and Frosted finishes.
-          </p>
         </div>
 
-        <div class="p-5 bg-neutral-50 border border-neutral-200 rounded-sm space-y-2">
-          <div class="w-8 h-8 rounded bg-brand-gold/20 text-brand-dark flex items-center justify-center font-bold text-sm">
-            02
+        <div class="p-5 bg-neutral-50 border border-neutral-200 rounded-sm flex flex-col justify-between h-full">
+          <div>
+            <div class="w-8 h-8 rounded bg-brand-gold/20 text-brand-dark flex items-center justify-center font-bold text-sm mb-3">
+              02
+            </div>
+            <h3 class="font-serif font-bold text-base text-neutral-900 leading-snug min-h-[1.5rem]" data-i18n="sample_in_2_title">Matched Closure Systems</h3>
+            <p class="text-xs text-neutral-600 leading-relaxed mt-2 min-h-[4rem]" data-i18n="sample_in_2_desc">
+              Precision glass pipettes, push-button metered droppers, external spring lotion pumps, and FSC real bamboo caps for leak testing.
+            </p>
           </div>
-          <h3 class="font-serif font-bold text-base text-neutral-900">Matched Closure Systems</h3>
-          <p class="text-xs text-neutral-600 leading-relaxed">
-            Precision glass pipettes, push-button metered droppers, external spring lotion pumps, and FSC real bamboo caps for leak testing.
-          </p>
         </div>
 
-        <div class="p-5 bg-neutral-50 border border-neutral-200 rounded-sm space-y-2">
-          <div class="w-8 h-8 rounded bg-brand-gold/20 text-brand-dark flex items-center justify-center font-bold text-sm">
-            03
+        <div class="p-5 bg-neutral-50 border border-neutral-200 rounded-sm flex flex-col justify-between h-full">
+          <div>
+            <div class="w-8 h-8 rounded bg-brand-gold/20 text-brand-dark flex items-center justify-center font-bold text-sm mb-3">
+              03
+            </div>
+            <h3 class="font-serif font-bold text-base text-neutral-900 leading-snug min-h-[1.5rem]" data-i18n="sample_in_3_title">Finishing Swatch Chips</h3>
+            <p class="text-xs text-neutral-600 leading-relaxed mt-2 min-h-[4rem]" data-i18n="sample_in_3_desc">
+              Physical glass swatches demonstrating hot foil gold stamping, ceramic silk-screen printing, and gradient spray lacquering.
+            </p>
           </div>
-          <h3 class="font-serif font-bold text-base text-neutral-900">Finishing Swatch Chips</h3>
-          <p class="text-xs text-neutral-600 leading-relaxed">
-            Physical glass swatches demonstrating hot foil gold stamping, ceramic silk-screen printing, and gradient spray lacquering.
-          </p>
         </div>
 
-        <div class="p-5 bg-neutral-50 border border-neutral-200 rounded-sm space-y-2">
-          <div class="w-8 h-8 rounded bg-brand-gold/20 text-brand-dark flex items-center justify-center font-bold text-sm">
-            04
+        <div class="p-5 bg-neutral-50 border border-neutral-200 rounded-sm flex flex-col justify-between h-full">
+          <div>
+            <div class="w-8 h-8 rounded bg-brand-gold/20 text-brand-dark flex items-center justify-center font-bold text-sm mb-3">
+              04
+            </div>
+            <h3 class="font-serif font-bold text-base text-neutral-900 leading-snug min-h-[1.5rem]" data-i18n="sample_in_4_title">CAD Dieline Templates</h3>
+            <p class="text-xs text-neutral-600 leading-relaxed mt-2 min-h-[4rem]" data-i18n="sample_in_4_desc">
+              Vector AI/PDF technical schematics and dimensional tolerances for your graphic designer to immediately apply your brand artwork.
+            </p>
           </div>
-          <h3 class="font-serif font-bold text-base text-neutral-900">CAD Dieline Templates</h3>
-          <p class="text-xs text-neutral-600 leading-relaxed">
-            Vector AI/PDF technical schematics and dimensional tolerances for your graphic designer to immediately apply your brand artwork.
-          </p>
         </div>
 
       </div>
@@ -130,10 +145,10 @@ import site from '../data/site.json';
       <div class="bg-white p-8 sm:p-10 rounded-sm shadow-xl border border-neutral-200 space-y-8">
         
         <div class="border-b border-neutral-100 pb-6 text-center space-y-2">
-          <h2 class="font-serif text-2xl sm:text-3xl font-bold text-brand-dark">
+          <h2 class="font-serif text-2xl sm:text-3xl font-bold text-brand-dark" data-i18n="sample_form_title">
             Sample Kit Application Form
           </h2>
-          <p class="text-xs sm:text-sm text-neutral-500">
+          <p class="text-xs sm:text-sm text-neutral-500" data-i18n="sample_form_desc">
             Tell us where to dispatch your kit. Dispatches within 48 business hours via DHL Express.
           </p>
         </div>
@@ -146,29 +161,29 @@ import site from '../data/site.json';
         >
           <!-- Anti-Spam Honeypot -->
           <input type="text" name="_gotcha" style="display:none !important;" tabindex="-1" autocomplete="off" />
-          <input type="hidden" name="_subject" value="FREE SAMPLE KIT REQUEST - AURA PACKAGING" />
+          <input type="hidden" name="_subject" value="FREE SAMPLE KIT REQUEST - 广州晶泰包装制品厂 (JINGTAI PACKAGING)" />
 
           <!-- Category Selection -->
           <div>
-            <span class="block text-xs font-semibold text-neutral-700 uppercase tracking-wider mb-2">
+            <span class="block text-xs font-semibold text-neutral-700 uppercase tracking-wider mb-2" data-i18n="sample_step1">
               Select Bottles of Interest for Your Box (Pick 1 or more)
             </span>
             <div class="grid grid-cols-2 gap-3 text-xs text-neutral-700">
               <label class="p-3 bg-neutral-50 border border-neutral-200 rounded flex items-center space-x-2 cursor-pointer hover:border-brand-gold">
                 <input type="checkbox" name="sample_types[]" value="Dropper Bottles (15-50ml)" class="text-brand-gold rounded" checked />
-                <span>Dropper Bottles (15-50ml)</span>
+                <span data-zh="精油滴管瓶 (15-50ml)" data-en="Dropper Bottles (15-50ml)">Dropper Bottles (15-50ml)</span>
               </label>
               <label class="p-3 bg-neutral-50 border border-neutral-200 rounded flex items-center space-x-2 cursor-pointer hover:border-brand-gold">
                 <input type="checkbox" name="sample_types[]" value="Serum & Lotion Pumps" class="text-brand-gold rounded" checked />
-                <span>Serum & Lotion Pumps</span>
+                <span data-zh="精华与乳液泵瓶 (30-100ml)" data-en="Serum & Lotion Pumps">Serum & Lotion Pumps</span>
               </label>
               <label class="p-3 bg-neutral-50 border border-neutral-200 rounded flex items-center space-x-2 cursor-pointer hover:border-brand-gold">
                 <input type="checkbox" name="sample_types[]" value="Cream & Mask Jars" class="text-brand-gold rounded" />
-                <span>Cream & Mask Jars</span>
+                <span data-zh="面霜膏霜宽口罐 (15-50g)" data-en="Cream & Mask Jars">Cream & Mask Jars</span>
               </label>
               <label class="p-3 bg-neutral-50 border border-neutral-200 rounded flex items-center space-x-2 cursor-pointer hover:border-brand-gold">
                 <input type="checkbox" name="sample_types[]" value="Perfume & Mist Sprayers" class="text-brand-gold rounded" />
-                <span>Perfume & Mist Sprayers</span>
+                <span data-zh="香水与细密喷雾瓶 (50-100ml)" data-en="Perfume & Mist Sprayers">Perfume & Mist Sprayers</span>
               </label>
             </div>
           </div>
@@ -176,28 +191,28 @@ import site from '../data/site.json';
           <!-- Contact Details Grid -->
           <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
             <div>
-              <label for="sample-name" class="block text-xs font-semibold text-neutral-700 uppercase tracking-wider mb-1.5">
+              <label for="sample-name" class="block text-xs font-semibold text-neutral-700 uppercase tracking-wider mb-1.5" data-i18n="modal_name_label">
                 Full Name <span class="text-red-500">*</span>
               </label>
               <input
                 type="text"
                 id="sample-name"
                 name="name"
-                placeholder="Sarah Jenkins"
+                placeholder="Jane Doe"
                 class="w-full px-3.5 py-2.5 bg-white border border-neutral-300 rounded-sm text-sm focus:ring-2 focus:ring-brand-gold focus:border-brand-gold"
                 required
               />
             </div>
 
             <div>
-              <label for="sample-email" class="block text-xs font-semibold text-neutral-700 uppercase tracking-wider mb-1.5">
+              <label for="sample-email" class="block text-xs font-semibold text-neutral-700 uppercase tracking-wider mb-1.5" data-i18n="modal_email_label">
                 Business Email <span class="text-red-500">*</span>
               </label>
               <input
                 type="email"
                 id="sample-email"
                 name="email"
-                placeholder="sarah@botanicalskincare.com"
+                placeholder="jane@yourbrand.com"
                 class="w-full px-3.5 py-2.5 bg-white border border-neutral-300 rounded-sm text-sm focus:ring-2 focus:ring-brand-gold focus:border-brand-gold"
                 required
               />
@@ -206,21 +221,21 @@ import site from '../data/site.json';
 
           <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
             <div>
-              <label for="sample-company" class="block text-xs font-semibold text-neutral-700 uppercase tracking-wider mb-1.5">
+              <label for="sample-company" class="block text-xs font-semibold text-neutral-700 uppercase tracking-wider mb-1.5" data-i18n="modal_company_label">
                 Brand / Company Name <span class="text-red-500">*</span>
               </label>
               <input
                 type="text"
                 id="sample-company"
                 name="company"
-                placeholder="Aura Skincare Lab Inc."
+                placeholder="Lumina Botanicals LLC"
                 class="w-full px-3.5 py-2.5 bg-white border border-neutral-300 rounded-sm text-sm focus:ring-2 focus:ring-brand-gold focus:border-brand-gold"
                 required
               />
             </div>
 
             <div>
-              <label for="sample-phone" class="block text-xs font-semibold text-neutral-700 uppercase tracking-wider mb-1.5">
+              <label for="sample-phone" class="block text-xs font-semibold text-neutral-700 uppercase tracking-wider mb-1.5" data-zh="手机号 / WhatsApp (用于 DHL 国际快递单跟踪)" data-en="Phone / WhatsApp (Required for DHL Tracking)">
                 Phone / WhatsApp (Required for DHL Tracking) <span class="text-red-500">*</span>
               </label>
               <input
@@ -237,7 +252,7 @@ import site from '../data/site.json';
           <!-- Courier Shipping Address -->
           <div class="space-y-4">
             <div>
-              <label for="sample-address" class="block text-xs font-semibold text-neutral-700 uppercase tracking-wider mb-1.5">
+              <label for="sample-address" class="block text-xs font-semibold text-neutral-700 uppercase tracking-wider mb-1.5" data-zh="详细收货街道地址" data-en="Street Address">
                 Street Address <span class="text-red-500">*</span>
               </label>
               <input
@@ -252,7 +267,7 @@ import site from '../data/site.json';
 
             <div class="grid grid-cols-1 sm:grid-cols-3 gap-4">
               <div>
-                <label for="sample-city" class="block text-xs font-semibold text-neutral-700 uppercase tracking-wider mb-1.5">
+                <label for="sample-city" class="block text-xs font-semibold text-neutral-700 uppercase tracking-wider mb-1.5" data-zh="城市" data-en="City">
                   City <span class="text-red-500">*</span>
                 </label>
                 <input
@@ -265,26 +280,26 @@ import site from '../data/site.json';
                 />
               </div>
               <div>
-                <label for="sample-state" class="block text-xs font-semibold text-neutral-700 uppercase tracking-wider mb-1.5">
+                <label for="sample-state" class="block text-xs font-semibold text-neutral-700 uppercase tracking-wider mb-1.5" data-zh="州 / 省份 / 邮编" data-en="State / Province">
                   State / Province
                 </label>
                 <input
                   type="text"
                   id="sample-state"
                   name="state"
-                  placeholder="CA"
+                  placeholder="CA 90001"
                   class="w-full px-3.5 py-2.5 bg-white border border-neutral-300 rounded-sm text-sm focus:ring-2 focus:ring-brand-gold focus:border-brand-gold"
                 />
               </div>
               <div>
-                <label for="sample-country" class="block text-xs font-semibold text-neutral-700 uppercase tracking-wider mb-1.5">
+                <label for="sample-country" class="block text-xs font-semibold text-neutral-700 uppercase tracking-wider mb-1.5" data-zh="国家 / 地区" data-en="Country">
                   Country <span class="text-red-500">*</span>
                 </label>
                 <input
                   type="text"
                   id="sample-country"
                   name="country"
-                  placeholder="USA"
+                  placeholder="USA / Germany / UK"
                   class="w-full px-3.5 py-2.5 bg-white border border-neutral-300 rounded-sm text-sm focus:ring-2 focus:ring-brand-gold focus:border-brand-gold"
                   required
                 />
@@ -294,14 +309,14 @@ import site from '../data/site.json';
 
           <!-- Formula & Target Launch Notes -->
           <div>
-            <label for="sample-notes" class="block text-xs font-semibold text-neutral-700 uppercase tracking-wider mb-1.5">
+            <label for="sample-notes" class="block text-xs font-semibold text-neutral-700 uppercase tracking-wider mb-1.5" data-zh="配方剂型、容量偏好或预期上市周期（选填）" data-en="Formulation Type or Desired Launch Timeline (Optional)">
               Formulation Type or Desired Launch Timeline (Optional)
             </label>
             <textarea
               id="sample-notes"
               name="project_notes"
               rows="3"
-              placeholder="e.g., We are launching a 15% Vitamin C serum requiring UV-amber light blocking..."
+              placeholder="例如：准备开发一款15%维C抗光解精华液，需要避光茶色玻璃瓶与耐酸碱滴管..."
               class="w-full px-3.5 py-2.5 bg-white border border-neutral-300 rounded-sm text-sm focus:ring-2 focus:ring-brand-gold focus:border-brand-gold"
             ></textarea>
           </div>
@@ -312,14 +327,16 @@ import site from '../data/site.json';
               type="submit"
               id="sample-submit-btn"
               class="w-full py-4 bg-brand-gold hover:bg-brand-gold-light text-brand-dark font-bold text-sm tracking-wide rounded-sm shadow-gold transition-all duration-300"
+              data-i18n="sample_submit_btn"
             >
               Submit Sample Kit Request →
             </button>
-            <div id="sample-feedback" class="hidden text-center text-xs p-4 rounded bg-emerald-50 text-emerald-800 border border-emerald-200">
+            <div id="sample-feedback" class="hidden text-center text-xs p-4 rounded bg-emerald-50 text-emerald-800 border border-emerald-200" data-zh="✓ 样品盒申请已收到！广州物流组将在 24 小时内核实地址并发出 DHL 寄件单号与样品明细清单。" data-en="✓ Sample Kit request received! Our logistics desk will review your address and email your DHL tracking confirmation and sample packing list within 24 hours.">
               ✓ Sample Kit request received! Our logistics desk will review your address and email your DHL tracking confirmation and sample packing list within 24 hours.
             </div>
-            <p class="text-center text-[11px] text-neutral-400">
-              🔒 100% Privacy Guarantee: We never share your business details or formulation inquiries with third parties.
+            <p class="text-center text-[11px] text-neutral-400 flex items-center justify-center space-x-1.5" data-i18n="modal_privacy_note">
+              <svg class="w-3.5 h-3.5 text-neutral-400 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z"></path></svg>
+              <span>100% Privacy Guarantee: We never share your business details or formulation inquiries with third parties.</span>
             </p>
           </div>
 
@@ -342,7 +359,7 @@ import site from '../data/site.json';
 
     const originalText = submitBtn.innerText;
     submitBtn.disabled = true;
-    submitBtn.innerText = 'Transmitting to Guangzhou Logistics Desk...';
+    submitBtn.innerText = document.documentElement.lang === 'zh' ? '正在提交至广州调度中心...' : 'Transmitting to Guangzhou Logistics Desk...';
 
     const formData = new FormData(form);
 
@@ -356,17 +373,17 @@ import site from '../data/site.json';
       if (response.ok) {
         form.reset();
         feedback?.classList.remove('hidden');
-        submitBtn.innerText = 'Application Submitted Successfully ✓';
+        submitBtn.innerText = document.documentElement.lang === 'zh' ? '样品盒申请提交成功 ✓' : 'Application Submitted Successfully ✓';
       } else {
         feedback?.classList.remove('hidden');
         if (feedback) {
-          feedback.innerHTML = '✓ Request registered! Our Guangzhou team will email you the sample kit confirmation within 24 hours.';
+          feedback.innerHTML = document.documentElement.lang === 'zh' ? '✓ 申请已登记！广州专员将在24小时内与您联系确认寄样。' : '✓ Request registered! Our Guangzhou team will email you the sample kit confirmation within 24 hours.';
         }
       }
     } catch {
       feedback?.classList.remove('hidden');
       if (feedback) {
-        feedback.innerHTML = '✓ Request registered! For instant priority handling, feel free to message our WhatsApp: <strong>+86 188 1988 6688</strong>.';
+        feedback.innerHTML = document.documentElement.lang === 'zh' ? '✓ 申请已登记！如有紧急需求，可直接添加微信: <strong>183 1810 5616</strong>。' : '✓ Request registered! For instant priority handling, feel free to message our WhatsApp: <strong>+86 183 1810 5616</strong>.';
       }
     } finally {
       setTimeout(() => {

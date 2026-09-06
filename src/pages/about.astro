@@ -7,17 +7,21 @@ import site from '../data/site.json';
 
 <Layout
   title={`About Us & Guangzhou Hub | ${site.name}`}
-  description="Learn how Aura Packaging provides turnkey cosmetic packaging solutions, pre-shipment quality assurance, and agile Guangzhou supply chain management for global beauty brands."
+  title_zh={`关于我们与广州工厂 | ${site.name}`}
+  description="Learn how Jingtai Packaging provides turnkey cosmetic packaging solutions, pre-shipment quality assurance, and agile Guangzhou supply chain management for global beauty brands."
+  description_zh="了解广州晶泰包装制品厂如何通过交钥匙级化妆品玻璃包材全案供应链、出厂前严苛质检与广州敏捷供应链管理，赋能全球高奢美妆品牌。"
 >
   <!-- Hero Section -->
   <section class="bg-brand-dark text-white py-20 border-b border-neutral-800">
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center space-y-4">
-      <Badge variant="gold" size="sm">Our Story & Infrastructure</Badge>
-      <h1 class="font-serif text-3xl sm:text-5xl font-bold tracking-tight text-white">
-        Your Turnkey Packaging & <span class="gold-gradient-text">Quality Guardian</span> in China
+      <Badge variant="gold" size="sm">
+        <span data-i18n="about_hero_badge">Our Story & Infrastructure</span>
+      </Badge>
+      <h1 class="font-serif text-3xl sm:text-5xl font-bold tracking-tight text-white" data-i18n="about_hero_title">
+        Your Turnkey Packaging & Quality Guardian in China
       </h1>
-      <p class="text-sm sm:text-base text-neutral-300 max-w-2xl mx-auto font-light leading-relaxed">
-        Headquartered in Guangzhou—the global heartland of cosmetic manufacturing—Aura Packaging bridges the gap between massive Chinese glass manufacturing capacity and the exacting standards of Western prestige beauty brands.
+      <p class="text-sm sm:text-base text-neutral-300 max-w-2xl mx-auto font-light leading-relaxed" data-i18n="about_hero_desc">
+        Headquartered in Guangzhou—the global heartland of cosmetic manufacturing—Jingtai Packaging bridges the gap between massive Chinese glass manufacturing capacity and the exacting standards of Western prestige beauty brands.
       </p>
     </div>
   </section>
@@ -28,27 +32,29 @@ import site from '../data/site.json';
       <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-16 items-center">
         
         <div class="space-y-6">
-          <Badge variant="outline" size="sm">The Sourcing Dilemma Solved</Badge>
-          <h2 class="font-serif text-3xl sm:text-4xl font-bold text-brand-dark leading-tight">
+          <Badge variant="outline" size="sm">
+            <span data-i18n="about_dilemma_badge">The Sourcing Dilemma Solved</span>
+          </Badge>
+          <h2 class="font-serif text-3xl sm:text-4xl font-bold text-brand-dark leading-tight" data-i18n="about_dilemma_title">
             Why Single-Line Factories Fail Modern Beauty Brands
           </h2>
           <div class="space-y-4 text-sm text-neutral-600 leading-relaxed">
-            <p>
+            <p data-i18n="about_dilemma_p1">
               In traditional manufacturing, glass furnaces only mold empty bottles. They do not manufacture dispensing pumps, they do not produce real bamboo collars, and they do not print secondary rigid boxes. When overseas buyers attempt to manage 4 different factories in China, a 0.2mm thread mismatch results in leaking containers, thousands of ruined formulations, and catastrophic delivery delays.
             </p>
-            <p>
-              <strong class="text-brand-dark">Aura Packaging operates differently.</strong> We function as your integrated turnkey packaging engineering team. We manage the entire ecosystem: high-flint glass container, precision-matched closures, surface decoration, custom outer boxes, and independent pre-shipment laboratory testing.
+            <p data-i18n="about_dilemma_p2">
+              Jingtai Packaging operates differently. We function as your integrated turnkey packaging engineering team. We manage the entire ecosystem: high-flint glass container, precision-matched closures, surface decoration, custom outer boxes, and independent pre-shipment laboratory testing.
             </p>
           </div>
 
           <div class="pt-2 grid grid-cols-2 gap-4">
             <div class="p-4 bg-neutral-50 rounded border border-neutral-200">
               <span class="block text-xl font-serif font-bold text-brand-gold">100%</span>
-              <span class="text-xs text-neutral-600">Thread & Leak Compatibility</span>
+              <span class="text-xs text-neutral-600" data-i18n="about_stat_thread">Thread & Leak Compatibility</span>
             </div>
             <div class="p-4 bg-neutral-50 rounded border border-neutral-200">
               <span class="block text-xl font-serif font-bold text-brand-gold">AQL 2.5</span>
-              <span class="text-xs text-neutral-600">Batch Inspection Standards</span>
+              <span class="text-xs text-neutral-600" data-i18n="about_stat_aql">Batch Inspection Standards</span>
             </div>
           </div>
         </div>
@@ -60,7 +66,7 @@ import site from '../data/site.json';
             class="w-full h-full object-cover"
           />
           <div class="absolute inset-0 bg-gradient-to-t from-brand-dark/80 via-transparent to-transparent flex items-end p-6">
-            <p class="text-white text-xs font-mono">
+            <p class="text-white text-xs font-mono" data-zh="广州实验室严格检测：每批次装箱前均经过高精度数显卡尺公差校验与负压抽检" data-en="In-house inspection: Dimensional caliper verification and negative pressure testing before container loading.">
               In-house inspection: Dimensional caliper verification and negative pressure testing before container loading.
             </p>
           </div>
@@ -75,45 +81,66 @@ import site from '../data/site.json';
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
       
       <div class="text-center max-w-3xl mx-auto space-y-3 mb-16">
-        <Badge variant="gold" size="sm">Strategic Location</Badge>
-        <h2 class="font-serif text-3xl sm:text-4xl font-bold text-brand-dark">
+        <Badge variant="gold" size="sm">
+          <span data-i18n="about_gz_badge">Strategic Location</span>
+        </Badge>
+        <h2 class="font-serif text-3xl sm:text-4xl font-bold text-brand-dark" data-i18n="about_gz_title">
           The Guangzhou Advantage: Speed, Agility & Selection
         </h2>
-        <p class="text-sm sm:text-base text-neutral-600">
+        <p class="text-sm sm:text-base text-neutral-600" data-i18n="about_gz_desc">
           Guangzhou (Baiyun District) is home to over 4,000 cosmetic and packaging enterprises. Operating at the epicenter of this cluster gives our clients unbeatable advantages.
         </p>
       </div>
 
       <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
         
-        <div class="bg-white p-8 rounded-sm border border-neutral-200 shadow-sm space-y-4">
-          <div class="w-12 h-12 bg-brand-gold/15 text-brand-gold-dark rounded-sm flex items-center justify-center font-bold text-xl">
-            ✈️
+        <div class="bg-white p-8 rounded-sm border border-neutral-200 shadow-sm flex flex-col justify-between h-full">
+          <div>
+            <div class="w-12 h-12 bg-brand-gold/15 text-brand-gold-dark rounded-sm flex items-center justify-center mb-4">
+              <svg class="w-6 h-6 text-brand-gold-dark" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.8" d="M6 12L3.269 3.126A59.768 59.768 0 0121.485 12 59.77 59.77 0 013.27 20.876L5.999 12zm0 0h7.5" />
+              </svg>
+            </div>
+            <h3 class="font-serif font-bold text-lg text-brand-dark leading-snug min-h-[1.75rem]" data-i18n="about_adv1_title">48-Hour Sample Dispatch</h3>
+            <p class="text-xs text-neutral-600 leading-relaxed mt-2 min-h-[4rem]" data-i18n="about_adv1_desc">
+              While remote inland factories take weeks to prepare physical samples, we pull directly from Guangzhou’s massive component repositories and express courier via DHL from Baiyun Airport in 48 hours.
+            </p>
           </div>
-          <h3 class="font-serif font-bold text-lg text-brand-dark">48-Hour Sample Dispatch</h3>
-          <p class="text-xs text-neutral-600 leading-relaxed">
-            While remote inland factories take weeks to prepare physical samples, we pull directly from Guangzhou’s massive component repositories and express courier via DHL from Baiyun Airport in 48 hours.
-          </p>
         </div>
 
-        <div class="bg-white p-8 rounded-sm border border-neutral-200 shadow-sm space-y-4">
-          <div class="w-12 h-12 bg-brand-gold/15 text-brand-gold-dark rounded-sm flex items-center justify-center font-bold text-xl">
-            🚢
+        <div class="bg-white p-8 rounded-sm border border-neutral-200 shadow-sm flex flex-col justify-between h-full">
+          <div>
+            <div class="w-12 h-12 bg-brand-gold/15 text-brand-gold-dark rounded-sm flex items-center justify-center mb-4">
+              <svg class="w-6 h-6 text-brand-gold-dark" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M2 20a6 6 0 0 0 6 0a6 6 0 0 1 6 0a6 6 0 0 0 6 0" />
+                <path d="M4 17l1.5-7h13l1.5 7" />
+                <path d="M9 10V6h6v4" />
+                <path d="M12 3v3" />
+              </svg>
+            </div>
+            <h3 class="font-serif font-bold text-lg text-brand-dark leading-snug min-h-[1.75rem]" data-i18n="about_adv2_title">Port Proximity & DDP Ocean Logistics</h3>
+            <p class="text-xs text-neutral-600 leading-relaxed mt-2 min-h-[4rem]" data-i18n="about_adv2_desc">
+              Immediate access to Guangzhou Nansha Port and Shenzhen Yantian Port allows us to book fast-track sea lanes to Long Beach, Oakland, and Rotterdam, reducing ocean transit times by 7-10 days.
+            </p>
           </div>
-          <h3 class="font-serif font-bold text-lg text-brand-dark">Port Proximity & DDP Ocean Logistics</h3>
-          <p class="text-xs text-neutral-600 leading-relaxed">
-            Immediate access to Guangzhou Nansha Port and Shenzhen Yantian Port allows us to book fast-track sea lanes to Long Beach, Oakland, and Rotterdam, reducing ocean transit times by 7-10 days.
-          </p>
         </div>
 
-        <div class="bg-white p-8 rounded-sm border border-neutral-200 shadow-sm space-y-4">
-          <div class="w-12 h-12 bg-brand-gold/15 text-brand-gold-dark rounded-sm flex items-center justify-center font-bold text-xl">
-            🎨
+        <div class="bg-white p-8 rounded-sm border border-neutral-200 shadow-sm flex flex-col justify-between h-full">
+          <div>
+            <div class="w-12 h-12 bg-brand-gold/15 text-brand-gold-dark rounded-sm flex items-center justify-center mb-4">
+              <svg class="w-6 h-6 text-brand-gold-dark" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+                <circle cx="13.5" cy="6.5" r=".5" fill="currentColor" />
+                <circle cx="17.5" cy="10.5" r=".5" fill="currentColor" />
+                <circle cx="8.5" cy="7.5" r=".5" fill="currentColor" />
+                <circle cx="6.5" cy="12.5" r=".5" fill="currentColor" />
+                <path d="M12 2C6.5 2 2 6.5 2 12s4.5 10 10 10c.926 0 1.648-.746 1.648-1.688 0-.437-.18-.835-.437-1.125-.29-.289-.438-.652-.438-1.125a1.64 1.64 0 0 1 1.668-1.668h1.996c3.051 0 5.563-2.512 5.563-5.563C21.437 6.082 17.205 2 12 2z" />
+              </svg>
+            </div>
+            <h3 class="font-serif font-bold text-lg text-brand-dark leading-snug min-h-[1.75rem]" data-i18n="about_adv3_title">Master Finishing Facilities</h3>
+            <p class="text-xs text-neutral-600 leading-relaxed mt-2 min-h-[4rem]" data-i18n="about_adv3_desc">
+              The world's highest density of advanced coating, silk printing, and electroplating lines ensures immediate access to the latest finishing trends and rapid Pantone lab strike-offs.
+            </p>
           </div>
-          <h3 class="font-serif font-bold text-lg text-brand-dark">Master Finishing Facilities</h3>
-          <p class="text-xs text-neutral-600 leading-relaxed">
-            The world's highest density of advanced coating, silk printing, and electroplating lines ensures immediate access to the latest finishing trends and rapid Pantone lab strike-offs.
-          </p>
         </div>
 
       </div>
@@ -126,54 +153,64 @@ import site from '../data/site.json';
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
       
       <div class="text-center max-w-3xl mx-auto space-y-3 mb-16">
-        <Badge variant="outline" size="sm">Laboratory Standards</Badge>
-        <h2 class="font-serif text-3xl sm:text-4xl font-bold text-brand-dark">
+        <Badge variant="outline" size="sm">
+          <span data-zh="实验室质检标准" data-en="Laboratory Standards">Laboratory Standards</span>
+        </Badge>
+        <h2 class="font-serif text-3xl sm:text-4xl font-bold text-brand-dark" data-zh="我们的 4 阶段出厂严苛质检规程" data-en="Our 4-Stage Pre-Shipment Quality Protocol">
           Our 4-Stage Pre-Shipment Quality Protocol
         </h2>
-        <p class="text-sm text-neutral-600">
+        <p class="text-sm text-neutral-600" data-zh="在签发大货商业放行单前，每一个生产批次都必须经受内部专属质检实验室的多维度测试。" data-en="Every production run must clear our internal QA laboratory before we issue commercial shipping release.">
           Every production run must clear our internal QA laboratory before we issue commercial shipping release.
         </p>
       </div>
 
       <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 text-left">
         
-        <div class="p-6 bg-neutral-50 rounded border border-neutral-200 space-y-3">
-          <span class="text-xs font-mono font-bold text-brand-gold">STAGE 01</span>
-          <h3 class="font-serif font-bold text-base text-neutral-900">Vacuum Leak Testing</h3>
-          <p class="text-xs text-neutral-600 leading-relaxed">
-            -0.08 MPa chamber depressurization for 30 minutes. Verifies that pumps, droppers, and jars remain hermetically sealed under international cargo pressure changes.
-          </p>
+        <div class="p-6 bg-neutral-50 rounded border border-neutral-200 flex flex-col justify-between h-full">
+          <div>
+            <span class="text-xs font-mono font-bold text-brand-gold block mb-2" data-zh="第一阶段" data-en="STAGE 01">STAGE 01</span>
+            <h3 class="font-serif font-bold text-base text-neutral-900 leading-snug min-h-[2.5rem] flex items-start" data-i18n="about_qa3_title">-0.08 MPa 真空负压防漏测试</h3>
+            <p class="text-xs text-neutral-600 leading-relaxed mt-2" data-i18n="about_qa3_desc">
+              Bottles immersed in water chambers at -0.08 MPa for 30 minutes to verify hermetic seal.
+            </p>
+          </div>
         </div>
 
-        <div class="p-6 bg-neutral-50 rounded border border-neutral-200 space-y-3">
-          <span class="text-xs font-mono font-bold text-brand-gold">STAGE 02</span>
-          <h3 class="font-serif font-bold text-base text-neutral-900">Thread & Dimension Calipers</h3>
-          <p class="text-xs text-neutral-600 leading-relaxed">
-            Digital optical comparators verify mouth diameter, wall thickness, and DIN 18/410 thread pitch to ensure 100% smooth automated filling line clearance.
-          </p>
+        <div class="p-6 bg-neutral-50 rounded border border-neutral-200 flex flex-col justify-between h-full">
+          <div>
+            <span class="text-xs font-mono font-bold text-brand-gold block mb-2" data-zh="第二阶段" data-en="STAGE 02">STAGE 02</span>
+            <h3 class="font-serif font-bold text-base text-neutral-900 leading-snug min-h-[2.5rem] flex items-start" data-i18n="about_qa2_title">螺牙口径通止规精密校验</h3>
+            <p class="text-xs text-neutral-600 leading-relaxed mt-2" data-i18n="about_qa2_desc">
+              Go/No-Go calibrated thread gauge ensures smooth cap screwing with zero cross-threading.
+            </p>
+          </div>
         </div>
 
-        <div class="p-6 bg-neutral-50 rounded border border-neutral-200 space-y-3">
-          <span class="text-xs font-mono font-bold text-brand-gold">STAGE 03</span>
-          <h3 class="font-serif font-bold text-base text-neutral-900">3M Tape Adhesion & Curing</h3>
-          <p class="text-xs text-neutral-600 leading-relaxed">
-            ASTM D3359 cross-hatch tape pull tests on silk-screen printed typography and metallic hot foil to guarantee graphics do not peel under daily use.
-          </p>
+        <div class="p-6 bg-neutral-50 rounded border border-neutral-200 flex flex-col justify-between h-full">
+          <div>
+            <span class="text-xs font-mono font-bold text-brand-gold block mb-2" data-zh="第三阶段" data-en="STAGE 03">STAGE 03</span>
+            <h3 class="font-serif font-bold text-base text-neutral-900 leading-snug min-h-[2.5rem] flex items-start" data-i18n="about_qa4_title">3M 百格图文附着力耐磨测试</h3>
+            <p class="text-xs text-neutral-600 leading-relaxed mt-2" data-i18n="about_qa4_desc">
+              Silk-screened and hot-stamped logos tested with 3M adhesive peel to guarantee zero flaking.
+            </p>
+          </div>
         </div>
 
-        <div class="p-6 bg-neutral-50 rounded border border-neutral-200 space-y-3">
-          <span class="text-xs font-mono font-bold text-brand-gold">STAGE 04</span>
-          <h3 class="font-serif font-bold text-base text-neutral-900">ISTA 3A Drop Testing</h3>
-          <p class="text-xs text-neutral-600 leading-relaxed">
-            Full export carton drop tests from 1.0m height on all 6 faces, edges, and corners. Ensures reinforced cell-divided cartons arrive intact at your facility.
-          </p>
+        <div class="p-6 bg-neutral-50 rounded border border-neutral-200 flex flex-col justify-between h-full">
+          <div>
+            <span class="text-xs font-mono font-bold text-brand-gold block mb-2" data-zh="第四阶段" data-en="STAGE 04">STAGE 04</span>
+            <h3 class="font-serif font-bold text-base text-neutral-900 leading-snug min-h-[2.5rem] flex items-start" data-i18n="about_qa5_title">ISTA 3A 国际跌落与抗震测试</h3>
+            <p class="text-xs text-neutral-600 leading-relaxed mt-2" data-i18n="about_qa5_desc">
+              Drop-tested inside reinforced cell cartons from 1.2m onto concrete to verify packaging integrity.
+            </p>
+          </div>
         </div>
 
       </div>
 
       <div class="mt-12 text-center">
         <Button href="/sample-kit" variant="gold" size="lg">
-          Request Free Sample Kit for Lab Evaluation →
+          <span data-zh="申请免费样品盒以供实验室评估 →" data-en="Request Free Sample Kit for Lab Evaluation →">Request Free Sample Kit for Lab Evaluation →</span>
         </Button>
       </div>
 

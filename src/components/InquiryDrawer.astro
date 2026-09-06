@@ -62,7 +62,7 @@ import site from '../data/site.json';
     <!-- Drawer Footer Actions -->
     <div class="p-6 bg-neutral-50 border-t border-neutral-200 space-y-3">
       <div class="flex items-center justify-between text-xs text-neutral-600 pb-1">
-        <span>Packaging SKUs Selected:</span>
+        <span data-i18n="rfq_sku_count">Packaging SKUs Selected:</span>
         <span id="rfq-item-count-text" class="font-bold text-brand-dark">0 SKUs</span>
       </div>
 
@@ -85,7 +85,6 @@ import site from '../data/site.json';
       </button>
     </div>
 
-
   </div>
 </div>
 
@@ -93,6 +92,7 @@ import site from '../data/site.json';
   interface RFQItem {
     id: string;
     name: string;
+    name_zh?: string;
     volume: string;
     image: string;
     moq: number;
@@ -139,12 +139,22 @@ import site from '../data/site.json';
 
   function renderBasket() {
     const items = getBasket();
-    const count = items.length;
+    const isZh = document.documentElement.lang === 'zh';
 
-    if (badgeCount) badgeCount.innerText = count.toString();
-    if (countText) countText.innerText = `${count} SKU${count === 1 ? '' : 's'}`;
+    if (badgeCount) {
+      badgeCount.textContent = items.length.toString();
+      if (items.length === 0) {
+        badgeCount.classList.add('hidden');
+      } else {
+        badgeCount.classList.remove('hidden');
+      }
+    }
 
-    if (count === 0) {
+    if (countText) {
+      countText.textContent = isZh ? `${items.length} 款型号` : `${items.length} SKUs`;
+    }
+
+    if (items.length === 0) {
       emptyState?.classList.remove('hidden');
       if (dynamicContainer) dynamicContainer.innerHTML = '';
       if (submitBundleBtn) submitBundleBtn.disabled = true;
@@ -155,87 +165,97 @@ import site from '../data/site.json';
     if (submitBundleBtn) submitBundleBtn.disabled = false;
 
     if (dynamicContainer) {
-      dynamicContainer.innerHTML = items.map((item, idx) => `
-        <div class="flex items-center space-x-3 p-3 bg-white rounded border border-neutral-200 shadow-sm">
-          <img src="${item.image}" alt="${item.name}" class="w-14 h-14 object-cover rounded bg-neutral-100 flex-shrink-0" />
+      dynamicContainer.innerHTML = items
+        .map(
+          (item) => `
+        <div class="p-3 bg-white border border-neutral-200 rounded-sm flex items-center space-x-3 hover:border-brand-gold/50 transition-colors">
+          <img src="${item.image}" alt="${item.name}" class="w-14 h-14 object-cover rounded bg-neutral-100 flex-shrink-0" onerror="this.src='https://images.unsplash.com/photo-1620916566398-39f1143ab7be?auto=format&fit=crop&w=400&q=80';" />
           <div class="flex-1 min-w-0">
-            <h4 class="font-serif text-xs font-bold text-brand-dark truncate">${item.name}</h4>
-            <p class="text-[11px] text-neutral-500">${item.volume} • MOQ: ${item.moq} pcs</p>
+            <h4 class="text-xs font-bold text-neutral-900 truncate">${isZh ? (item.name_zh || item.name) : item.name}</h4>
+            <div class="flex items-center space-x-2 text-[11px] text-neutral-500 mt-0.5">
+              <span>${item.volume}</span>
+              <span>•</span>
+              <span>${isZh ? '起订量:' : 'MOQ:'} ${item.moq} pcs</span>
+            </div>
           </div>
-          <button
-            type="button"
-            class="remove-rfq-item text-neutral-400 hover:text-red-500 p-1.5 transition-colors"
-            data-index="${idx}"
-            title="Remove"
-          >
+          <button type="button" class="remove-rfq-item text-neutral-300 hover:text-red-500 p-1 transition-colors" data-id="${item.id}" title="Remove item">
             <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16"></path></svg>
           </button>
         </div>
-      `).join('');
+      `
+        )
+        .join('');
+
+      dynamicContainer.querySelectorAll('.remove-rfq-item').forEach((btn) => {
+        btn.addEventListener('click', () => {
+          const id = btn.getAttribute('data-id');
+          const current = getBasket().filter((i) => i.id !== id);
+          saveBasket(current);
+        });
+      });
     }
   }
 
-  // Handle remove item
-  dynamicContainer?.addEventListener('click', (e) => {
-    const btn = (e.target as HTMLElement).closest('.remove-rfq-item') as HTMLElement;
-    if (btn) {
-      const idx = parseInt(btn.dataset.index || '-1');
-      if (idx >= 0) {
-        const items = getBasket();
-        items.splice(idx, 1);
-        saveBasket(items);
-      }
-    }
-  });
-
-  // Handle clear all
+  // Clear all items action
   clearBtn?.addEventListener('click', () => {
     saveBasket([]);
   });
 
-  // Handle Add to RFQ Click from anywhere on page
+  // Submit consolidated bundle quotation
+  submitBundleBtn?.addEventListener('click', () => {
+    const items = getBasket();
+    if (items.length === 0) return;
+    const isZh = document.documentElement.lang === 'zh';
+
+    const itemTitles = items.map((i) => `${isZh ? (i.name_zh || i.name) : i.name} (${i.volume})`).join(' + ');
+    closeDrawer();
+
+    if ((window as any).openQuoteModal) {
+      (window as any).openQuoteModal(itemTitles);
+    }
+  });
+
+  // Listen to Add to RFQ events across the site
   document.addEventListener('click', (e) => {
-    const btn = (e.target as HTMLElement).closest('.add-to-rfq-btn') as HTMLElement;
-    if (btn) {
-      const item: RFQItem = {
-        id: btn.dataset.id || '',
-        name: btn.dataset.name || '',
-        volume: btn.dataset.volume || '',
-        image: btn.dataset.image || '',
-        moq: parseInt(btn.dataset.moq || '3000'),
-      };
+    const target = (e.target as HTMLElement).closest('.add-to-rfq-btn');
+    if (target) {
+      const id = target.getAttribute('data-id');
+      const name = target.getAttribute('data-name') || '';
+      const name_zh = target.getAttribute('data-name-zh') || name;
+      const volume = target.getAttribute('data-volume') || '';
+      const image = target.getAttribute('data-image') || '';
+      const moq = parseInt(target.getAttribute('data-moq') || '1000', 10);
+
+      if (!id) return;
 
       const basket = getBasket();
-      // Check if already in basket
-      if (!basket.some(b => b.id === item.id)) {
-        basket.push(item);
+      const existing = basket.find((i) => i.id === id);
+
+      if (!existing) {
+        basket.push({ id, name, name_zh, volume, image, moq });
         saveBasket(basket);
       }
 
-      // Visual feedback on button
-      const span = btn.querySelector('span');
-      if (span) {
-        const orig = span.innerText;
-        span.innerText = 'Added ✓';
-        setTimeout(() => { span.innerText = orig; }, 1500);
+      // Visual feedback
+      const label = target.querySelector('span');
+      if (label) {
+        const originalText = label.textContent;
+        const isZh = document.documentElement.lang === 'zh';
+        label.textContent = isZh ? '已加入 ✓' : 'Added ✓';
+        setTimeout(() => {
+          label.textContent = originalText;
+        }, 1800);
       }
 
       openDrawer();
     }
   });
 
-  // Submit consolidated bundle
-  submitBundleBtn?.addEventListener('click', () => {
-    const items = getBasket();
-    const summary = items.map(i => `${i.name} (${i.volume})`).join(', ');
-    closeDrawer();
-    window.dispatchEvent(new CustomEvent('open-quote-modal', {
-      detail: {
-        productTitle: `Bundle RFQ (${items.length} SKUs): ${summary}`
-      }
-    }));
+  // Re-render when language changes
+  window.addEventListener('aura-language-changed', () => {
+    renderBasket();
   });
 
-  // Initial load
+  // Initial render on page load
   renderBasket();
 </script>

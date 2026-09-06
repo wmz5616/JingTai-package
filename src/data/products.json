@@ -2,16 +2,21 @@
   {
     "id": "frosted-amber-dropper-30ml",
     "name": "30ml Frosted Amber Glass Dropper Bottle",
+    "name_zh": "30ml 磨砂茶色高白料精油滴管瓶",
     "subtitle": "UV-Protection Pipette Bottle for Active Serums & Retinol",
+    "subtitle_zh": "医用级抗光解滴管瓶，专为高活性视黄醇与VC精华设计",
     "category": "Dropper Bottles",
+    "category_zh": "精油滴管瓶",
     "categorySlug": "dropper",
     "volume": "30ml (1.0 fl oz)",
+    "volume_zh": "30ml (1.0 盎司)",
     "moq": 3000,
     "inStockMoq": 1000,
     "leadTime": "15-20 business days (48H for blank stock)",
+    "leadTime_zh": "大货15-20个工作日（光瓶现货48小时速发）",
     "images": [
-      "https://images.unsplash.com/photo-1608248597359-52e4cf52538b?auto=format&fit=crop&w=900&q=80",
-      "https://images.unsplash.com/photo-1620916566398-39f1143ab7be?auto=format&fit=crop&w=900&q=80"
+      "https://images.unsplash.com/photo-1620916566398-39f1143ab7be?auto=format&fit=crop&w=900&q=80",
+      "https://images.unsplash.com/photo-1608248597359-52e4cf52538b?auto=format&fit=crop&w=900&q=80"
     ],
     "specs": {
       "neckSize": "18/410 DIN Standard",
@@ -29,21 +34,34 @@
       "Precision German Calibrated Pipette: Exact 0.5ml - 1.0ml dosage distribution",
       "DIN 18/410 Standard Thread: 100% compatible with international automated filling lines"
     ],
+    "features_zh": [
+      "99.4% 紫外线阻隔率：有效保护维C、视黄醇及活性精油免受光解氧化",
+      "真空负压防漏认证：经 -0.08 MPa 持续30分钟严苛负压抽检，零滴漏",
+      "高精度刻度玻璃胶头滴管：单次精准取量 0.5ml - 1.0ml",
+      "DIN 18/410 国际标准牙口：100% 完美适配全球主流全自动灌装流水线"
+    ],
     "description": "Architected specifically for clean skincare formulations and active dermatological serums. Made with high-flint recyclable amber glass providing pharmaceutical-grade UV blocking performance. Perfectly weighted with a thick bottom for exceptional luxury hand-feel.",
+    "description_zh": "专为纯净美妆及高功效活性精华液量身打造。采用药用级高白料加厚茶色玻璃制成，具有优异的紫外线屏蔽遮光性能。底部加厚配重工艺，握持手感厚重大气，显著提升品牌陈列质感。",
     "dielineUrl": "#download-dieline",
     "isFeatured": true,
-    "badge": "Best Seller"
+    "badge": "Best Seller",
+    "badge_zh": "热销爆款"
   },
   {
     "id": "nordic-clear-dropper-50ml",
     "name": "50ml Crystal Clear Heavy-Base Pipette Bottle",
+    "name_zh": "50ml 高白料极透重底精油滴管瓶",
     "subtitle": "High-Transparency Thick Bottom Serum Packaging",
+    "subtitle_zh": "北欧极简厚底水晶质感，全透展现双相水油精华",
     "category": "Dropper Bottles",
+    "category_zh": "精油滴管瓶",
     "categorySlug": "dropper",
     "volume": "50ml (1.7 fl oz)",
+    "volume_zh": "50ml (1.7 盎司)",
     "moq": 3000,
     "inStockMoq": 1000,
     "leadTime": "18-22 business days (48H for blank stock)",
+    "leadTime_zh": "大货18-22个工作日（光瓶现货48小时速发）",
     "images": [
       "https://images.unsplash.com/photo-1620916566398-39f1143ab7be?auto=format&fit=crop&w=900&q=80",
       "https://images.unsplash.com/photo-1608248597359-52e4cf52538b?auto=format&fit=crop&w=900&q=80"
@@ -64,21 +82,34 @@
       "Air-tight Dropper Seal: Leak-proof silicone gasket tested under extreme altitude transport",
       "Chemical Inertness: Zero formula interaction or chemical leaching verified by SGS lab"
     ],
+    "features_zh": [
+      "光学级高白料通透度：完美展示彩色精华液、水油双相精萃及植物精油原生色泽",
+      "14mm 超厚实心玻璃重底：重心稳重防倾倒，呈现高端奢侈沙龙级陈列感",
+      "严苛气密硅胶密封垫圈：确保长途高空航空运输与跨境海运不渗液",
+      "SGS 实验室惰性验证：玻璃材质零析出，不与高酸碱活性配方发生任何化学反应"
+    ],
     "description": "The Nordic Clear collection features a distinctive 14mm solid glass base and crisp cylindrical silhouette. Crafted from optical-grade super flint glass, this bottle is the gold standard for high-end hydrating serums, facial oils, and botanical elixirs.",
+    "description_zh": "北欧极简极透系列采用标志性的 14mm 实心厚底与利落直筒圆柱造型。精选光学级高白料玻璃制造，是高端补水修护精华、面部精油及高端护肤原液的行业黄金标杆包装。",
     "dielineUrl": "#download-dieline",
     "isFeatured": true,
-    "badge": "Prestige Line"
+    "badge": "Prestige Line",
+    "badge_zh": "高定奢品"
   },
   {
     "id": "matte-black-push-dropper-30ml",
     "name": "30ml Matte Black Push-Button Dropper Bottle",
+    "name_zh": "30ml 哑光雾黑按压式定量滴管瓶",
     "subtitle": "Aesthetic Light-Blocking Packaging with Metered Dispensing",
+    "subtitle_zh": "天鹅绒亲肤触感，100%全避光防氧化定量取液",
     "category": "Dropper Bottles",
+    "category_zh": "精油滴管瓶",
     "categorySlug": "dropper",
     "volume": "30ml (1.0 fl oz)",
+    "volume_zh": "30ml (1.0 盎司)",
     "moq": 5000,
     "inStockMoq": 2000,
     "leadTime": "20-25 business days",
+    "leadTime_zh": "大货20-25个工作日",
     "images": [
       "https://images.unsplash.com/photo-1598440947619-2c35fc9aa908?auto=format&fit=crop&w=900&q=80",
       "https://images.unsplash.com/photo-1608248597359-52e4cf52538b?auto=format&fit=crop&w=900&q=80"
@@ -99,21 +130,34 @@
       "Automatic Dosage Metering: Button charges exact 0.5ml per single depression",
       "No-Spill Seal Mechanism: Engineered internal wiper prevents product build-up on bottle neck"
     ],
+    "features_zh": [
+      "100% 全不透光遮光屏障：专为高敏胜肽、视黄醇及对光极其敏感的配方研发",
+      "丝绒级天鹅绒触感涂层：防指纹吸附，赋予消费者极为高级的开箱与护肤仪式感",
+      "按压自吸定量取液泵：按压一次顶部按钮精准吸取 0.5ml，告别传统捏胶头失控",
+      "防挂壁防积液颈部刮圈：瓶口内置刮胶结构，取用时光滑洁净，不积存料体"
+    ],
     "description": "Engineered for medical-grade and clinical cosmetics. The opaque matte black ceramic finish shields delicate compounds from all ambient light while delivering an irresistible tactile sensation in the consumer's hand.",
+    "description_zh": "专为院线级修护与轻医美配方打造。全哑光黑色陶瓷质感漆面不仅彻底阻断一切环境可见光与紫外线，更在手中带来温润如玉的丝绒握持体验。",
     "dielineUrl": "#download-dieline",
     "isFeatured": false,
-    "badge": "Clinical Aesthetic"
+    "badge": "Clinical Aesthetic",
+    "badge_zh": "院线轻医美"
   },
   {
     "id": "emerald-bamboo-dropper-15ml",
     "name": "15ml Emerald Green Bottle with Natural Bamboo Dropper",
+    "name_zh": "15ml 祖母绿通透玻璃瓶配原木竹木滴管",
     "subtitle": "Eco-Luxury Packaging for Clean & Organic Beauty Brands",
+    "subtitle_zh": "环保天然竹木与绿色高白料碰撞，倡导可持续绿色美妆",
     "category": "Dropper Bottles",
+    "category_zh": "精油滴管瓶",
     "categorySlug": "dropper",
     "volume": "15ml (0.5 fl oz)",
+    "volume_zh": "15ml (0.5 盎司)",
     "moq": 3000,
     "inStockMoq": 1000,
     "leadTime": "15-20 business days",
+    "leadTime_zh": "大货15-20个工作日",
     "images": [
       "https://images.unsplash.com/photo-1617897903246-719242758050?auto=format&fit=crop&w=900&q=80",
       "https://images.unsplash.com/photo-1608248597359-52e4cf52538b?auto=format&fit=crop&w=900&q=80"
@@ -134,21 +178,34 @@
       "Travel-Friendly 15ml Size: Perfect for luxury eye serums, blemish treatments, and trial kits",
       "Compliant with EU 1223/2009 Clean Beauty Packaging Guidelines"
     ],
+    "features_zh": [
+      "FSC 森林认证天然竹木外盖：精准契合欧美主流 Clean Beauty 环保消费主张",
+      "色玻炉窑熔融着色：天然祖母绿色泽融入玻璃原料，永不掉色脱漆",
+      "便携 15ml 迷你黄金容量：适合高端眼部精华、修护安瓶或品牌试用装",
+      "符合欧盟 EU 1223/2009 纯净包装标准，所有组件可拆分环保回收"
+    ],
     "description": "Combining sustainable forestry materials with recyclable emerald flint glass. Tailored for organic, vegan, and clean skincare startups looking to communicate sustainability without compromising on shelf presence.",
+    "description_zh": "将可持续天然林业竹木与高通透祖母绿玻璃巧妙融合。专为倡导纯净、有机、植萃理念的新锐护肤品牌打造，在展现实力的同时传达对地球友好的品牌主张。",
     "dielineUrl": "#download-dieline",
     "isFeatured": false,
-    "badge": "Eco Certified"
+    "badge": "Eco Certified",
+    "badge_zh": "环保认证"
   },
   {
     "id": "frosted-lotion-pump-50ml",
     "name": "50ml Luxury Frosted Glass Serum Pump Bottle",
+    "name_zh": "50ml 哑光磨砂玻璃精华乳液泵瓶",
     "subtitle": "Prestige Treatment Bottle with External-Spring Lotion Pump",
+    "subtitle_zh": "专利外置弹簧料液零接触泵芯，乳液精华顺滑出料",
     "category": "Pump & Lotion Bottles",
+    "category_zh": "精华与乳液泵瓶",
     "categorySlug": "pump",
     "volume": "50ml (1.7 fl oz)",
+    "volume_zh": "50ml (1.7 盎司)",
     "moq": 3000,
     "inStockMoq": 1000,
     "leadTime": "18-22 business days",
+    "leadTime_zh": "大货18-22个工作日",
     "images": [
       "https://images.unsplash.com/photo-1556228720-195a672e8a03?auto=format&fit=crop&w=900&q=80",
       "https://images.unsplash.com/photo-1620916566398-39f1143ab7be?auto=format&fit=crop&w=900&q=80"
@@ -169,21 +226,34 @@
       "Snug-Fit Protective Overcap: Prevents accidental pump depression during e-commerce shipping",
       "High Wall Uniformity: Engineered with automated blow-and-blow molding for zero internal waves"
     ],
+    "features_zh": [
+      "外置弹簧零接触技术：泵内金属弹簧完全不接触护肤料液，彻底杜绝重金属离子与变色反应",
+      "高稠度乳液出料顺畅：专为高粘度精华乳、面霜乳液调校，按压顺滑回弹快速",
+      "紧配防误按透明保护盖：避免电商快递长途颠簸产生挤压漏液",
+      "自动化吹吹法制瓶：瓶壁厚度均匀度极高，无水波纹与杂质气泡"
+    ],
     "description": "A bestseller among dermatological and anti-aging brands. Equipped with a patented external spring pump where the lotion never touches metal parts. Satin frosted finish provides a finger-print resistant, velvety touch.",
+    "description_zh": "抗衰与皮肤学专研品牌的常青热销款。搭载专利外置弹簧泵头，料体完全不接触金属部件。表面细腻酸洗蒙砂处理，防指纹触感如丝般顺滑。",
     "dielineUrl": "#download-dieline",
     "isFeatured": true,
-    "badge": "Best Seller"
+    "badge": "Best Seller",
+    "badge_zh": "热销爆款"
   },
   {
     "id": "heavy-base-lotion-100ml",
     "name": "100ml Heavy-Base Glass Toner & Emulsion Bottle",
+    "name_zh": "100ml 加重实底爽肤水与修护乳液瓶",
     "subtitle": "Large Capacity Luxury Glass Container for Toners & Body Care",
+    "subtitle_zh": "165g 实感厚重手感，适用于高机能水与身体奢宠护理",
     "category": "Pump & Lotion Bottles",
+    "category_zh": "精华与乳液泵瓶",
     "categorySlug": "pump",
     "volume": "100ml (3.4 fl oz)",
+    "volume_zh": "100ml (3.4 盎司)",
     "moq": 5000,
     "inStockMoq": 1500,
     "leadTime": "20-25 business days",
+    "leadTime_zh": "大货20-25个工作日",
     "images": [
       "https://images.unsplash.com/photo-1608248597359-52e4cf52538b?auto=format&fit=crop&w=900&q=80",
       "https://images.unsplash.com/photo-1556228720-195a672e8a03?auto=format&fit=crop&w=900&q=80"
@@ -204,21 +274,34 @@
       "AQL 2.5 Batch Quality Guarantee: Individually checked for dimensional accuracy and clarity",
       "Bulk Sea/Air DDP Ready: Packed in reinforced cell-divided cartons with fumigated pallets"
     ],
+    "features_zh": [
+      "165g 超厚重底玻璃重量：在浴室及梳妆台上营造无可挑剔的高定奢华厚重感",
+      "24/410 通用标准口径：可自由选配大排量乳液泵、细雾喷头、内塞旋盖等",
+      "AQL 2.5 出厂严苛抽检：每批次经尺寸公差、密封负压及通透度逐项质检",
+      "跨境 DDP 专属加固包装：蜂窝隔板硬质纸箱加免熏蒸托盘缠膜，杜绝货损"
+    ],
     "description": "Crafted for prestige toners, micellar cleansers, and body oils. The 165g heavyweight glass delivers commanding shelf presence and an unmistakable feeling of quality in the consumer's hand.",
+    "description_zh": "专为高奢精粹水、卸妆精华油及奢养身体乳设计。165g 重底玻璃赋予产品在货架上强大的陈列压迫感，令终端消费者一触即感卓越品质。",
     "dielineUrl": "#download-dieline",
     "isFeatured": false,
-    "badge": "Heavyweight"
+    "badge": "Heavyweight",
+    "badge_zh": "加重实底"
   },
   {
     "id": "heavy-base-cream-jar-50g",
     "name": "50g Heavy-Base Frosted Glass Face Cream Jar",
+    "name_zh": "50g 加厚厚底磨砂面霜膏霜玻璃罐",
     "subtitle": "Thick Bottom Wide-Mouth Cosmetic Pot with Shive Gasket",
+    "subtitle_zh": "阔口厚壁易取料，配带提手高阻隔防漏密封手拉垫片",
     "category": "Cream & Treatment Jars",
+    "category_zh": "面霜与眼霜宽口瓶",
     "categorySlug": "jar",
     "volume": "50g / 50ml (1.7 oz)",
+    "volume_zh": "50g / 50ml (1.7 盎司)",
     "moq": 3000,
     "inStockMoq": 1000,
     "leadTime": "15-20 business days",
+    "leadTime_zh": "大货15-20个工作日",
     "images": [
       "https://images.unsplash.com/photo-1571781926291-c477ebfd024b?auto=format&fit=crop&w=900&q=80",
       "https://images.unsplash.com/photo-1620916566398-39f1143ab7be?auto=format&fit=crop&w=900&q=80"
@@ -239,21 +322,34 @@
       "Wide-Mouth Ergonomic Opening: Effortless finger access and automated filling nozzle clearance",
       "FDA Food-Contact & California Prop 65 Compliant: 100% lead and cadmium free"
     ],
+    "features_zh": [
+      "标配食品级带提手密封垫片：防止高脂膏霜风干水油分离及运输渗漏",
+      "142g 扎实厚底自重：呈现顶奢面霜与夜间修护膏霜的极致份量感",
+      "人体工学广口大开口设计：方便手指舀取，并完美适配工厂高速自动化下料",
+      "通过美国 FDA 与加州 65 严苛检测：100% 不含铅、镉及有害重金属"
+    ],
     "description": "The quintessential packaging for prestige face creams, rich sleeping masks, and rejuvenating balms. Designed with a 15mm thick base that elevates the perceived value of your formulation on retail shelves.",
+    "description_zh": "高端面霜、睡眠面膜及奢润修护膏的经典典范包装。底部厚达 15mm 的实心玻璃层，在丝芙兰等零售专柜中能显著拉高配方身价与品牌溢价。",
     "dielineUrl": "#download-dieline",
     "isFeatured": true,
-    "badge": "Prestige Jar"
+    "badge": "Prestige Jar",
+    "badge_zh": "高定膏霜罐"
   },
   {
     "id": "amber-uv-face-cream-jar-30g",
     "name": "30g Amber Glass Cream Jar with Tamper-Evident Liner",
+    "name_zh": "30g 药房灵感茶色防光解膏霜玻璃罐",
     "subtitle": "Apothecary-Inspired UV-Safe Container for Organic Balms",
+    "subtitle_zh": "复古药剂师美学，为天然植萃修护膏提供优异避光保护",
     "category": "Cream & Treatment Jars",
+    "category_zh": "面霜与眼霜宽口瓶",
     "categorySlug": "jar",
     "volume": "30g / 30ml (1.0 oz)",
+    "volume_zh": "30g / 30ml (1.0 盎司)",
     "moq": 3000,
     "inStockMoq": 1000,
     "leadTime": "15-20 business days",
+    "leadTime_zh": "大货15-20个工作日",
     "images": [
       "https://images.unsplash.com/photo-1598440947619-2c35fc9aa908?auto=format&fit=crop&w=900&q=80",
       "https://images.unsplash.com/photo-1571781926291-c477ebfd024b?auto=format&fit=crop&w=900&q=80"
@@ -274,21 +370,34 @@
       "Multi-Liner Compatibility: Compatible with pressure-sensitive, induction foil, or standard foam liners",
       "Guangzhou 48H Stock Dispatch: Thousands in stock for rapid brand launch"
     ],
+    "features_zh": [
+      "深茶色紫外线高阻隔：防止芳疗精油膏、抗氧化蜂蜡膏等因光照发生酸败变质",
+      "经典药剂师复古美学：深受海外新锐实验室独立美妆与草本植物品牌青睐",
+      "多种封口垫片选配：支持电磁感应铝箔封口、压敏垫片或发泡 PE 垫片",
+      "广州仓库常备光瓶现货：最快 48 小时极速寄样与发货，助力品牌快速起盘"
+    ],
     "description": "Ideal for clean, apothecary-inspired skincare, healing salves, and lip treatments. The amber glass blocks 99% of harmful light rays while offering a timeless vintage luxury visual appeal.",
+    "description_zh": "专为纯净植萃、复古药妆、修护唇膜及芳香软膏设计。茶色玻璃天然阻隔 99% 破坏性光线，同时带来历久弥新的经典复古轻奢美感。",
     "dielineUrl": "#download-dieline",
     "isFeatured": false,
-    "badge": "Apothecary Line"
+    "badge": "Apothecary Line",
+    "badge_zh": "复古药妆"
   },
   {
     "id": "luxury-perfume-spray-50ml",
     "name": "50ml Rectangular Crystal Perfume Glass Bottle",
+    "name_zh": "50ml 矩形水晶切面高定香水玻璃瓶",
     "subtitle": "Heavy Square Perfume Flacon with Crimpless Invisible Tube Pump",
+    "subtitle_zh": "隐形导管无卡口喷头，高透水晶切角尽显沙龙香水奢华",
     "category": "Perfume & Mist Spray",
+    "category_zh": "香水与细密喷雾瓶",
     "categorySlug": "spray",
     "volume": "50ml (1.7 fl oz)",
+    "volume_zh": "50ml (1.7 盎司)",
     "moq": 5000,
     "inStockMoq": 1000,
     "leadTime": "25-30 business days",
+    "leadTime_zh": "大货25-30个工作日",
     "images": [
       "https://images.unsplash.com/photo-1547887537-6158d64c35b3?auto=format&fit=crop&w=900&q=80",
       "https://images.unsplash.com/photo-1598440947619-2c35fc9aa908?auto=format&fit=crop&w=900&q=80"
@@ -309,21 +418,34 @@
       "Ultra-Fine 0.08ml Micro-Mist Atomizer: Even perfume cloud distribution with zero dripping",
       "Magnetic Zamac Cap Option: Distinctive snap click that signals ultra-luxury tier pricing"
     ],
+    "features_zh": [
+      "光学级隐形浸液吸管：吸管浸入香水原液后几乎完全隐形，呈现空灵漂浮感",
+      "手工抛光超白料水晶玻璃：正面无合模线与冷却冷痕，晶莹剔透如水晶原石",
+      "0.08ml 超细微粒雾化泵芯：喷出细腻香氛薄雾，不聚液滴，杜绝喷嘴漏水滴落",
+      "可选配沉重磁吸合金盖 (Zamac)：盖合时发出清脆有力的磁吸声，彰显奢华定价底气"
+    ],
     "description": "Engineered for niche perfume houses and boutique fragrance lines. Featuring diamond-polished rectangular geometry, ultra-thick crystal glass base, and an invisible dip tube that creates an ethereal luxury presentation on retail counters.",
+    "description_zh": "为小众沙龙香水与高定香氛工坊精心打造。拥有如钻石般切面的几何长方体瓶身，底部为加重水晶玻璃，配合浸入式隐形吸管，在专柜射灯下璀璨夺目。",
     "dielineUrl": "#download-dieline",
     "isFeatured": true,
-    "badge": "Haute Parfumerie"
+    "badge": "Haute Parfumerie",
+    "badge_zh": "沙龙高定香氛"
   },
   {
     "id": "frosted-toner-mist-100ml",
     "name": "100ml Frosted Cylindrical Fine Mist Spray Glass Bottle",
+    "name_zh": "100ml 圆柱磨砂细密水雾玻璃喷雾瓶",
     "subtitle": "Micro-Atomization Glass Spray for Face Mists & Hydrating Waters",
+    "subtitle_zh": "微米级柔和喷雾，为定妆水与花水纯露带来如烟雾化体验",
     "category": "Perfume & Mist Spray",
+    "category_zh": "香水与细密喷雾瓶",
     "categorySlug": "spray",
     "volume": "100ml (3.4 fl oz)",
+    "volume_zh": "100ml (3.4 盎司)",
     "moq": 3000,
     "inStockMoq": 1000,
     "leadTime": "18-22 business days",
+    "leadTime_zh": "大货18-22个工作日",
     "images": [
       "https://images.unsplash.com/photo-1608248597359-52e4cf52538b?auto=format&fit=crop&w=900&q=80",
       "https://images.unsplash.com/photo-1547887537-6158d64c35b3?auto=format&fit=crop&w=900&q=80"
@@ -344,9 +466,17 @@
       "Leak-Tested Thread: Precision molded thread prevents liquid seepage during pressurized air cargo",
       "Standard 100ml Travel Size: Compliant with airline carry-on regulations"
     ],
+    "features_zh": [
+      "微米级细密分散喷头：喷洒出如晨雾般轻柔细腻的水雾，不花妆、不滴水",
+      "抗指纹亲肤哑光磨砂处理：日常频繁握持使用也能持久保持洁净高级质感",
+      "高精度防漏气密螺纹：经过加压空运测试，高空货舱气压突变下绝无渗漏",
+      "标准 100ml 登机随身装：完全符合各大国际航空公司旅客随身登机容量限制"
+    ],
     "description": "The ideal partner for hydrating facial mists, floral waters, and setting sprays. Fitted with an ultra-fine atomizing pump that produces a velvety mist cloud, packaged in an elegant satin-frosted cylindrical glass flacon.",
+    "description_zh": "面部补水喷雾、花水纯露及定妆喷雾的理想搭配。搭载超细雾化泵芯，喷洒出宛若天鹅绒般的轻柔水雾，配以典雅修长的圆柱磨砂瓶身。",
     "dielineUrl": "#download-dieline",
     "isFeatured": false,
-    "badge": "Fine Mist"
+    "badge": "Fine Mist",
+    "badge_zh": "微米细雾"
   }
 ]

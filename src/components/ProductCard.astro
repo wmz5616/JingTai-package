@@ -5,13 +5,18 @@ interface Props {
   product: {
     id: string;
     name: string;
+    name_zh?: string;
     subtitle?: string;
+    subtitle_zh?: string;
     category: string;
+    category_zh?: string;
     categorySlug: string;
     volume: string;
+    volume_zh?: string;
     moq: number;
     inStockMoq?: number;
     leadTime?: string;
+    leadTime_zh?: string;
     images: string[];
     specs: {
       neckSize: string;
@@ -19,13 +24,16 @@ interface Props {
       [key: string]: any;
     };
     features?: string[];
+    features_zh?: string[];
     badge?: string;
+    badge_zh?: string;
     [key: string]: any;
   };
 }
 
 const { product } = Astro.props;
-const primaryImg = product.images[0] || 'https://images.unsplash.com/photo-1608248597359-52e4cf52538b?auto=format&fit=crop&w=800&q=80';
+const fallbackImg = 'https://images.unsplash.com/photo-1620916566398-39f1143ab7be?auto=format&fit=crop&w=800&q=80';
+const primaryImg = product.images[0] || fallbackImg;
 const secondaryImg = product.images[1] || primaryImg;
 ---
 
@@ -39,6 +47,7 @@ const secondaryImg = product.images[1] || primaryImg;
         src={primaryImg}
         alt={product.name}
         loading="lazy"
+        onerror={`this.onerror=null; this.src='${fallbackImg}';`}
         class="absolute inset-0 w-full h-full object-cover object-center transition-all duration-700 ease-out group-hover:scale-105 group-hover:opacity-0"
       />
       <!-- Secondary Image on Hover -->
@@ -46,6 +55,7 @@ const secondaryImg = product.images[1] || primaryImg;
         src={secondaryImg}
         alt={`${product.name} alternate view`}
         loading="lazy"
+        onerror={`this.onerror=null; this.src='${fallbackImg}';`}
         class="absolute inset-0 w-full h-full object-cover object-center transition-all duration-700 ease-out opacity-0 scale-100 group-hover:scale-105 group-hover:opacity-100"
       />
     </a>
@@ -54,11 +64,11 @@ const secondaryImg = product.images[1] || primaryImg;
     <div class="absolute top-3 left-3 flex flex-col gap-1.5 z-10 pointer-events-none">
       {product.badge && (
         <Badge variant="gold" size="xs">
-          {product.badge}
+          <span data-en={product.badge} data-zh={product.badge_zh || product.badge}>{product.badge}</span>
         </Badge>
       )}
       <Badge variant="light" size="xs">
-        {product.volume}
+        <span data-en={product.volume} data-zh={product.volume_zh || product.volume}>{product.volume}</span>
       </Badge>
     </div>
 
@@ -66,7 +76,7 @@ const secondaryImg = product.images[1] || primaryImg;
     <div class="absolute top-3 right-3 z-10 pointer-events-none">
       <span class="inline-flex items-center px-2 py-0.5 rounded text-[10px] font-semibold bg-white/95 text-emerald-800 border border-emerald-200 shadow-sm backdrop-blur-sm">
         <span class="w-1.5 h-1.5 rounded-full bg-emerald-500 mr-1.5 animate-pulse"></span>
-        MOQ: {product.inStockMoq || product.moq} pcs
+        <span data-i18n="card_in_stock_prefix">MOQ:</span>&nbsp;{product.inStockMoq || product.moq} pcs
       </span>
     </div>
 
@@ -77,6 +87,7 @@ const secondaryImg = product.images[1] || primaryImg;
         class="add-to-rfq-btn flex-1 py-2 px-3 text-xs font-semibold bg-white/95 hover:bg-brand-dark hover:text-white text-brand-dark rounded-sm shadow-md border border-neutral-200 transition-colors flex items-center justify-center space-x-1"
         data-id={product.id}
         data-name={product.name}
+        data-name-zh={product.name_zh || product.name}
         data-volume={product.volume}
         data-image={primaryImg}
         data-moq={product.moq}
@@ -99,34 +110,34 @@ const secondaryImg = product.images[1] || primaryImg;
 
   <!-- Content & Specs Section -->
   <div class="p-5 flex flex-col flex-1 justify-between space-y-4">
-    <div class="space-y-1.5">
+    <div class="space-y-1.5 flex-1">
       <div class="flex items-center justify-between text-[11px] text-neutral-400 font-mono tracking-wider uppercase">
-        <span>{product.category}</span>
-        <span>{product.specs.neckSize}</span>
+        <span class="truncate" data-en={product.category} data-zh={product.category_zh || product.category}>{product.category}</span>
+        <span class="flex-shrink-0 ml-2">{product.specs.neckSize}</span>
       </div>
 
-      <h3 class="font-serif font-bold text-lg text-brand-dark group-hover:text-brand-gold-dark transition-colors leading-snug">
-        <a href={`/products/${product.id}`} class="hover:underline">
-          {product.name}
+      <h3 class="font-serif font-bold text-base sm:text-lg text-brand-dark group-hover:text-brand-gold-dark transition-colors leading-snug min-h-[2.85rem] flex items-start">
+        <a href={`/products/${product.id}`} class="hover:underline line-clamp-2">
+          <span data-en={product.name} data-zh={product.name_zh || product.name}>{product.name}</span>
         </a>
       </h3>
 
       {product.subtitle && (
-        <p class="text-xs text-neutral-500 line-clamp-2 leading-relaxed">
+        <p class="text-xs text-neutral-500 line-clamp-2 leading-relaxed min-h-[2rem]" data-en={product.subtitle} data-zh={product.subtitle_zh || product.subtitle}>
           {product.subtitle}
         </p>
       )}
     </div>
 
     <!-- Technical Specs Quick Grid -->
-    <div class="pt-3 border-t border-neutral-100 grid grid-cols-2 gap-2 text-xs text-neutral-600 bg-neutral-50/70 p-2.5 rounded">
+    <div class="pt-3 border-t border-neutral-100 grid grid-cols-2 gap-2 text-xs text-neutral-600 bg-neutral-50/70 p-2.5 rounded min-h-[58px] items-center">
       <div>
-        <span class="text-neutral-400 block text-[10px] uppercase font-mono">Neck Thread</span>
+        <span class="text-neutral-400 block text-[10px] uppercase font-mono truncate" data-i18n="spec_neck_thread">Neck Thread</span>
         <span class="font-medium text-neutral-800">{product.specs.neckSize}</span>
       </div>
       <div>
-        <span class="text-neutral-400 block text-[10px] uppercase font-mono">Custom Lead Time</span>
-        <span class="font-medium text-neutral-800">15-20 Days</span>
+        <span class="text-neutral-400 block text-[10px] uppercase font-mono truncate" data-i18n="spec_custom_lead_time">Custom Lead Time</span>
+        <span class="font-medium text-neutral-800" data-en="15-20 Days" data-zh="15-20 个工作日">15-20 Days</span>
       </div>
     </div>
 
@@ -134,14 +145,14 @@ const secondaryImg = product.images[1] || primaryImg;
     <div class="flex items-center justify-between pt-1 gap-2">
       <a
         href={`/products/${product.id}`}
-        class="flex-1 py-2 text-center text-xs font-semibold text-neutral-700 hover:text-brand-dark hover:bg-neutral-100 border border-neutral-200 rounded-sm transition-colors"
+        class="flex-1 py-2 text-center text-xs font-semibold text-neutral-700 hover:text-brand-dark hover:bg-neutral-100 border border-neutral-200 rounded-sm transition-colors whitespace-nowrap truncate"
         data-i18n="card_view_specs"
       >
         View Specs & Dieline
       </a>
       <button
         type="button"
-        class="sm:hidden py-2 px-3 text-xs font-semibold bg-brand-gold text-brand-dark rounded-sm quick-quote-btn"
+        class="sm:hidden py-2 px-3 text-xs font-semibold bg-brand-gold text-brand-dark rounded-sm quick-quote-btn whitespace-nowrap flex-shrink-0"
         data-product-title={product.name}
         data-product-id={product.id}
         data-i18n="card_quick_quote"
@@ -149,7 +160,6 @@ const secondaryImg = product.images[1] || primaryImg;
         Quick Quote
       </button>
     </div>
-
 
   </div>
 

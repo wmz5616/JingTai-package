@@ -15,7 +15,20 @@ import site from '../data/site.json';
         <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"></path></svg>
         <span>{site.email}</span>
       </a>
-      <a href={site.whatsappDirectUrl} target="_blank" rel="noopener noreferrer" class="hover:text-brand-gold transition-colors flex items-center space-x-1">
+      <!-- WeChat link in Chinese mode -->
+      <button
+        type="button"
+        data-open-wechat
+        class="contact-lang-zh hover:text-brand-gold transition-colors flex items-center space-x-1 cursor-pointer focus:outline-none"
+      >
+        <svg class="w-3.5 h-3.5 text-[#07C160]" fill="currentColor" viewBox="0 0 24 24">
+          <path d="M8.691 2.188C3.891 2.188 0 5.478 0 9.532c0 2.212 1.157 4.205 2.972 5.568l-.75 2.748 3.19-1.636c1.02.28 2.12.44 3.279.44.204 0 .405-.008.607-.021-.24-.707-.373-1.464-.373-2.253 0-4.054 3.891-7.344 8.691-7.344.296 0 .588.014.877.038C17.336 4.795 13.34 2.188 8.691 2.188zm-2.316 4.148c.677 0 1.226.549 1.226 1.226s-.549 1.226-1.226 1.226c-.676 0-1.225-.549-1.225-1.226s.549-1.226 1.225-1.226zm5.18 0c.677 0 1.226.549 1.226 1.226s-.549 1.226-1.226 1.226c-.677 0-1.226-.549-1.226-1.226s.549-1.226 1.226-1.226zm5.94 4.544c-4.106 0-7.435 2.82-7.435 6.297 0 3.478 3.329 6.297 7.435 6.297.915 0 1.792-.137 2.607-.386l2.454 1.258-.577-2.113c1.558-1.047 2.548-2.58 2.548-4.301 0-3.477-3.329-6.297-7.432-6.297zm-2.316 3.555c.58 0 1.05.47 1.05 1.051 0 .58-.47 1.05-1.05 1.05-.581 0-1.051-.47-1.051-1.05 0-.581.47-1.051 1.051-1.051zm4.436 0c.58 0 1.051.47 1.051 1.051 0 .58-.471 1.05-1.051 1.05-.58 0-1.05-.47-1.05-1.05 0-.581.47-1.051 1.05-1.051z"/>
+        </svg>
+        <span>微信业务直联 ({site.wechatFormatted})</span>
+      </button>
+
+      <!-- WhatsApp link in English mode -->
+      <a href={site.whatsappDirectUrl} target="_blank" rel="noopener noreferrer" class="contact-lang-en hover:text-brand-gold transition-colors flex items-center space-x-1">
         <svg class="w-3.5 h-3.5 text-emerald-400" fill="currentColor" viewBox="0 0 24 24"><path d="M.057 24l1.687-6.163c-1.041-1.804-1.588-3.849-1.587-5.946.003-6.556 5.338-11.891 11.893-11.891 3.181.001 6.167 1.24 8.413 3.488 2.245 2.248 3.481 5.236 3.48 8.414-.003 6.557-5.338 11.892-11.893 11.892-1.99-.001-3.951-.5-5.688-1.448l-6.305 1.654zm6.597-3.807c1.676.995 3.276 1.591 5.392 1.592 5.448 0 9.886-4.434 9.889-9.885.002-5.462-4.415-9.89-9.881-9.892-5.452 0-9.887 4.434-9.889 9.884-.001 2.225.651 3.891 1.746 5.634l-.999 3.648 3.742-.981zm11.387-5.464c-.074-.124-.272-.198-.57-.347-.297-.149-1.758-.868-2.031-.967-.272-.099-.47-.149-.669.149-.198.297-.768.967-.941 1.165-.173.198-.347.223-.644.074-.297-.149-1.255-.462-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.297-.347.446-.521.151-.172.2-.296.3-.495.099-.198.05-.372-.025-.521-.075-.148-.669-1.611-.916-2.206-.242-.579-.487-.501-.669-.51l-.57-.01c-.198 0-.52.074-.792.372s-1.04 1.016-1.04 2.479 1.065 2.876 1.213 3.074c.149.198 2.095 3.2 5.076 4.487.709.306 1.263.489 1.694.626.712.226 1.36.194 1.872.118.571-.085 1.758-.719 2.006-1.413.248-.695.248-1.29.173-1.414z"/></svg>
         <span data-i18n="nav_whatsapp_chat">WhatsApp Quick Chat</span>
       </a>
@@ -29,27 +42,21 @@ import site from '../data/site.json';
     <div class="flex items-center justify-between h-20">
       
       <!-- Brand Logo -->
-      <a href="/" class="flex items-center space-x-3 group">
-        <div class="w-10 h-10 bg-brand-dark flex items-center justify-center rounded-sm text-brand-gold font-serif font-bold text-xl tracking-tighter border border-brand-gold/40 shadow-sm group-hover:scale-105 transition-transform">
-          A
-        </div>
-        <div class="flex flex-col">
-          <span class="font-serif text-xl sm:text-2xl font-bold tracking-widest text-brand-dark leading-tight group-hover:text-brand-gold transition-colors">
-            AURA
-          </span>
-          <span class="text-[9px] tracking-[0.25em] text-neutral-500 font-sans uppercase">
-            Packaging • Guangzhou
-          </span>
-        </div>
+      <a href="/" class="flex items-center space-x-3 group flex-shrink-0" aria-label="广州晶泰包装制品厂">
+        <img
+          src="/images/logo.png"
+          alt="广州晶泰包装制品厂 JINGTAI PACKAGING"
+          class="h-10 sm:h-11 w-auto object-contain transition-transform duration-300 group-hover:scale-[1.02]"
+        />
       </a>
 
       <!-- Desktop Navigation Links -->
-      <nav class="hidden lg:flex items-center space-x-7 text-sm font-medium text-neutral-700">
-        <a href="/" class="hover:text-brand-gold transition-colors" data-i18n="nav_home">Home</a>
+      <nav class="hidden lg:flex items-center space-x-3 xl:space-x-6 text-sm font-medium text-neutral-700 whitespace-nowrap">
+        <a href="/" class="hover:text-brand-gold transition-colors flex-shrink-0" data-i18n="nav_home">Home</a>
         
         <!-- Products Dropdown / Direct Link -->
-        <div class="relative group">
-          <a href="/products" class="inline-flex items-center space-x-1 hover:text-brand-gold py-2 transition-colors">
+        <div class="relative group flex-shrink-0">
+          <a href="/products" class="inline-flex items-center space-x-1 hover:text-brand-gold py-2 transition-colors whitespace-nowrap">
             <span data-i18n="nav_catalog">Product Catalog</span>
             <svg class="w-4 h-4 text-neutral-400 group-hover:text-brand-gold transition-transform group-hover:rotate-180" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path></svg>
           </a>
@@ -79,54 +86,57 @@ import site from '../data/site.json';
           </div>
         </div>
 
-        <a href="/#customization" class="hover:text-brand-gold transition-colors" data-i18n="nav_custom_finishes">Custom Finishes</a>
+        <a href="/#customization" class="hover:text-brand-gold transition-colors flex-shrink-0" data-i18n="nav_custom_finishes">Custom Finishes</a>
         
         <!-- Free Sample Kit CTA Link -->
-        <a href="/sample-kit" class="relative hover:text-brand-gold transition-colors inline-flex items-center space-x-1">
+        <a href="/sample-kit" class="relative hover:text-brand-gold transition-colors inline-flex items-center space-x-1 flex-shrink-0">
           <span data-i18n="nav_free_sample">Free Sample Kit</span>
           <span class="bg-amber-100 text-amber-800 text-[10px] font-bold px-1.5 py-0.5 rounded tracking-wide border border-amber-300 animate-pulse" data-i18n="nav_free_badge">
             FREE
           </span>
         </a>
 
-        <a href="/about" class="hover:text-brand-gold transition-colors" data-i18n="nav_about">About Us</a>
-        <a href="/about#guangzhou-hub" class="hover:text-brand-gold transition-colors" data-i18n="nav_guangzhou_hub">Guangzhou Hub</a>
+        <a href="/about" class="hover:text-brand-gold transition-colors flex-shrink-0" data-i18n="nav_about">About Us</a>
+        <a href="/about#guangzhou-hub" class="hover:text-brand-gold transition-colors flex-shrink-0" data-i18n="nav_guangzhou_hub">Guangzhou Hub</a>
       </nav>
 
       <!-- Right Action Items -->
-      <div class="flex items-center space-x-3 sm:space-x-4">
+      <div class="flex items-center space-x-2 sm:space-x-3 flex-shrink-0">
         
         <!-- Multi-Language Switcher Dropdown (Desktop) -->
         <div class="relative group" id="lang-switcher-container">
           <button
             type="button"
-            class="flex items-center space-x-1.5 px-2.5 py-1.5 text-xs font-semibold text-neutral-700 bg-neutral-100 hover:bg-neutral-200 border border-neutral-300 rounded-sm transition-colors focus:outline-none"
+            class="flex items-center justify-between w-[78px] px-2.5 py-1.5 text-xs font-semibold text-neutral-700 bg-neutral-100 hover:bg-neutral-200 border border-neutral-300 rounded-sm transition-colors focus:outline-none select-none"
             aria-label="Select Language"
           >
-            <span class="current-lang-label">🇺🇸 EN</span>
-            <svg class="w-3.5 h-3.5 text-neutral-500 group-hover:rotate-180 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path></svg>
+            <div class="flex items-center space-x-1">
+              <svg class="w-3.5 h-3.5 text-neutral-600 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.8" d="M21 12a9 9 0 01-9 9m9-9a9 9 0 00-9-9m9 9H3m9 9a9 9 0 01-9-9m9 9c1.657 0 3-4.03 3-9s-1.343-9-3-9m0 18c-1.657 0-3-4.03-3-9s1.343-9 3-9m-9 9a9 9 0 019-9"></path></svg>
+              <span class="current-lang-label font-medium">EN</span>
+            </div>
+            <svg class="w-3 h-3 text-neutral-500 group-hover:rotate-180 transition-transform flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path></svg>
           </button>
           
-          <div class="absolute right-0 top-full hidden group-hover:block w-36 bg-white rounded-sm shadow-xl border border-neutral-200 py-1.5 z-50 animate-in fade-in slide-in-from-top-1 duration-150 text-xs">
-            <button type="button" class="w-full text-left px-3 py-2 flex items-center space-x-2 hover:bg-neutral-50 hover:text-brand-gold transition-colors lang-select-opt" data-lang="en">
-              <span>🇺🇸</span>
+          <div class="absolute right-0 top-full hidden group-hover:block w-40 bg-white rounded-sm shadow-xl border border-neutral-200 py-1.5 z-50 animate-in fade-in slide-in-from-top-1 duration-150 text-xs">
+            <button type="button" class="w-full text-left px-3 py-2 flex items-center justify-between hover:bg-neutral-50 hover:text-brand-gold transition-colors lang-select-opt" data-lang="en">
               <span class="font-medium">English</span>
+              <span class="text-[10px] uppercase font-mono px-1.5 py-0.5 bg-neutral-100 rounded text-neutral-600">EN</span>
             </button>
-            <button type="button" class="w-full text-left px-3 py-2 flex items-center space-x-2 hover:bg-neutral-50 hover:text-brand-gold transition-colors lang-select-opt" data-lang="zh">
-              <span>🇨🇳</span>
+            <button type="button" class="w-full text-left px-3 py-2 flex items-center justify-between hover:bg-neutral-50 hover:text-brand-gold transition-colors lang-select-opt" data-lang="zh">
               <span class="font-medium">简体中文</span>
+              <span class="text-[10px] uppercase font-mono px-1.5 py-0.5 bg-neutral-100 rounded text-neutral-600">ZH</span>
             </button>
-            <button type="button" class="w-full text-left px-3 py-2 flex items-center space-x-2 hover:bg-neutral-50 hover:text-brand-gold transition-colors lang-select-opt" data-lang="es">
-              <span>🇪🇸</span>
+            <button type="button" class="w-full text-left px-3 py-2 flex items-center justify-between hover:bg-neutral-50 hover:text-brand-gold transition-colors lang-select-opt" data-lang="es">
               <span class="font-medium">Español</span>
+              <span class="text-[10px] uppercase font-mono px-1.5 py-0.5 bg-neutral-100 rounded text-neutral-600">ES</span>
             </button>
-            <button type="button" class="w-full text-left px-3 py-2 flex items-center space-x-2 hover:bg-neutral-50 hover:text-brand-gold transition-colors lang-select-opt" data-lang="fr">
-              <span>🇫🇷</span>
+            <button type="button" class="w-full text-left px-3 py-2 flex items-center justify-between hover:bg-neutral-50 hover:text-brand-gold transition-colors lang-select-opt" data-lang="fr">
               <span class="font-medium">Français</span>
+              <span class="text-[10px] uppercase font-mono px-1.5 py-0.5 bg-neutral-100 rounded text-neutral-600">FR</span>
             </button>
-            <button type="button" class="w-full text-left px-3 py-2 flex items-center space-x-2 hover:bg-neutral-50 hover:text-brand-gold transition-colors lang-select-opt" data-lang="de">
-              <span>🇩🇪</span>
+            <button type="button" class="w-full text-left px-3 py-2 flex items-center justify-between hover:bg-neutral-50 hover:text-brand-gold transition-colors lang-select-opt" data-lang="de">
               <span class="font-medium">Deutsch</span>
+              <span class="text-[10px] uppercase font-mono px-1.5 py-0.5 bg-neutral-100 rounded text-neutral-600">DE</span>
             </button>
           </div>
         </div>
@@ -135,7 +145,7 @@ import site from '../data/site.json';
         <button
           type="button"
           id="open-rfq-drawer"
-          class="relative p-2.5 text-neutral-700 hover:text-brand-gold hover:bg-neutral-100 rounded-full transition-colors"
+          class="relative p-2.5 text-neutral-700 hover:text-brand-gold hover:bg-neutral-100 rounded-full transition-colors flex-shrink-0"
           title="View RFQ Basket"
           aria-label="View RFQ Basket"
         >
@@ -151,7 +161,7 @@ import site from '../data/site.json';
         <button
           type="button"
           id="header-quote-btn"
-          class="hidden sm:inline-flex items-center justify-center px-5 py-2.5 text-sm font-semibold tracking-wide text-brand-dark bg-brand-gold hover:bg-brand-gold-light border border-brand-gold transition-all duration-300 shadow-sm hover:shadow-gold rounded-sm"
+          class="hidden sm:inline-flex items-center justify-center px-4 py-2.5 text-sm font-semibold tracking-wide text-brand-dark bg-brand-gold hover:bg-brand-gold-light border border-brand-gold transition-all duration-300 shadow-sm hover:shadow-gold rounded-sm whitespace-nowrap flex-shrink-0"
           data-i18n="nav_request_quote"
         >
           Request a Quote
@@ -179,8 +189,7 @@ import site from '../data/site.json';
       <div>
         <div class="flex items-center justify-between pb-6 border-b border-neutral-100">
           <div class="flex items-center space-x-2">
-            <div class="w-8 h-8 bg-brand-dark flex items-center justify-center rounded-sm text-brand-gold font-serif font-bold text-base">A</div>
-            <span class="font-serif font-bold tracking-widest text-lg">AURA PACKAGING</span>
+            <img src="/images/logo.png" alt="广州晶泰包装制品厂" class="h-8 w-auto object-contain" />
           </div>
           <button id="close-mobile-menu" class="p-2 text-neutral-500 hover:text-neutral-900" aria-label="Close menu">
             <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path></svg>
@@ -191,11 +200,11 @@ import site from '../data/site.json';
         <div class="py-4 border-b border-neutral-100">
           <span class="block text-xs font-semibold text-neutral-500 uppercase tracking-wider mb-2">Language:</span>
           <div class="flex flex-wrap gap-1.5 text-xs">
-            <button type="button" class="px-2.5 py-1 bg-neutral-100 rounded border border-neutral-200 lang-select-opt" data-lang="en">🇺🇸 EN</button>
-            <button type="button" class="px-2.5 py-1 bg-neutral-100 rounded border border-neutral-200 lang-select-opt" data-lang="zh">🇨🇳 中文</button>
-            <button type="button" class="px-2.5 py-1 bg-neutral-100 rounded border border-neutral-200 lang-select-opt" data-lang="es">🇪🇸 ES</button>
-            <button type="button" class="px-2.5 py-1 bg-neutral-100 rounded border border-neutral-200 lang-select-opt" data-lang="fr">🇫🇷 FR</button>
-            <button type="button" class="px-2.5 py-1 bg-neutral-100 rounded border border-neutral-200 lang-select-opt" data-lang="de">🇩🇪 DE</button>
+            <button type="button" class="px-2.5 py-1 bg-neutral-100 rounded border border-neutral-200 font-mono font-medium lang-select-opt" data-lang="en">EN</button>
+            <button type="button" class="px-2.5 py-1 bg-neutral-100 rounded border border-neutral-200 font-mono font-medium lang-select-opt" data-lang="zh">中文</button>
+            <button type="button" class="px-2.5 py-1 bg-neutral-100 rounded border border-neutral-200 font-mono font-medium lang-select-opt" data-lang="es">ES</button>
+            <button type="button" class="px-2.5 py-1 bg-neutral-100 rounded border border-neutral-200 font-mono font-medium lang-select-opt" data-lang="fr">FR</button>
+            <button type="button" class="px-2.5 py-1 bg-neutral-100 rounded border border-neutral-200 font-mono font-medium lang-select-opt" data-lang="de">DE</button>
           </div>
         </div>
 
@@ -225,11 +234,24 @@ import site from '../data/site.json';
         >
           Request Wholesale Quote
         </button>
+        <!-- WeChat in Chinese mode -->
+        <button
+          type="button"
+          data-open-wechat
+          class="contact-lang-zh w-full py-2.5 bg-[#07C160] hover:bg-[#06ad56] text-white font-medium text-sm flex items-center justify-center space-x-2 rounded-sm transition-colors cursor-pointer"
+        >
+          <svg class="w-4 h-4 fill-current" viewBox="0 0 24 24">
+            <path d="M8.691 2.188C3.891 2.188 0 5.478 0 9.532c0 2.212 1.157 4.205 2.972 5.568l-.75 2.748 3.19-1.636c1.02.28 2.12.44 3.279.44.204 0 .405-.008.607-.021-.24-.707-.373-1.464-.373-2.253 0-4.054 3.891-7.344 8.691-7.344.296 0 .588.014.877.038C17.336 4.795 13.34 2.188 8.691 2.188zm-2.316 4.148c.677 0 1.226.549 1.226 1.226s-.549 1.226-1.226 1.226c-.676 0-1.225-.549-1.225-1.226s.549-1.226 1.225-1.226zm5.18 0c.677 0 1.226.549 1.226 1.226s-.549 1.226-1.226 1.226c-.677 0-1.226-.549-1.226-1.226s.549-1.226 1.226-1.226zm5.94 4.544c-4.106 0-7.435 2.82-7.435 6.297 0 3.478 3.329 6.297 7.435 6.297.915 0 1.792-.137 2.607-.386l2.454 1.258-.577-2.113c1.558-1.047 2.548-2.58 2.548-4.301 0-3.477-3.329-6.297-7.432-6.297zm-2.316 3.555c.58 0 1.05.47 1.05 1.051 0 .58-.47 1.05-1.05 1.05-.581 0-1.051-.47-1.051-1.05 0-.581.47-1.051 1.051-1.051zm4.436 0c.58 0 1.051.47 1.051 1.051 0 .58-.471 1.05-1.051 1.05-.58 0-1.05-.47-1.05-1.05 0-.581.47-1.051 1.05-1.051z"/>
+          </svg>
+          <span>微信业务对接 ({site.wechatFormatted})</span>
+        </button>
+
+        <!-- WhatsApp in English mode -->
         <a
           href={site.whatsappDirectUrl}
           target="_blank"
           rel="noopener noreferrer"
-          class="w-full py-2.5 bg-emerald-600 text-white font-medium text-sm flex items-center justify-center space-x-2 rounded-sm hover:bg-emerald-700 transition-colors"
+          class="contact-lang-en w-full py-2.5 bg-emerald-600 text-white font-medium text-sm flex items-center justify-center space-x-2 rounded-sm hover:bg-emerald-700 transition-colors"
         >
           <span data-i18n="nav_whatsapp_chat">Chat on WhatsApp</span>
         </a>

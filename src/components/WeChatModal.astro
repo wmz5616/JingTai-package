@@ -1,0 +1,234 @@
+---
+import site from '../data/site.json';
+---
+
+<!-- WeChat QR & Direct Contact Modal -->
+<div
+  id="wechat-modal"
+  class="fixed inset-0 z-50 hidden flex items-center justify-center p-4 bg-black/75 backdrop-blur-sm transition-opacity duration-300"
+  role="dialog"
+  aria-modal="true"
+  aria-labelledby="wechat-modal-title"
+>
+  <div class="relative w-full max-w-sm bg-white rounded-lg shadow-2xl border border-neutral-200 overflow-hidden transform transition-all duration-300 scale-95 opacity-0 modal-container text-neutral-800">
+    
+    <!-- Top Header Ribbon -->
+    <div class="bg-brand-dark px-6 py-4 flex items-center justify-between border-b border-brand-gold/30">
+      <div class="flex items-center space-x-2.5">
+        <div class="w-8 h-8 rounded-full bg-[#07C160] flex items-center justify-center text-white shadow-sm flex-shrink-0">
+          <!-- WeChat SVG Icon -->
+          <svg class="w-5 h-5 fill-current" viewBox="0 0 24 24">
+            <path d="M8.691 2.188C3.891 2.188 0 5.478 0 9.532c0 2.212 1.157 4.205 2.972 5.568l-.75 2.748 3.19-1.636c1.02.28 2.12.44 3.279.44.204 0 .405-.008.607-.021-.24-.707-.373-1.464-.373-2.253 0-4.054 3.891-7.344 8.691-7.344.296 0 .588.014.877.038C17.336 4.795 13.34 2.188 8.691 2.188zm-2.316 4.148c.677 0 1.226.549 1.226 1.226s-.549 1.226-1.226 1.226c-.676 0-1.225-.549-1.225-1.226s.549-1.226 1.225-1.226zm5.18 0c.677 0 1.226.549 1.226 1.226s-.549 1.226-1.226 1.226c-.677 0-1.226-.549-1.226-1.226s.549-1.226 1.226-1.226zm5.94 4.544c-4.106 0-7.435 2.82-7.435 6.297 0 3.478 3.329 6.297 7.435 6.297.915 0 1.792-.137 2.607-.386l2.454 1.258-.577-2.113c1.558-1.047 2.548-2.58 2.548-4.301 0-3.477-3.329-6.297-7.432-6.297zm-2.316 3.555c.58 0 1.05.47 1.05 1.051 0 .58-.47 1.05-1.05 1.05-.581 0-1.051-.47-1.051-1.05 0-.581.47-1.051 1.051-1.051zm4.436 0c.58 0 1.051.47 1.051 1.051 0 .58-.471 1.05-1.051 1.05-.58 0-1.05-.47-1.05-1.05 0-.581.47-1.051 1.05-1.051z"/>
+          </svg>
+        </div>
+        <div>
+          <h3 id="wechat-modal-title" class="font-serif text-sm font-bold text-white tracking-wide">
+            微信业务对接 • 广州晶泰包装
+          </h3>
+          <p class="text-[11px] text-brand-gold tracking-wider">
+            专人 1 对 1 报价 • 现货免费寄样
+          </p>
+        </div>
+      </div>
+      <button
+        type="button"
+        id="close-wechat-modal"
+        class="text-neutral-400 hover:text-white transition-colors p-1 rounded-sm focus:outline-none"
+        aria-label="关闭微信弹窗"
+      >
+        <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path>
+        </svg>
+      </button>
+    </div>
+
+    <!-- Body Area -->
+    <div class="p-6 text-center space-y-4">
+      
+      <!-- QR Code Container -->
+      <div class="relative mx-auto w-52 h-52 bg-neutral-50 p-3 rounded-md border-2 border-dashed border-[#07C160]/40 flex flex-col items-center justify-center shadow-inner group">
+        <!-- High-res QR visual representation -->
+        <svg class="w-full h-full text-neutral-900" viewBox="0 0 100 100" fill="currentColor">
+          <!-- Position Detection Patterns -->
+          <!-- Top Left -->
+          <rect x="5" y="5" width="28" height="28" fill="#111827" rx="3" />
+          <rect x="9" y="9" width="20" height="20" fill="#ffffff" rx="1" />
+          <rect x="13" y="13" width="12" height="12" fill="#07C160" rx="1" />
+          
+          <!-- Top Right -->
+          <rect x="67" y="5" width="28" height="28" fill="#111827" rx="3" />
+          <rect x="71" y="9" width="20" height="20" fill="#ffffff" rx="1" />
+          <rect x="75" y="13" width="12" height="12" fill="#07C160" rx="1" />
+          
+          <!-- Bottom Left -->
+          <rect x="5" y="67" width="28" height="28" fill="#111827" rx="3" />
+          <rect x="9" y="71" width="20" height="20" fill="#ffffff" rx="1" />
+          <rect x="13" y="75" width="12" height="12" fill="#07C160" rx="1" />
+
+          <!-- Alignment & Data Pattern Elements -->
+          <rect x="42" y="10" width="6" height="6" fill="#111827" />
+          <rect x="52" y="10" width="6" height="6" fill="#111827" />
+          <rect x="47" y="18" width="6" height="6" fill="#111827" />
+          <rect x="38" y="24" width="6" height="6" fill="#111827" />
+          
+          <rect x="10" y="42" width="6" height="6" fill="#111827" />
+          <rect x="18" y="47" width="6" height="6" fill="#111827" />
+          <rect x="24" y="38" width="6" height="6" fill="#111827" />
+
+          <rect x="70" y="42" width="6" height="6" fill="#111827" />
+          <rect x="78" y="48" width="6" height="6" fill="#111827" />
+          <rect x="85" y="40" width="6" height="6" fill="#111827" />
+          <rect x="72" y="55" width="6" height="6" fill="#111827" />
+
+          <rect x="42" y="72" width="6" height="6" fill="#111827" />
+          <rect x="50" y="78" width="6" height="6" fill="#111827" />
+          <rect x="58" y="70" width="6" height="6" fill="#111827" />
+          <rect x="48" y="85" width="6" height="6" fill="#111827" />
+          <rect x="78" y="75" width="6" height="6" fill="#111827" />
+          <rect x="86" y="82" width="6" height="6" fill="#111827" />
+
+          <!-- Center Badge Container -->
+          <circle cx="50" cy="50" r="13" fill="#ffffff" stroke="#c5a059" stroke-width="2" />
+          <!-- JT Emblem in Center -->
+          <text x="50" y="54" font-family="serif" font-size="9" font-weight="bold" fill="#0f172a" text-anchor="middle">JT</text>
+        </svg>
+
+        <!-- Scan Prompt Overlay on Hover -->
+        <div class="absolute inset-0 bg-[#07C160]/10 rounded flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity">
+          <span class="bg-white/95 text-xs text-neutral-800 font-medium px-2.5 py-1 rounded shadow-md border border-[#07C160]/40">
+            微信扫一扫或长按识别
+          </span>
+        </div>
+      </div>
+
+      <!-- Account Info Display -->
+      <div class="space-y-1">
+        <div class="text-xs text-neutral-500">微信号 / 手机号</div>
+        <div class="text-lg font-mono font-bold text-brand-dark tracking-wider select-all" id="wechat-number-text">
+          {site.wechat}
+        </div>
+        <div class="text-[11px] text-neutral-500">
+          广州美妆产业带驻厂包材顾问 • 2-4小时极速出案
+        </div>
+      </div>
+
+      <!-- Feedback Banner for Copy -->
+      <div id="copy-feedback-toast" class="hidden text-xs py-1.5 px-3 rounded bg-emerald-100 text-emerald-800 border border-emerald-300 transition-all">
+        ✓ 微信号已成功复制到剪贴板！
+      </div>
+
+      <!-- Actions Button -->
+      <div class="pt-2 space-y-2.5">
+        <button
+          type="button"
+          id="copy-wechat-btn"
+          class="w-full py-2.5 px-4 bg-[#07C160] hover:bg-[#06ad56] text-white font-medium text-xs rounded shadow flex items-center justify-center space-x-2 transition-colors cursor-pointer"
+        >
+          <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 16H6a2 2 0 01-2-2V6a2 2 0 012-2h8a2 2 0 012 2v2m-6 12h8a2 2 0 002-2v-8a2 2 0 00-2-2h-8a2 2 0 00-2 2v8a2 2 0 002 2z"></path>
+          </svg>
+          <span id="copy-btn-label">一键复制微信号 ({site.wechat})</span>
+        </button>
+
+        <a
+          href={`tel:${site.phone}`}
+          class="w-full py-2.5 px-4 bg-neutral-100 hover:bg-neutral-200 text-neutral-700 font-medium text-xs rounded border border-neutral-300 flex items-center justify-center space-x-2 transition-colors"
+        >
+          <svg class="w-4 h-4 text-brand-gold" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z"></path>
+          </svg>
+          <span>直接拨打电话: {site.phoneFormatted}</span>
+        </a>
+      </div>
+
+    </div>
+
+    <!-- Modal Footer Note -->
+    <div class="bg-neutral-50 px-6 py-2.5 border-t border-neutral-200 text-[11px] text-neutral-400 text-center">
+      工作时间: 周一至周六 08:30 - 21:00 (紧急询价随时响应)
+    </div>
+
+  </div>
+</div>
+
+<script>
+  const wechatModal = document.getElementById('wechat-modal');
+  const closeWechatBtn = document.getElementById('close-wechat-modal');
+  const modalContainer = wechatModal?.querySelector('.modal-container');
+  const copyBtn = document.getElementById('copy-wechat-btn');
+  const copyBtnLabel = document.getElementById('copy-btn-label');
+  const copyToast = document.getElementById('copy-feedback-toast');
+  const wechatNum = '18318105616';
+
+  function openWeChat() {
+    if (!wechatModal) return;
+    wechatModal.classList.remove('hidden');
+    setTimeout(() => {
+      modalContainer?.classList.remove('scale-95', 'opacity-0');
+      modalContainer?.classList.add('scale-100', 'opacity-100');
+    }, 10);
+  }
+
+  function closeWeChat() {
+    if (!wechatModal) return;
+    modalContainer?.classList.remove('scale-100', 'opacity-100');
+    modalContainer?.classList.add('scale-95', 'opacity-0');
+    setTimeout(() => {
+      wechatModal.classList.add('hidden');
+      if (copyToast) copyToast.classList.add('hidden');
+      if (copyBtnLabel) copyBtnLabel.innerText = `一键复制微信号 (${wechatNum})`;
+    }, 200);
+  }
+
+  // Global methods
+  (window as any).openWeChatModal = openWeChat;
+  (window as any).closeWeChatModal = closeWeChat;
+
+  closeWechatBtn?.addEventListener('click', closeWeChat);
+
+  // Click outside to close
+  wechatModal?.addEventListener('click', (e) => {
+    if (e.target === wechatModal) {
+      closeWeChat();
+    }
+  });
+
+  // ESC to close
+  document.addEventListener('keydown', (e) => {
+    if (e.key === 'Escape' && wechatModal && !wechatModal.classList.contains('hidden')) {
+      closeWeChat();
+    }
+  });
+
+  // Global delegator for data-open-wechat buttons
+  document.addEventListener('click', (e) => {
+    const target = (e.target as HTMLElement).closest('[data-open-wechat]');
+    if (target) {
+      e.preventDefault();
+      openWeChat();
+    }
+  });
+
+  // Copy WeChat Number
+  copyBtn?.addEventListener('click', async () => {
+    try {
+      if (navigator.clipboard) {
+        await navigator.clipboard.writeText(wechatNum);
+      } else {
+        const textarea = document.createElement('textarea');
+        textarea.value = wechatNum;
+        document.body.appendChild(textarea);
+        textarea.select();
+        document.execCommand('copy');
+        document.body.removeChild(textarea);
+      }
+      if (copyToast) copyToast.classList.remove('hidden');
+      if (copyBtnLabel) copyBtnLabel.innerText = '✓ 微信号已复制！';
+      setTimeout(() => {
+        if (copyToast) copyToast.classList.add('hidden');
+      }, 3000);
+    } catch (err) {
+      alert(`微信号: ${wechatNum}`);
+    }
+  });
+</script>

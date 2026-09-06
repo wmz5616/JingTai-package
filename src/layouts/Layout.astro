@@ -4,12 +4,15 @@ import Footer from '../components/Footer.astro';
 import QuoteModal from '../components/QuoteModal.astro';
 import InquiryDrawer from '../components/InquiryDrawer.astro';
 import WhatsAppButton from '../components/WhatsAppButton.astro';
+import WeChatModal from '../components/WeChatModal.astro';
 import site from '../data/site.json';
 import '../styles/global.css';
 
 interface Props {
   title?: string;
+  title_zh?: string;
   description?: string;
+  description_zh?: string;
   keywords?: string;
   image?: string;
   type?: 'website' | 'product' | 'article';
@@ -18,9 +21,11 @@ interface Props {
 
 const {
   title = `${site.name} | Luxury Cosmetic Glass Packaging & Turnkey Supply Chain`,
+  title_zh = `${site.name} | 广州高端美妆玻璃瓶包材源头全案供应链`,
   description = site.description,
-  keywords = 'cosmetic glass bottles, dropper bottles wholesale, glass serum bottles, cream jars manufacturer, cosmetic packaging supplier china, guangzhou packaging supplier, DDP glass packaging, low moq glass bottles',
-  image = 'https://images.unsplash.com/photo-1608248597359-52e4cf52538b?auto=format&fit=crop&w=1200&q=80',
+  description_zh = site.description_zh || site.description,
+  keywords = '化妆品玻璃瓶, 精油滴管瓶批发, 广州包材工厂, 护肤品包材定制, DDP双清包税, 面霜玻璃罐, cosmetic glass packaging wholesale',
+  image = 'https://images.unsplash.com/photo-1620916566398-39f1143ab7be?auto=format&fit=crop&w=1200&q=80',
   type = 'website',
   schemaJson,
 } = Astro.props;
@@ -34,7 +39,7 @@ const orgSchema = {
   name: site.companyName,
   alternateName: site.name,
   url: site.url,
-  logo: `${site.url}/favicon.svg`,
+  logo: `${site.url}/images/logo.png`,
   description: site.description,
   address: {
     '@type': 'PostalAddress',
@@ -45,6 +50,7 @@ const orgSchema = {
   contactPoint: {
     '@type': 'ContactPoint',
     telephone: site.whatsapp,
+    email: site.email,
     contactType: 'Customer Support & B2B Sales',
     availableLanguage: ['English', 'Chinese'],
   },
@@ -56,8 +62,15 @@ const orgSchema = {
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="icon" type="image/png" href="/favicon.png" />
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
     <meta name="generator" content={Astro.generator} />
+
+    <!-- Dual Language Meta Tags for Instant Switching -->
+    <meta name="title-en" content={title} />
+    <meta name="title-zh" content={title_zh} />
+    <meta name="description-en" content={description} />
+    <meta name="description-zh" content={description_zh} />
 
     <!-- Primary Meta Tags -->
     <title>{title}</title>
@@ -98,18 +111,22 @@ const orgSchema = {
       (function() {
         try {
           var saved = localStorage.getItem('aura_preferred_lang');
-          if (saved && ['en', 'zh', 'es', 'fr', 'de'].indexOf(saved) !== -1) {
-            document.documentElement.lang = saved;
-            return;
-          }
-          var navLang = (navigator.languages && navigator.languages[0]) || navigator.language || '';
-          var l = navLang.toLowerCase();
           var target = 'en';
-          if (l.indexOf('zh') === 0) target = 'zh';
-          else if (l.indexOf('es') === 0) target = 'es';
-          else if (l.indexOf('fr') === 0) target = 'fr';
-          else if (l.indexOf('de') === 0) target = 'de';
+          if (saved && ['en', 'zh', 'es', 'fr', 'de'].indexOf(saved) !== -1) {
+            target = saved;
+          } else {
+            var navLang = (navigator.languages && navigator.languages[0]) || navigator.language || '';
+            var l = navLang.toLowerCase();
+            if (l.indexOf('zh') === 0) target = 'zh';
+            else if (l.indexOf('es') === 0) target = 'es';
+            else if (l.indexOf('fr') === 0) target = 'fr';
+            else if (l.indexOf('de') === 0) target = 'de';
+          }
           document.documentElement.lang = target;
+          if (target === 'zh') {
+            var zhTitle = document.querySelector('meta[name="title-zh"]')?.getAttribute('content');
+            if (zhTitle) document.title = zhTitle;
+          }
         } catch (e) {}
       })();
     </script>
@@ -118,10 +135,32 @@ const orgSchema = {
     <script>
       import { resolveLanguage, applyTranslations } from '../i18n/i18n-client';
       
-      async function initI18n() {
-        const lang = await resolveLanguage();
-        applyTranslations(lang);
+      function syncDocumentMetadata(lang: string) {
+        const isZh = lang === 'zh';
+        const targetTitle = document.querySelector(`meta[name="title-${isZh ? 'zh' : 'en'}"]`)?.getAttribute('content');
+        const targetDesc = document.querySelector(`meta[name="description-${isZh ? 'zh' : 'en'}"]`)?.getAttribute('content');
+        
+        if (targetTitle) document.title = targetTitle;
+        if (targetDesc) {
+          document.querySelector('meta[name="description"]')?.setAttribute('content', targetDesc);
+        }
       }
+
+      async function initI18n() {
+        const initialLang = (document.documentElement.lang || 'en') as any;
+        applyTranslations(initialLang);
+        syncDocumentMetadata(initialLang);
+
+        const lang = await resolveLanguage();
+        if (lang !== initialLang) {
+          applyTranslations(lang);
+          syncDocumentMetadata(lang);
+        }
+      }
+
+      window.addEventListener('aura-language-changed', (e: any) => {
+        syncDocumentMetadata(e.detail.lang);
+      });
       
       if (document.readyState === 'loading') {
         document.addEventListener('DOMContentLoaded', initI18n);
@@ -149,8 +188,10 @@ const orgSchema = {
     <!-- Multi-Product RFQ Basket Drawer -->
     <InquiryDrawer />
 
-    <!-- Global Floating WhatsApp Contact -->
+    <!-- Global Floating WhatsApp & WeChat Contact -->
     <WhatsAppButton />
+
+    <!-- Global WeChat Contact Modal -->
+    <WeChatModal />
   </body>
 </html>
-

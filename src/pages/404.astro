@@ -1,24 +1,28 @@
 ---
 import Layout from '../layouts/Layout.astro';
 import Button from '../components/Button.astro';
+import site from '../data/site.json';
 ---
 
-<Layout title="Page Not Found (404) | AURA PACKAGING">
+<Layout
+  title={`Page Not Found (404) | ${site.name}`}
+  title_zh={`页面未找到 (404) | ${site.companyName_zh || site.name_zh}`}
+>
   <div class="min-h-[60vh] flex items-center justify-center py-20 px-4 text-center">
     <div class="max-w-md space-y-6">
       <div class="w-16 h-16 mx-auto bg-brand-gold/15 text-brand-gold-dark rounded-full flex items-center justify-center font-serif font-bold text-2xl">
         404
       </div>
-      <h1 class="font-serif text-3xl font-bold text-brand-dark">Packaging Model Not Found</h1>
-      <p class="text-xs sm:text-sm text-neutral-600 leading-relaxed">
+      <h1 class="font-serif text-3xl font-bold text-brand-dark" data-i18n="page_not_found">Packaging Model Not Found</h1>
+      <p class="text-xs sm:text-sm text-neutral-600 leading-relaxed" data-i18n="page_not_found_desc">
         The packaging page or specification sheet you are looking for may have been updated or moved. Browse our complete catalog or contact our Guangzhou team for assistance.
       </p>
       <div class="pt-2 flex flex-col sm:flex-row justify-center gap-3">
         <Button href="/products" variant="primary" size="md">
-          Browse Bottle Catalog →
+          <span data-i18n="nav_all_collections">Browse Bottle Catalog →</span>
         </Button>
         <Button href="/" variant="outline" size="md">
-          Back to Homepage
+          <span data-i18n="back_to_home">Back to Homepage</span>
         </Button>
       </div>
     </div>

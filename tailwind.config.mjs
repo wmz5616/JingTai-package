@@ -18,8 +18,8 @@ export default {
         },
       },
       fontFamily: {
-        serif: ['"Playfair Display"', 'Georgia', 'serif'],
-        sans: ['Inter', 'system-ui', '-apple-system', 'sans-serif'],
+        serif: ['"Playfair Display"', '"Noto Serif SC"', '"Songti SC"', '"Source Han Serif SC"', 'STSong', 'Georgia', 'serif'],
+        sans: ['Inter', 'system-ui', '-apple-system', 'BlinkMacSystemFont', '"PingFang SC"', '"Hiragino Sans GB"', '"Microsoft YaHei"', 'sans-serif'],
       },
       boxShadow: {
         luxury: '0 20px 40px -15px rgba(0, 0, 0, 0.08)',

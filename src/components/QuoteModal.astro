@@ -16,7 +16,7 @@ import site from '../data/site.json';
       <div class="space-y-1">
         <div class="flex items-center space-x-2">
           <span class="w-2 h-2 rounded-full bg-emerald-400 animate-pulse"></span>
-          <span class="text-xs text-brand-gold font-mono uppercase tracking-widest">Guangzhou Direct Quotation</span>
+          <span class="text-xs text-brand-gold font-mono uppercase tracking-widest" data-i18n="modal_quote_tag">Guangzhou Direct Quotation</span>
         </div>
         <h2 id="quote-modal-title" class="font-serif text-2xl font-bold text-white tracking-wide" data-i18n="modal_quote_title">
           Request Wholesale B2B Quote
@@ -74,11 +74,11 @@ import site from '../data/site.json';
             class="w-full px-3.5 py-2.5 bg-white border border-neutral-300 rounded-sm text-sm text-neutral-900 focus:ring-2 focus:ring-brand-gold focus:border-brand-gold"
             required
           >
-            <option value="1,000 - 3,000 pcs (Trial Order)">1,000 - 3,000 pcs (Trial Order)</option>
-            <option value="5,000 pcs (Standard Run)" selected>5,000 pcs (Standard Run)</option>
-            <option value="10,000 pcs (Best Value)">10,000 pcs (Best Value)</option>
-            <option value="30,000+ pcs (Custom Mould)">30,000+ pcs (Bespoke Mould/Volume)</option>
-            <option value="Free Sample Kit First">Need Free Sample Kit First</option>
+            <option value="1,000 - 3,000 pcs (Trial Order)" data-i18n="modal_qty_1">1,000 - 3,000 pcs (Trial Order)</option>
+            <option value="5,000 pcs (Standard Run)" selected data-i18n="modal_qty_2">5,000 pcs (Standard Run)</option>
+            <option value="10,000 pcs (Best Value)" data-i18n="modal_qty_3">10,000 pcs (Best Value)</option>
+            <option value="30,000+ pcs (Custom Mould)" data-i18n="modal_qty_4">30,000+ pcs (Bespoke Mould/Volume)</option>
+            <option value="Free Sample Kit First" data-i18n="modal_qty_5">Need Free Sample Kit First</option>
           </select>
         </div>
 
@@ -143,7 +143,7 @@ import site from '../data/site.json';
 
         <div>
           <label for="quote-whatsapp" class="block text-xs font-semibold text-neutral-700 uppercase tracking-wider mb-1.5" data-i18n="modal_whatsapp_label">
-            WhatsApp / Mobile <span class="text-emerald-600 text-[10px] font-normal">(For 1-hour fast reply)</span>
+            WhatsApp / Mobile (For 1-hour fast reply)
           </label>
           <input
             type="text"
@@ -163,27 +163,27 @@ import site from '../data/site.json';
         <div class="grid grid-cols-2 sm:grid-cols-3 gap-2 text-xs text-neutral-600">
           <label class="flex items-center space-x-2 cursor-pointer">
             <input type="checkbox" name="services[]" value="Silk Screen Logo" class="text-brand-gold rounded focus:ring-brand-gold" />
-            <span>Silk-screen Logo</span>
+            <span data-i18n="modal_svc_screen">Silk-screen Logo</span>
           </label>
           <label class="flex items-center space-x-2 cursor-pointer">
             <input type="checkbox" name="services[]" value="Hot Foil Stamping" class="text-brand-gold rounded focus:ring-brand-gold" />
-            <span>Hot Foil Stamping</span>
+            <span data-i18n="modal_svc_foil">Hot Foil Stamping</span>
           </label>
           <label class="flex items-center space-x-2 cursor-pointer">
             <input type="checkbox" name="services[]" value="Custom Color Spray" class="text-brand-gold rounded focus:ring-brand-gold" />
-            <span>Custom Color Spray</span>
+            <span data-i18n="modal_svc_spray">Custom Color Spray</span>
           </label>
           <label class="flex items-center space-x-2 cursor-pointer">
             <input type="checkbox" name="services[]" value="Dieline CAD Needed" class="text-brand-gold rounded focus:ring-brand-gold" />
-            <span>Need Dieline CAD</span>
+            <span data-i18n="modal_svc_dieline">Need Dieline CAD</span>
           </label>
           <label class="flex items-center space-x-2 cursor-pointer">
             <input type="checkbox" name="services[]" value="Secondary Box Packaging" class="text-brand-gold rounded focus:ring-brand-gold" />
-            <span>Custom Box Packaging</span>
+            <span data-i18n="modal_svc_box">Custom Box Packaging</span>
           </label>
           <label class="flex items-center space-x-2 cursor-pointer">
             <input type="checkbox" name="services[]" value="DDP Door Shipping" class="text-brand-gold rounded focus:ring-brand-gold" checked />
-            <span>DDP Door-to-Door</span>
+            <span data-i18n="modal_svc_ddp">DDP Door-to-Door</span>
           </label>
         </div>
       </div>
@@ -212,14 +212,14 @@ import site from '../data/site.json';
         >
           Submit Wholesale RFQ Now →
         </button>
-        <div id="quote-feedback" class="hidden text-center text-xs p-3 rounded bg-emerald-50 text-emerald-800 border border-emerald-200">
+        <div id="quote-feedback" class="hidden text-center text-xs p-3 rounded bg-emerald-50 text-emerald-800 border border-emerald-200" data-i18n="modal_feedback_success">
           ✓ Inquiry received! Our Guangzhou packaging engineer will reply to your email/WhatsApp with complete pricing and spec sheet within 2-4 hours.
         </div>
-        <p class="text-center text-[11px] text-neutral-400" data-i18n="modal_privacy_note">
-          🔒 NDA Protected: Your formula, branding, and packaging designs remain 100% confidential.
+        <p class="text-center text-[11px] text-neutral-400 flex items-center justify-center space-x-1.5">
+          <svg class="w-3.5 h-3.5 text-neutral-400 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z"></path></svg>
+          <span data-i18n="modal_privacy_note">NDA Protected: Your formula, branding, and packaging designs remain 100% confidential.</span>
         </p>
       </div>
-
 
     </form>
 
@@ -229,50 +229,57 @@ import site from '../data/site.json';
 <script>
   const modal = document.getElementById('quote-modal');
   const closeBtn = document.getElementById('close-quote-modal');
-  const productNameInput = document.getElementById('quote-product-name') as HTMLInputElement;
   const form = document.getElementById('quote-modal-form') as HTMLFormElement;
+  const productInput = document.getElementById('quote-product-name') as HTMLInputElement;
   const feedback = document.getElementById('quote-feedback');
   const submitBtn = document.getElementById('quote-submit-btn') as HTMLButtonElement;
 
-  function closeModal() {
-    modal?.classList.add('hidden');
-    modal?.classList.remove('flex');
-  }
-
-  closeBtn?.addEventListener('click', closeModal);
-  modal?.addEventListener('click', (e) => {
-    if (e.target === modal) closeModal();
-  });
-
-  // Global listener for opening quote modal with prefilled data
-  window.addEventListener('open-quote-modal', ((e: CustomEvent) => {
-    const title = e.detail?.productTitle || 'General Catalog Inquiry';
-    if (productNameInput) {
-      productNameInput.value = title;
+  function openQuoteModal(productTitle?: string) {
+    if (productTitle && productInput) {
+      productInput.value = productTitle;
     }
     modal?.classList.remove('hidden');
     modal?.classList.add('flex');
-  }) as EventListener);
+    document.body.style.overflow = 'hidden';
+  }
 
-  // Setup click listeners for all .quick-quote-btn on the page
-  document.addEventListener('click', (e) => {
-    const target = (e.target as HTMLElement).closest('.quick-quote-btn') as HTMLElement;
-    if (target) {
-      const productTitle = target.dataset.productTitle || 'General Packaging Inquiry';
-      window.dispatchEvent(new CustomEvent('open-quote-modal', {
-        detail: { productTitle }
-      }));
+  function closeQuoteModal() {
+    modal?.classList.add('hidden');
+    modal?.classList.remove('flex');
+    document.body.style.overflow = '';
+  }
+
+  closeBtn?.addEventListener('click', closeQuoteModal);
+  
+  modal?.addEventListener('click', (e) => {
+    if (e.target === modal) {
+      closeQuoteModal();
     }
   });
 
-  // AJAX submission for smooth UX without page redirect
+  document.addEventListener('keydown', (e) => {
+    if (e.key === 'Escape' && !modal?.classList.contains('hidden')) {
+      closeQuoteModal();
+    }
+  });
+
+  // Global event delegation for open quote modal triggers
+  document.addEventListener('click', (e) => {
+    const target = (e.target as HTMLElement).closest('.quick-quote-btn');
+    if (target) {
+      const productTitle = target.getAttribute('data-product-title') || 'General Catalog RFQ';
+      openQuoteModal(productTitle);
+    }
+  });
+
+  // AJAX Submission with Formspree
   form?.addEventListener('submit', async (e) => {
     e.preventDefault();
     if (!submitBtn) return;
     
-    const originalText = submitBtn.innerText;
+    const originalBtnText = submitBtn.innerText;
     submitBtn.disabled = true;
-    submitBtn.innerText = 'Transmitting RFQ to Guangzhou Hub...';
+    submitBtn.innerText = document.documentElement.lang === 'zh' ? '正在提交询盘至广州工厂...' : 'Sending to Guangzhou Packaging Team...';
 
     const formData = new FormData(form);
 
@@ -288,36 +295,27 @@ import site from '../data/site.json';
       if (response.ok) {
         form.reset();
         feedback?.classList.remove('hidden');
-        submitBtn.innerText = 'RFQ Submitted Successfully ✓';
-        setTimeout(() => {
-          closeModal();
-          feedback?.classList.add('hidden');
-          submitBtn.disabled = false;
-          submitBtn.innerText = originalText;
-        }, 3500);
+        submitBtn.innerText = document.documentElement.lang === 'zh' ? '询盘提交成功 ✓' : 'RFQ Sent Successfully ✓';
       } else {
-        // Fallback notification if formspree has not verified yet
         feedback?.classList.remove('hidden');
         if (feedback) {
-          feedback.innerHTML = '✓ RFQ successfully recorded! Our team will contact you directly within 2-4 hours.';
+          feedback.innerHTML = document.documentElement.lang === 'zh' ? '✓ 询盘已登记！广州专员将在 2-4 小时内联系您。' : '✓ Inquiry recorded! Our Guangzhou team will email you shortly.';
         }
-        setTimeout(() => {
-          closeModal();
-          feedback?.classList.add('hidden');
-          submitBtn.disabled = false;
-          submitBtn.innerText = originalText;
-        }, 3000);
       }
-    } catch (err) {
+    } catch {
       feedback?.classList.remove('hidden');
       if (feedback) {
-        feedback.innerHTML = '✓ RFQ recorded! If urgent, you can also reach us via direct WhatsApp: <strong>+86 188 1988 6688</strong>.';
+        feedback.innerHTML = document.documentElement.lang === 'zh' ? '✓ 询盘已收到！您也可直接添加微信: <strong>183 1810 5616</strong> 快速沟通。' : '✓ Inquiry received! For priority 1-hour reply, you can also message us directly on WhatsApp: <strong>+86 183 1810 5616</strong>.';
       }
+    } finally {
       setTimeout(() => {
-        closeModal();
         submitBtn.disabled = false;
-        submitBtn.innerText = originalText;
-      }, 3000);
+        submitBtn.innerText = originalBtnText;
+        setTimeout(closeQuoteModal, 3000);
+      }, 2500);
     }
   });
+
+  // Expose to window for external triggers
+  (window as any).openQuoteModal = openQuoteModal;
 </script>

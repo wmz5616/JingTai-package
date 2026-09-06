@@ -1,4 +1,4 @@
-@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Playfair+Display:ital,wght@0,400;0,500;0,600;0,700;1,400&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Noto+Serif+SC:wght@400;500;600;700&family=Playfair+Display:ital,wght@0,400;0,500;0,600;0,700;1,400&display=swap');
 
 @tailwind base;
 @tailwind components;
@@ -7,13 +7,31 @@
 @layer base {
   html {
     scroll-behavior: smooth;
-    font-family: 'Inter', system-ui, -apple-system, sans-serif;
+    font-family: 'Inter', system-ui, -apple-system, BlinkMacSystemFont, "PingFang SC", "Hiragino Sans GB", "Microsoft YaHei", "WenQuanYi Micro Hei", sans-serif;
     color: #1a1a1a;
     background-color: #faf9f6;
+    text-rendering: optimizeLegibility;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
   }
 
   h1, h2, h3, h4, .font-serif {
-    font-family: 'Playfair Display', Georgia, serif;
+    font-family: 'Playfair Display', 'Noto Serif SC', 'Songti SC', 'Source Han Serif SC', 'STSong', Georgia, serif;
+  }
+
+  html[lang="zh"] h1,
+  html[lang="zh"] h2,
+  html[lang="zh"] h3,
+  html[lang="zh"] h4,
+  html[lang="zh"] .font-serif {
+    font-family: 'Playfair Display', 'Noto Serif SC', 'Songti SC', 'Source Han Serif SC', 'STSong', serif;
+    letter-spacing: 0.015em;
+  }
+
+  /* Prevent vertical layout shift between different font metrics */
+  p, span, a, button, input, textarea, select {
+    text-size-adjust: 100%;
+    -webkit-text-size-adjust: 100%;
   }
 }
 
@@ -58,5 +76,14 @@
 }
 
 ::-webkit-scrollbar-thumb:hover {
-  background: #a98c63;
+  background: #ab8f67;
+}
+
+/* Language-sensitive contact channels: Switch between WeChat (ZH) and WhatsApp (EN) */
+html[lang="zh"] .contact-lang-en {
+  display: none !important;
+}
+html:not([lang="zh"]) .contact-lang-zh,
+html[lang="en"] .contact-lang-zh {
+  display: none !important;
 }

@@ -2,12 +2,12 @@ import translationsData from './translations.json';
 
 export type SupportedLang = 'en' | 'zh' | 'es' | 'fr' | 'de';
 
-export const SUPPORTED_LANGS: { code: SupportedLang; label: string; flag: string }[] = [
-  { code: 'en', label: 'English', flag: '🇺🇸' },
-  { code: 'zh', label: '简体中文', flag: '🇨🇳' },
-  { code: 'es', label: 'Español', flag: '🇪🇸' },
-  { code: 'fr', label: 'Français', flag: '🇫🇷' },
-  { code: 'de', label: 'Deutsch', flag: '🇩🇪' },
+export const SUPPORTED_LANGS: { code: SupportedLang; label: string; short: string }[] = [
+  { code: 'en', label: 'English', short: 'EN' },
+  { code: 'zh', label: '简体中文', short: '中文' },
+  { code: 'es', label: 'Español', short: 'ES' },
+  { code: 'fr', label: 'Français', short: 'FR' },
+  { code: 'de', label: 'Deutsch', short: 'DE' },
 ];
 
 const translations: Record<SupportedLang, Record<string, string>> = translationsData as any;
@@ -81,7 +81,7 @@ export async function detectIpLang(): Promise<SupportedLang | null> {
  * 1. User manual selection
  * 2. Browser language (Browser > IP)
  * 3. IP geolocation
- * 4. Default: 'en'
+ * 4. Default: 'zh' if navigator matches or 'en'
  */
 export async function resolveLanguage(): Promise<SupportedLang> {
   // Priority 1: User choice
@@ -109,7 +109,7 @@ export function applyTranslations(lang: SupportedLang) {
   const dict = translations[lang] || translations.en;
   document.documentElement.lang = lang;
 
-  // 1. Text elements
+  // 1. Text elements with data-i18n
   document.querySelectorAll('[data-i18n]').forEach((el) => {
     const key = el.getAttribute('data-i18n');
     if (key && dict[key]) {
@@ -133,13 +133,22 @@ export function applyTranslations(lang: SupportedLang) {
     }
   });
 
+  // 4. Dynamic dual-language attributes (data-zh vs data-en)
+  document.querySelectorAll('[data-zh]').forEach((el) => {
+    const isZh = lang === 'zh';
+    const targetText = isZh ? el.getAttribute('data-zh') : el.getAttribute('data-en');
+    if (targetText !== null && targetText !== undefined) {
+      el.textContent = targetText;
+    }
+  });
+
   // Update switcher labels in UI
   const currentLangObj = SUPPORTED_LANGS.find(l => l.code === lang) || SUPPORTED_LANGS[0];
   document.querySelectorAll('.current-lang-label').forEach((el) => {
-    el.textContent = `${currentLangObj.flag} ${currentLangObj.code.toUpperCase()}`;
+    el.textContent = currentLangObj.short;
   });
 
-  // Dispatch custom event
+  // Dispatch custom event for reactive components
   window.dispatchEvent(new CustomEvent('aura-language-changed', {
     detail: { lang, dict }
   }));
