@@ -14,17 +14,29 @@
   "whatsapp": "+86 183 1810 5616",
   "whatsappFormatted": "+86 183 1810 5616",
   "whatsappDirectUrl": "https://wa.me/8618318105616?text=Hello%20Jingtai%20Packaging%2C%20I%20would%20like%20to%20request%20a%20catalog%20and%20wholesale%20quotation.",
-  "wechat": "18318105616",
-  "wechatFormatted": "183 1810 5616",
-  "phone": "+86 183 1810 5616",
-  "phoneFormatted": "+86 183 1810 5616",
+  "wechat": "15913128180",
+  "wechatFormatted": "159 1312 8180",
+  "phone": "+86 159 1312 8180",
+  "phoneFormatted": "+86 159 1312 8180",
   "responseCommitment": "Guaranteed RFQ response within 2-4 business hours",
   "formspreeEndpoint": "https://formspree.io/f/mqkvnzyz",
   "stats": [
-    { "value": "48H", "label": "Sample Dispatch from Guangzhou" },
-    { "value": "1,000+", "label": "Low MOQ Trial Orders Supported" },
-    { "value": "100%", "label": "Pre-Shipment Vacuum Leak Inspection" },
-    { "value": "DDP", "label": "Door-to-Door Duty Paid Sea/Air Freight" }
+    {
+      "value": "48H",
+      "label": "Sample Dispatch from Guangzhou"
+    },
+    {
+      "value": "1,000+",
+      "label": "Low MOQ Trial Orders Supported"
+    },
+    {
+      "value": "100%",
+      "label": "Pre-Shipment Vacuum Leak Inspection"
+    },
+    {
+      "value": "DDP",
+      "label": "Door-to-Door Duty Paid Sea/Air Freight"
+    }
   ],
   "certifications": [
     "ISO 9001:2015 Certified Alliances",
