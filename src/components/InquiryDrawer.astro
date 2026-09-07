@@ -239,11 +239,11 @@ import site from '../data/site.json';
       // Visual feedback
       const label = target.querySelector('span');
       if (label) {
-        const originalText = label.textContent;
         const isZh = document.documentElement.lang === 'zh';
         label.textContent = isZh ? '已加入 ✓' : 'Added ✓';
         setTimeout(() => {
-          label.textContent = originalText;
+          const currentIsZh = document.documentElement.lang === 'zh';
+          label.textContent = currentIsZh ? '加入询价' : 'Add to RFQ';
         }, 1800);
       }
 

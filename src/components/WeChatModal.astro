@@ -65,82 +65,19 @@ import site from "../data/site.json";
     <div class="p-6 text-center space-y-4">
       <!-- QR Code Container -->
       <div
-        class="relative mx-auto w-52 h-52 bg-neutral-50 p-3 rounded-md border-2 border-dashed border-[#07C160]/40 flex flex-col items-center justify-center shadow-inner group"
+        class="relative mx-auto w-52 h-52 bg-white p-2.5 rounded-md border-2 border-dashed border-[#07C160]/40 flex flex-col items-center justify-center shadow-inner group overflow-hidden"
       >
-        <!-- High-res QR visual representation -->
-        <svg
-          class="w-full h-full text-neutral-900"
-          viewBox="0 0 100 100"
-          fill="currentColor"
-        >
-          <!-- Position Detection Patterns -->
-          <!-- Top Left -->
-          <rect x="5" y="5" width="28" height="28" fill="#111827" rx="3"></rect>
-          <rect x="9" y="9" width="20" height="20" fill="#ffffff" rx="1"></rect>
-          <rect x="13" y="13" width="12" height="12" fill="#07C160" rx="1"
-          ></rect>
-
-          <!-- Top Right -->
-          <rect x="67" y="5" width="28" height="28" fill="#111827" rx="3"
-          ></rect>
-          <rect x="71" y="9" width="20" height="20" fill="#ffffff" rx="1"
-          ></rect>
-          <rect x="75" y="13" width="12" height="12" fill="#07C160" rx="1"
-          ></rect>
-
-          <!-- Bottom Left -->
-          <rect x="5" y="67" width="28" height="28" fill="#111827" rx="3"
-          ></rect>
-          <rect x="9" y="71" width="20" height="20" fill="#ffffff" rx="1"
-          ></rect>
-          <rect x="13" y="75" width="12" height="12" fill="#07C160" rx="1"
-          ></rect>
-
-          <!-- Alignment & Data Pattern Elements -->
-          <rect x="42" y="10" width="6" height="6" fill="#111827"></rect>
-          <rect x="52" y="10" width="6" height="6" fill="#111827"></rect>
-          <rect x="47" y="18" width="6" height="6" fill="#111827"></rect>
-          <rect x="38" y="24" width="6" height="6" fill="#111827"></rect>
-
-          <rect x="10" y="42" width="6" height="6" fill="#111827"></rect>
-          <rect x="18" y="47" width="6" height="6" fill="#111827"></rect>
-          <rect x="24" y="38" width="6" height="6" fill="#111827"></rect>
-
-          <rect x="70" y="42" width="6" height="6" fill="#111827"></rect>
-          <rect x="78" y="48" width="6" height="6" fill="#111827"></rect>
-          <rect x="85" y="40" width="6" height="6" fill="#111827"></rect>
-          <rect x="72" y="55" width="6" height="6" fill="#111827"></rect>
-
-          <rect x="42" y="72" width="6" height="6" fill="#111827"></rect>
-          <rect x="50" y="78" width="6" height="6" fill="#111827"></rect>
-          <rect x="58" y="70" width="6" height="6" fill="#111827"></rect>
-          <rect x="48" y="85" width="6" height="6" fill="#111827"></rect>
-          <rect x="78" y="75" width="6" height="6" fill="#111827"></rect>
-          <rect x="86" y="82" width="6" height="6" fill="#111827"></rect>
-
-          <!-- Center Badge Container -->
-          <circle
-            cx="50"
-            cy="50"
-            r="13"
-            fill="#ffffff"
-            stroke="#c5a059"
-            stroke-width="2"></circle>
-          <!-- JT Emblem in Center -->
-          <text
-            x="50"
-            y="54"
-            font-family="serif"
-            font-size="9"
-            font-weight="bold"
-            fill="#0f172a"
-            text-anchor="middle">JT</text
-          >
-        </svg>
+        <!-- Real WeChat QR Code -->
+        <img
+          src="/images/wechat-qr.jpg"
+          alt="广州晶泰包装业务微信二维码"
+          class="w-full h-full object-contain rounded select-none"
+          loading="eager"
+        />
 
         <!-- Scan Prompt Overlay on Hover -->
         <div
-          class="absolute inset-0 bg-[#07C160]/10 rounded flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity"
+          class="absolute inset-0 bg-[#07C160]/15 rounded flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity pointer-events-none"
         >
           <span
             class="bg-white/95 text-xs text-neutral-800 font-medium px-2.5 py-1 rounded shadow-md border border-[#07C160]/40"

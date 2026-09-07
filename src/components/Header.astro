@@ -37,7 +37,7 @@ import site from '../data/site.json';
 </div>
 
 <!-- Main Sticky Header -->
-<header class="sticky top-0 z-40 bg-white/95 backdrop-blur-md border-b border-neutral-200 transition-all duration-300">
+<header class="sticky top-0 z-40 bg-white/95 backdrop-blur-md border-b border-neutral-200 transition-colors duration-200">
   <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
     <div class="flex items-center justify-between h-20">
       
@@ -161,7 +161,7 @@ import site from '../data/site.json';
         <button
           type="button"
           id="header-quote-btn"
-          class="hidden sm:inline-flex items-center justify-center px-4 py-2.5 text-sm font-semibold tracking-wide text-brand-dark bg-brand-gold hover:bg-brand-gold-light border border-brand-gold transition-all duration-300 shadow-sm hover:shadow-gold rounded-sm whitespace-nowrap flex-shrink-0"
+          class="hidden sm:inline-flex items-center justify-center px-4 py-2.5 text-sm font-semibold tracking-wide text-brand-dark bg-brand-gold hover:bg-brand-gold-light border border-brand-gold transition-colors duration-200 shadow-sm hover:shadow-gold rounded-sm whitespace-nowrap flex-shrink-0"
           data-i18n="nav_request_quote"
         >
           Request a Quote
@@ -295,8 +295,12 @@ import site from '../data/site.json';
 
   // Language Switcher Options
   document.querySelectorAll('.lang-select-opt').forEach((btn) => {
-    btn.addEventListener('click', () => {
+    btn.addEventListener('click', (e) => {
+      e.stopPropagation();
       const lang = btn.getAttribute('data-lang');
+      if (lang && lang === document.documentElement.lang) {
+        return; // Avoid redundant work if already on this language
+      }
       if (lang && (window as any).setAuraLang) {
         (window as any).setAuraLang(lang);
       }

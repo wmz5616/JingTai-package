@@ -133,7 +133,7 @@ const orgSchema = {
 
     <!-- Client-side i18n Runtime & IP Geolocation Resolver -->
     <script>
-      import { resolveLanguage, applyTranslations } from '../i18n/i18n-client';
+      import { resolveLanguage, applyTranslations, getSavedLang } from '../i18n/i18n-client';
       
       function syncDocumentMetadata(lang: string) {
         const isZh = lang === 'zh';
@@ -151,8 +151,14 @@ const orgSchema = {
         applyTranslations(initialLang);
         syncDocumentMetadata(initialLang);
 
+        // If user already has a saved manual choice, do not run background resolver
+        if (getSavedLang()) return;
+
         const lang = await resolveLanguage();
-        if (lang !== initialLang) {
+        // Guard check: if user chose a language while resolveLanguage was waiting, DO NOT override!
+        if (getSavedLang()) return;
+
+        if (lang !== document.documentElement.lang) {
           applyTranslations(lang);
           syncDocumentMetadata(lang);
         }

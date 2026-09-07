@@ -101,57 +101,90 @@ export async function resolveLanguage(): Promise<SupportedLang> {
 }
 
 /**
- * Apply translations to DOM elements
+ * Apply translations to DOM elements with batching & dirty checking
  */
 export function applyTranslations(lang: SupportedLang) {
   if (typeof document === 'undefined') return;
 
-  const dict = translations[lang] || translations.en;
+  const prevLang = document.documentElement.lang;
   document.documentElement.lang = lang;
 
-  // 1. Text elements with data-i18n
-  document.querySelectorAll('[data-i18n]').forEach((el) => {
-    const key = el.getAttribute('data-i18n');
-    if (key && dict[key]) {
-      el.textContent = dict[key];
+  const baseDict = translations.en;
+  const langDict = (translations[lang] || {}) as Record<string, string>;
+  // Fallback guarantee: merge target language over complete English dictionary
+  const dict: Record<string, string> = { ...baseDict, ...langDict };
+
+  // Batch all DOM updates in a single animation frame to eliminate layout flickering
+  requestAnimationFrame(() => {
+    // 1. Text elements with data-i18n
+    document.querySelectorAll('[data-i18n]').forEach((el) => {
+      const key = el.getAttribute('data-i18n');
+      if (key) {
+        const targetText = dict[key] ?? baseDict[key];
+        if (targetText !== undefined && el.textContent !== targetText) {
+          el.textContent = targetText;
+        }
+      }
+    });
+
+    // 2. Placeholder attributes
+    document.querySelectorAll('[data-i18n-placeholder]').forEach((el) => {
+      const key = el.getAttribute('data-i18n-placeholder');
+      if (key) {
+        const targetText = dict[key] ?? baseDict[key];
+        const input = el as HTMLInputElement;
+        if (targetText !== undefined && input.placeholder !== targetText) {
+          input.placeholder = targetText;
+        }
+      }
+    });
+
+    // 3. Value attributes
+    document.querySelectorAll('[data-i18n-value]').forEach((el) => {
+      const key = el.getAttribute('data-i18n-value');
+      if (key) {
+        const targetText = dict[key] ?? baseDict[key];
+        const input = el as HTMLInputElement;
+        if (targetText !== undefined && input.value !== targetText) {
+          input.value = targetText;
+        }
+      }
+    });
+
+    // 4. Dynamic dual-language attributes (data-zh vs data-en)
+    document.querySelectorAll('[data-zh]').forEach((el) => {
+      const isZh = lang === 'zh';
+      const targetText = isZh ? el.getAttribute('data-zh') : el.getAttribute('data-en');
+      if (targetText !== null && targetText !== undefined && el.textContent !== targetText) {
+        el.textContent = targetText;
+      }
+    });
+
+    // 5. Update switcher labels in UI
+    const currentLangObj = SUPPORTED_LANGS.find(l => l.code === lang) || SUPPORTED_LANGS[0];
+    document.querySelectorAll('.current-lang-label').forEach((el) => {
+      if (el.textContent !== currentLangObj.short) {
+        el.textContent = currentLangObj.short;
+      }
+    });
+
+    // 6. Update active styling in language dropdowns
+    document.querySelectorAll('.lang-select-opt').forEach((btn) => {
+      const btnLang = btn.getAttribute('data-lang');
+      if (btnLang === lang) {
+        btn.classList.add('text-brand-gold', 'bg-neutral-50', 'font-semibold');
+      } else {
+        btn.classList.remove('text-brand-gold', 'bg-neutral-50', 'font-semibold');
+      }
+    });
+
+    // 7. Dispatch custom event only when language actually changed
+    if (prevLang !== lang) {
+      window.dispatchEvent(new CustomEvent('aura-language-changed', {
+        detail: { lang, dict }
+      }));
     }
   });
-
-  // 2. Placeholder attributes
-  document.querySelectorAll('[data-i18n-placeholder]').forEach((el) => {
-    const key = el.getAttribute('data-i18n-placeholder');
-    if (key && dict[key]) {
-      (el as HTMLInputElement).placeholder = dict[key];
-    }
-  });
-
-  // 3. Value attributes
-  document.querySelectorAll('[data-i18n-value]').forEach((el) => {
-    const key = el.getAttribute('data-i18n-value');
-    if (key && dict[key]) {
-      (el as HTMLInputElement).value = dict[key];
-    }
-  });
-
-  // 4. Dynamic dual-language attributes (data-zh vs data-en)
-  document.querySelectorAll('[data-zh]').forEach((el) => {
-    const isZh = lang === 'zh';
-    const targetText = isZh ? el.getAttribute('data-zh') : el.getAttribute('data-en');
-    if (targetText !== null && targetText !== undefined) {
-      el.textContent = targetText;
-    }
-  });
-
-  // Update switcher labels in UI
-  const currentLangObj = SUPPORTED_LANGS.find(l => l.code === lang) || SUPPORTED_LANGS[0];
-  document.querySelectorAll('.current-lang-label').forEach((el) => {
-    el.textContent = currentLangObj.short;
-  });
-
-  // Dispatch custom event for reactive components
-  window.dispatchEvent(new CustomEvent('aura-language-changed', {
-    detail: { lang, dict }
-  }));
 }
 
 /**
@@ -161,6 +194,11 @@ export function setLanguage(lang: SupportedLang) {
   try {
     localStorage.setItem('aura_preferred_lang', lang);
   } catch {}
+
+  if (typeof document !== 'undefined' && document.documentElement.lang === lang) {
+    return; // Already on this language, do not re-run DOM mutations
+  }
+
   applyTranslations(lang);
 }
 
