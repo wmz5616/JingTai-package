@@ -44,5 +44,13 @@
     "EU 1223/2009 Cosmetic Standard",
     "California Prop 65 Lead-Free Tested",
     "100% Recyclable Flint Glass (PCR Available)"
-  ]
+  ],
+  "assetCdnUrl": "",
+  "assets": {
+    "logo": "/images/logo.png",
+    "logoWhite": "/images/logo-white.png",
+    "logoGold": "/images/logo-gold.png",
+    "wechatQr": "/images/wechat-qr.jpg",
+    "ogImage": "/images/logo.png"
+  }
 }

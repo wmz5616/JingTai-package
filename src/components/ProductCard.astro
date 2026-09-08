@@ -1,5 +1,6 @@
 ---
 import Badge from './Badge.astro';
+import { getAssetUrl } from '../utils/assets';
 
 interface Props {
   product: {
@@ -29,19 +30,21 @@ interface Props {
     badge_zh?: string;
     [key: string]: any;
   };
+  lang?: string;
 }
 
-const { product } = Astro.props;
+const { product, lang = 'en' } = Astro.props;
+const productHref = lang && lang !== 'en' ? `/${lang}/products/${product.id}` : `/products/${product.id}`;
 const fallbackImg = 'https://images.unsplash.com/photo-1620916566398-39f1143ab7be?auto=format&fit=crop&w=800&q=80';
-const primaryImg = product.images[0] || fallbackImg;
-const secondaryImg = product.images[1] || primaryImg;
+const primaryImg = getAssetUrl(product.images[0]) || fallbackImg;
+const secondaryImg = getAssetUrl(product.images[1]) || primaryImg;
 ---
 
 <div class="group bg-white rounded-sm border border-neutral-200 hover:border-brand-gold/60 transition-all duration-300 flex flex-col justify-between overflow-hidden shadow-sm hover:shadow-luxury">
   
   <!-- Image Container with Hover Zoom & Badges -->
   <div class="relative w-full pt-[115%] bg-neutral-100 overflow-hidden select-none">
-    <a href={`/products/${product.id}`} class="absolute inset-0 block" aria-label={`View ${product.name}`}>
+    <a href={productHref} class="absolute inset-0 block" aria-label={`View ${product.name}`}>
       <!-- Primary Image -->
       <img
         src={primaryImg}
@@ -106,6 +109,24 @@ const secondaryImg = product.images[1] || primaryImg;
         Quick Quote
       </button>
     </div>
+
+    <!-- Mobile Quick Add-to-RFQ Touch Button -->
+    <button
+      type="button"
+      class="sm:hidden add-to-rfq-btn absolute bottom-2.5 right-2.5 z-10 w-8 h-8 rounded-full bg-white/95 text-brand-dark shadow-md border border-neutral-200/80 flex items-center justify-center hover:bg-brand-gold active:scale-95 transition-all"
+      data-id={product.id}
+      data-name={product.name}
+      data-name-zh={product.name_zh || product.name}
+      data-volume={product.volume}
+      data-image={primaryImg}
+      data-moq={product.moq}
+      title="Add to RFQ Basket"
+      aria-label="Add to RFQ Basket"
+    >
+      <svg class="w-4 h-4 text-brand-gold" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M12 4v16m8-8H4"></path>
+      </svg>
+    </button>
   </div>
 
   <!-- Content & Specs Section -->
@@ -117,7 +138,7 @@ const secondaryImg = product.images[1] || primaryImg;
       </div>
 
       <h3 class="font-serif font-bold text-base sm:text-lg text-brand-dark group-hover:text-brand-gold-dark transition-colors leading-snug min-h-[2.85rem] flex items-start">
-        <a href={`/products/${product.id}`} class="hover:underline line-clamp-2">
+        <a href={productHref} class="hover:underline line-clamp-2">
           <span data-en={product.name} data-zh={product.name_zh || product.name}>{product.name}</span>
         </a>
       </h3>
@@ -142,17 +163,17 @@ const secondaryImg = product.images[1] || primaryImg;
     </div>
 
     <!-- Bottom Buttons (Always visible on mobile, responsive) -->
-    <div class="flex items-center justify-between pt-1 gap-2">
+    <div class="grid grid-cols-2 sm:flex sm:items-center sm:justify-between pt-1 gap-2">
       <a
-        href={`/products/${product.id}`}
-        class="flex-1 py-2 text-center text-xs font-semibold text-neutral-700 hover:text-brand-dark hover:bg-neutral-100 border border-neutral-200 rounded-sm transition-colors whitespace-nowrap truncate"
+        href={productHref}
+        class="py-2 px-1 text-center text-xs font-semibold text-neutral-700 hover:text-brand-dark hover:bg-neutral-100 border border-neutral-200 rounded-sm transition-colors leading-tight flex items-center justify-center min-h-[34px]"
         data-i18n="card_view_specs"
       >
-        View Specs & Dieline
+        View Specifications
       </a>
       <button
         type="button"
-        class="sm:hidden py-2 px-3 text-xs font-semibold bg-brand-gold text-brand-dark rounded-sm quick-quote-btn whitespace-nowrap flex-shrink-0"
+        class="py-2 px-2 text-xs font-semibold bg-brand-gold hover:bg-brand-gold-light text-brand-dark rounded-sm quick-quote-btn transition-colors leading-tight flex items-center justify-center min-h-[34px]"
         data-product-title={product.name}
         data-product-id={product.id}
         data-i18n="card_quick_quote"

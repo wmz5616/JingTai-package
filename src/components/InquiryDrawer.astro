@@ -12,7 +12,7 @@ import site from '../data/site.json';
   <div class="fixed top-0 right-0 bottom-0 w-full max-w-md bg-white shadow-2xl flex flex-col justify-between overflow-hidden animate-in slide-in-from-right duration-300">
     
     <!-- Drawer Header -->
-    <div class="p-6 bg-brand-dark text-white flex items-center justify-between border-b border-neutral-800">
+    <div class="p-4 sm:p-6 bg-brand-dark text-white flex items-center justify-between border-b border-neutral-800">
       <div>
         <div class="flex items-center space-x-2">
           <span class="w-2 h-2 rounded-full bg-brand-gold animate-pulse"></span>
@@ -36,7 +36,7 @@ import site from '../data/site.json';
     </div>
 
     <!-- Basket Items List Container -->
-    <div class="flex-1 p-6 overflow-y-auto space-y-4" id="rfq-items-list">
+    <div class="flex-1 p-4 sm:p-6 overflow-y-auto space-y-4" id="rfq-items-list">
       <!-- Empty state template -->
       <div id="rfq-empty-state" class="py-16 text-center space-y-3">
         <div class="w-16 h-16 mx-auto bg-neutral-100 rounded-full flex items-center justify-center text-neutral-400">
@@ -60,7 +60,7 @@ import site from '../data/site.json';
     </div>
 
     <!-- Drawer Footer Actions -->
-    <div class="p-6 bg-neutral-50 border-t border-neutral-200 space-y-3">
+    <div class="p-4 sm:p-6 bg-neutral-50 border-t border-neutral-200 space-y-3">
       <div class="flex items-center justify-between text-xs text-neutral-600 pb-1">
         <span data-i18n="rfq_sku_count">Packaging SKUs Selected:</span>
         <span id="rfq-item-count-text" class="font-bold text-brand-dark">0 SKUs</span>
@@ -165,24 +165,47 @@ import site from '../data/site.json';
     if (submitBundleBtn) submitBundleBtn.disabled = false;
 
     if (dynamicContainer) {
+      function sanitize(str: string): string {
+        const div = document.createElement('div');
+        div.textContent = str || '';
+        return div.innerHTML;
+      }
+
+      function sanitizeUrl(url: string): string {
+        try {
+          const parsed = new URL(url, window.location.origin);
+          if (parsed.protocol === 'http:' || parsed.protocol === 'https:') {
+            return parsed.href.replace(/"/g, '&quot;');
+          }
+        } catch {}
+        return 'https://images.unsplash.com/photo-1620916566398-39f1143ab7be?auto=format&fit=crop&w=400&q=80';
+      }
+
       dynamicContainer.innerHTML = items
         .map(
-          (item) => `
+          (item) => {
+            const displayName = sanitize(isZh ? (item.name_zh || item.name) : item.name);
+            const safeImage = sanitizeUrl(item.image);
+            const safeVolume = sanitize(item.volume);
+            const safeId = sanitize(item.id);
+            const safeMoq = Number.isFinite(item.moq) ? item.moq : 1000;
+            return `
         <div class="p-3 bg-white border border-neutral-200 rounded-sm flex items-center space-x-3 hover:border-brand-gold/50 transition-colors">
-          <img src="${item.image}" alt="${item.name}" class="w-14 h-14 object-cover rounded bg-neutral-100 flex-shrink-0" onerror="this.src='https://images.unsplash.com/photo-1620916566398-39f1143ab7be?auto=format&fit=crop&w=400&q=80';" />
+          <img src="${safeImage}" alt="${displayName}" class="w-14 h-14 object-cover rounded bg-neutral-100 flex-shrink-0" onerror="this.src='https://images.unsplash.com/photo-1620916566398-39f1143ab7be?auto=format&fit=crop&w=400&q=80';" />
           <div class="flex-1 min-w-0">
-            <h4 class="text-xs font-bold text-neutral-900 truncate">${isZh ? (item.name_zh || item.name) : item.name}</h4>
+            <h4 class="text-xs font-bold text-neutral-900 truncate">${displayName}</h4>
             <div class="flex items-center space-x-2 text-[11px] text-neutral-500 mt-0.5">
-              <span>${item.volume}</span>
+              <span>${safeVolume}</span>
               <span>•</span>
-              <span>${isZh ? '起订量:' : 'MOQ:'} ${item.moq} pcs</span>
+              <span>${isZh ? '起订量:' : 'MOQ:'} ${safeMoq} pcs</span>
             </div>
           </div>
-          <button type="button" class="remove-rfq-item text-neutral-300 hover:text-red-500 p-1 transition-colors" data-id="${item.id}" title="Remove item">
+          <button type="button" class="remove-rfq-item text-neutral-300 hover:text-red-500 p-1 transition-colors" data-id="${safeId}" title="Remove item">
             <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16"></path></svg>
           </button>
         </div>
-      `
+      `;
+          }
         )
         .join('');
 
@@ -240,7 +263,7 @@ import site from '../data/site.json';
       const label = target.querySelector('span');
       if (label) {
         const isZh = document.documentElement.lang === 'zh';
-        label.textContent = isZh ? '已加入 ✓' : 'Added ✓';
+        label.textContent = isZh ? '已加入清单' : 'Added to RFQ';
         setTimeout(() => {
           const currentIsZh = document.documentElement.lang === 'zh';
           label.textContent = currentIsZh ? '加入询价' : 'Add to RFQ';

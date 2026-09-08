@@ -1,23 +1,60 @@
 ---
-import Layout from '../../layouts/Layout.astro';
-import ProductCard from '../../components/ProductCard.astro';
-import Badge from '../../components/Badge.astro';
-import products from '../../data/products.json';
-import site from '../../data/site.json';
+import Layout from '../../../layouts/Layout.astro';
+import ProductCard from '../../../components/ProductCard.astro';
+import Badge from '../../../components/Badge.astro';
+import products from '../../../data/products.json';
+import site from '../../../data/site.json';
+
+export function getStaticPaths() {
+  return [
+    { params: { lang: 'zh' } },
+    { params: { lang: 'es' } },
+    { params: { lang: 'fr' } },
+    { params: { lang: 'de' } },
+  ];
+}
+
+const { lang } = Astro.params;
 
 const categories = [
-  { slug: 'all', label: 'All Packaging', label_zh: '全部包装型号' },
-  { slug: 'dropper', label: 'Dropper Bottles', label_zh: '精油滴管瓶' },
-  { slug: 'pump', label: 'Pump & Lotion', label_zh: '精华与乳液泵瓶' },
-  { slug: 'jar', label: 'Cream & Treatment Jars', label_zh: '面霜与眼霜宽口罐' },
-  { slug: 'spray', label: 'Mist Spray & Perfume', label_zh: '香水与细密喷雾瓶' },
+  { slug: 'all', label: 'All Packaging', label_zh: '全部包装型号', label_es: 'Todos los Envases', label_fr: 'Tous les Emballages', label_de: 'Alle Verpackungen' },
+  { slug: 'dropper', label: 'Dropper Bottles', label_zh: '精油滴管瓶', label_es: 'Frascos Cuentagotas', label_fr: 'Flacons Compte-gouttes', label_de: 'Tropfflaschen' },
+  { slug: 'pump', label: 'Pump & Lotion', label_zh: '精华与乳液泵瓶', label_es: 'Envases con Bomba', label_fr: 'Flacons Pompes', label_de: 'Pumpflaschen' },
+  { slug: 'jar', label: 'Cream & Treatment Jars', label_zh: '面霜与眼霜宽口罐', label_es: 'Tarros para Cremas', label_fr: 'Pots de Crème', label_de: 'Kosmetiktiegel' },
+  { slug: 'spray', label: 'Mist Spray & Perfume', label_zh: '香水与细密喷雾瓶', label_es: 'Perfumes y Sprays', label_fr: 'Vaporisateurs', label_de: 'Parfümflakons' },
 ];
+
+const getCategoryLabel = (cat: any) => {
+  if (lang === 'zh') return cat.label_zh;
+  if (lang === 'es') return cat.label_es || cat.label;
+  if (lang === 'fr') return cat.label_fr || cat.label;
+  if (lang === 'de') return cat.label_de || cat.label;
+  return cat.label;
+};
+
+let pageTitle = `Cosmetic Glass Bottle Catalog | ${site.name}`;
+let pageDesc = "Explore our complete line of cosmetic glass packaging: dropper bottles, treatment pump bottles, thick-wall cream pots, and perfume flacons. Low MOQ from 1,000 pcs, DDP worldwide delivery.";
+
+if (lang === 'zh') {
+  pageTitle = `化妆品玻璃瓶全系产品目录 | ${site.name}`;
+  pageDesc = "浏览全系高端化妆品玻璃包装：精油滴管瓶、乳液精华泵瓶、重底面霜膏霜罐及高定香水瓶。支持1,000只低门槛起订试单，全球DDP双清到门交付。";
+} else if (lang === 'es') {
+  pageTitle = `Catálogo de Envases de Vidrio Cosmético | ${site.name}`;
+  pageDesc = "Explore nuestra línea completa de envases cosméticos de vidrio: goteros, bombas de tratamiento, tarros y frascos de perfume. Pedido mínimo 1.000 piezas, envío DDP.";
+} else if (lang === 'fr') {
+  pageTitle = `Catalogue d'Emballages en Verre Cosmétique | ${site.name}`;
+  pageDesc = "Découvrez notre gamme complète d'emballages cosmétiques en verre : flacons compte-gouttes, pompes de soin, pots et vaporisateurs. Faible MOQ dès 1 000 pièces, livraison DDP.";
+} else if (lang === 'de') {
+  pageTitle = `Katalog für Kosmetikglasverpackungen | ${site.name}`;
+  pageDesc = "Entdecken Sie unser Sortiment an Kosmetikglasverpackungen: Tropfflaschen, Pumpflaschen, Cremetiegel und Parfümflakons. Geringe Mindestmenge 1.000 Stk., weltweite DDP-Lieferung.";
+}
 ---
 
 <Layout
-  title={`Cosmetic Glass Bottle Catalog | ${site.name}`}
+  lang={lang}
+  title={pageTitle}
   title_zh={`化妆品玻璃瓶全系产品目录 | ${site.name}`}
-  description="Explore our complete line of cosmetic glass packaging: dropper bottles, treatment pump bottles, thick-wall cream pots, and perfume flacons. Low MOQ from 1,000 pcs, DDP worldwide delivery."
+  description={pageDesc}
   description_zh="浏览全系高端化妆品玻璃包装：精油滴管瓶、乳液精华泵瓶、重底面霜膏霜罐及高定香水瓶。支持1,000只低门槛起订试单，全球DDP双清到门交付。"
 >
   <!-- Page Header -->
@@ -52,7 +89,7 @@ const categories = [
               class="filter-btn px-4 py-2 text-xs font-semibold rounded-sm border transition-all duration-200 whitespace-nowrap flex-shrink-0"
               data-category={cat.slug}
             >
-              <span data-en={cat.label} data-zh={cat.label_zh}>{cat.label}</span>
+              <span data-en={cat.label} data-zh={cat.label_zh}>{getCategoryLabel(cat)}</span>
             </button>
           ))}
         </div>
@@ -89,7 +126,7 @@ const categories = [
             data-category={product.categorySlug}
             data-search={`${product.name} ${product.name_zh || ''} ${product.subtitle || ''} ${product.subtitle_zh || ''} ${product.volume} ${product.specs.neckSize} ${product.category}`.toLowerCase()}
           >
-            <ProductCard product={product} />
+            <ProductCard product={product} lang={lang} />
           </div>
         ))}
       </div>

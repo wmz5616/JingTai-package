@@ -1,11 +1,14 @@
 ---
 import site from '../data/site.json';
+import { getAssetUrl } from '../utils/assets';
+
+const logoUrl = getAssetUrl(site.assets?.logo || '/images/logo.png');
 ---
 
 <!-- Top Announcement Banner -->
 <div class="bg-brand-dark text-neutral-300 text-xs py-2 px-4 border-b border-white/10 select-none">
   <div class="max-w-7xl mx-auto flex flex-col sm:flex-row justify-between items-center text-center gap-1 sm:gap-4">
-    <div class="flex items-center space-x-2">
+    <div class="flex flex-wrap items-center justify-center gap-x-2 text-center">
       <span class="inline-block w-2 h-2 rounded-full bg-emerald-400 animate-pulse"></span>
       <span class="font-medium text-white" data-i18n="nav_announcement_prefix">Guangzhou Supply Chain Hub:</span>
       <span class="text-neutral-400" data-i18n="nav_announcement">48-Hour Sample Dispatch • Low MOQ 1,000 Pcs • DDP Door-to-Door</span>
@@ -44,7 +47,7 @@ import site from '../data/site.json';
       <!-- Brand Logo -->
       <a href="/" class="flex items-center space-x-3 group flex-shrink-0" aria-label="广州晶泰包装制品厂">
         <img
-          src="/images/logo.png"
+          src={logoUrl}
           alt="广州晶泰包装制品厂 JINGTAI PACKAGING"
           class="h-10 sm:h-11 w-auto object-contain transition-transform duration-300 group-hover:scale-[1.02]"
         />
@@ -104,7 +107,7 @@ import site from '../data/site.json';
       <div class="flex items-center space-x-2 sm:space-x-3 flex-shrink-0">
         
         <!-- Multi-Language Switcher Dropdown (Desktop) -->
-        <div class="relative group" id="lang-switcher-container">
+        <div class="relative group hidden sm:block" id="lang-switcher-container">
           <button
             type="button"
             class="flex items-center justify-between w-[78px] px-2.5 py-1.5 text-xs font-semibold text-neutral-700 bg-neutral-100 hover:bg-neutral-200 border border-neutral-300 rounded-sm transition-colors focus:outline-none select-none"
@@ -161,7 +164,8 @@ import site from '../data/site.json';
         <button
           type="button"
           id="header-quote-btn"
-          class="hidden sm:inline-flex items-center justify-center px-4 py-2.5 text-sm font-semibold tracking-wide text-brand-dark bg-brand-gold hover:bg-brand-gold-light border border-brand-gold transition-colors duration-200 shadow-sm hover:shadow-gold rounded-sm whitespace-nowrap flex-shrink-0"
+          class="quick-quote-btn hidden sm:inline-flex items-center justify-center px-4 py-2.5 text-sm font-semibold tracking-wide text-brand-dark bg-brand-gold hover:bg-brand-gold-light border border-brand-gold transition-colors duration-200 shadow-sm hover:shadow-gold rounded-sm whitespace-nowrap flex-shrink-0"
+          data-product-title="General Wholesale Inquiry"
           data-i18n="nav_request_quote"
         >
           Request a Quote
@@ -182,83 +186,197 @@ import site from '../data/site.json';
       </div>
     </div>
   </div>
+</header>
 
-  <!-- Mobile Drawer Menu Overlay -->
-  <div id="mobile-menu" class="fixed inset-0 z-50 bg-black/60 backdrop-blur-sm hidden transition-opacity">
-    <div class="fixed top-0 right-0 bottom-0 w-80 max-w-full bg-white shadow-2xl p-6 flex flex-col justify-between overflow-y-auto">
-      <div>
-        <div class="flex items-center justify-between pb-6 border-b border-neutral-100">
-          <div class="flex items-center space-x-2">
-            <img src="/images/logo.png" alt="广州晶泰包装制品厂" class="h-8 w-auto object-contain" />
-          </div>
-          <button id="close-mobile-menu" class="p-2 text-neutral-500 hover:text-neutral-900" aria-label="Close menu">
-            <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path></svg>
-          </button>
-        </div>
-
-        <!-- Mobile Language Quick Pills -->
-        <div class="py-4 border-b border-neutral-100">
-          <span class="block text-xs font-semibold text-neutral-500 uppercase tracking-wider mb-2">Language:</span>
-          <div class="flex flex-wrap gap-1.5 text-xs">
-            <button type="button" class="px-2.5 py-1 bg-neutral-100 rounded border border-neutral-200 font-mono font-medium lang-select-opt" data-lang="en">EN</button>
-            <button type="button" class="px-2.5 py-1 bg-neutral-100 rounded border border-neutral-200 font-mono font-medium lang-select-opt" data-lang="zh">中文</button>
-            <button type="button" class="px-2.5 py-1 bg-neutral-100 rounded border border-neutral-200 font-mono font-medium lang-select-opt" data-lang="es">ES</button>
-            <button type="button" class="px-2.5 py-1 bg-neutral-100 rounded border border-neutral-200 font-mono font-medium lang-select-opt" data-lang="fr">FR</button>
-            <button type="button" class="px-2.5 py-1 bg-neutral-100 rounded border border-neutral-200 font-mono font-medium lang-select-opt" data-lang="de">DE</button>
-          </div>
-        </div>
-
-        <nav class="flex flex-col py-6 space-y-4 text-base font-medium text-neutral-800">
-          <a href="/" class="py-2 hover:text-brand-gold border-b border-neutral-50" data-i18n="nav_home">Home</a>
-          <a href="/products" class="py-2 hover:text-brand-gold border-b border-neutral-50" data-i18n="nav_catalog">Product Catalog</a>
-          <a href="/products?category=dropper" class="pl-4 text-sm text-neutral-600 hover:text-brand-gold" data-i18n="nav_droppers">↳ Dropper Bottles</a>
-          <a href="/products?category=pump" class="pl-4 text-sm text-neutral-600 hover:text-brand-gold" data-i18n="nav_pumps">↳ Pump & Lotion</a>
-          <a href="/products?category=jar" class="pl-4 text-sm text-neutral-600 hover:text-brand-gold" data-i18n="nav_jars">↳ Cream & Treatment Jars</a>
-          <a href="/products?category=spray" class="pl-4 text-sm text-neutral-600 hover:text-brand-gold" data-i18n="nav_spray">↳ Mist Spray & Perfume</a>
-          <a href="/#customization" class="py-2 hover:text-brand-gold border-b border-neutral-50" data-i18n="nav_custom_finishes">Custom Finishes</a>
-          <a href="/sample-kit" class="py-2 hover:text-brand-gold border-b border-neutral-50 flex items-center justify-between">
-            <span data-i18n="nav_free_sample">Free Sample Kit</span>
-            <span class="bg-amber-100 text-amber-800 text-xs px-2 py-0.5 rounded font-bold" data-i18n="nav_free_badge">FREE</span>
-          </a>
-          <a href="/about" class="py-2 hover:text-brand-gold border-b border-neutral-50" data-i18n="nav_about">About Factory & QA</a>
-          <a href="/about#guangzhou-hub" class="py-2 hover:text-brand-gold border-b border-neutral-50" data-i18n="nav_guangzhou_hub">Guangzhou Supply Chain</a>
-        </nav>
+<!-- Mobile Drawer Menu Overlay (Porcelain White Luxury Theme) -->
+<div id="mobile-menu" class="fixed inset-0 z-50 bg-black/60 backdrop-blur-sm hidden transition-opacity duration-300">
+  <div class="fixed top-0 right-0 bottom-0 w-full max-w-[340px] sm:max-w-sm bg-white text-neutral-900 shadow-2xl flex flex-col justify-between overflow-hidden z-50 border-l border-neutral-200">
+    
+    <!-- 1. Drawer Header -->
+    <div class="px-5 py-4 border-b border-neutral-100 flex items-center justify-between shrink-0 bg-white">
+      <div class="flex items-center space-x-2.5">
+        <img src={logoUrl} alt="广州晶泰包装制品厂" class="h-8 w-auto object-contain" />
       </div>
+      <button
+        type="button"
+        id="close-mobile-menu"
+        class="w-8 h-8 rounded-full bg-neutral-100 border border-neutral-200 hover:bg-neutral-200 flex items-center justify-center text-neutral-500 hover:text-neutral-900 transition-colors focus:outline-none cursor-pointer"
+        aria-label="Close menu"
+      >
+        <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path></svg>
+      </button>
+    </div>
 
-      <div class="pt-6 border-t border-neutral-100 space-y-3">
-        <button
-          type="button"
-          id="mobile-quote-trigger"
-          class="w-full py-3 bg-brand-gold text-brand-dark font-semibold text-center rounded-sm shadow-sm hover:bg-brand-gold-light transition-colors"
-          data-i18n="nav_request_quote"
-        >
-          Request Wholesale Quote
-        </button>
-        <!-- WeChat in Chinese mode -->
-        <button
-          type="button"
-          data-open-wechat
-          class="contact-lang-zh w-full py-2.5 bg-[#07C160] hover:bg-[#06ad56] text-white font-medium text-sm flex items-center justify-center space-x-2 rounded-sm transition-colors cursor-pointer"
-        >
-          <svg class="w-4 h-4 fill-current" viewBox="0 0 24 24">
-            <path d="M8.691 2.188C3.891 2.188 0 5.478 0 9.532c0 2.212 1.157 4.205 2.972 5.568l-.75 2.748 3.19-1.636c1.02.28 2.12.44 3.279.44.204 0 .405-.008.607-.021-.24-.707-.373-1.464-.373-2.253 0-4.054 3.891-7.344 8.691-7.344.296 0 .588.014.877.038C17.336 4.795 13.34 2.188 8.691 2.188zm-2.316 4.148c.677 0 1.226.549 1.226 1.226s-.549 1.226-1.226 1.226c-.676 0-1.225-.549-1.225-1.226s.549-1.226 1.225-1.226zm5.18 0c.677 0 1.226.549 1.226 1.226s-.549 1.226-1.226 1.226c-.677 0-1.226-.549-1.226-1.226s.549-1.226 1.226-1.226zm5.94 4.544c-4.106 0-7.435 2.82-7.435 6.297 0 3.478 3.329 6.297 7.435 6.297.915 0 1.792-.137 2.607-.386l2.454 1.258-.577-2.113c1.558-1.047 2.548-2.58 2.548-4.301 0-3.477-3.329-6.297-7.432-6.297zm-2.316 3.555c.58 0 1.05.47 1.05 1.051 0 .58-.47 1.05-1.05 1.05-.581 0-1.051-.47-1.051-1.05 0-.581.47-1.051 1.051-1.051zm4.436 0c.58 0 1.051.47 1.051 1.051 0 .58-.471 1.05-1.051 1.05-.58 0-1.05-.47-1.05-1.05 0-.581.47-1.051 1.05-1.051z"/>
-          </svg>
-          <span>微信业务对接 ({site.wechatFormatted})</span>
-        </button>
-
-        <!-- WhatsApp in English mode -->
-        <a
-          href={site.whatsappDirectUrl}
-          target="_blank"
-          rel="noopener noreferrer"
-          class="contact-lang-en w-full py-2.5 bg-emerald-600 text-white font-medium text-sm flex items-center justify-center space-x-2 rounded-sm hover:bg-emerald-700 transition-colors"
-        >
-          <span data-i18n="nav_whatsapp_chat">Chat on WhatsApp</span>
-        </a>
+    <!-- 2. Language Segmented Pill Switcher -->
+    <div class="px-5 py-3 border-b border-neutral-100 bg-neutral-50/70 shrink-0">
+      <div class="flex items-center justify-between mb-1.5 px-0.5">
+        <span class="text-[10px] font-mono tracking-widest uppercase text-neutral-400 font-semibold" data-zh="全球多语言站点" data-en="GLOBAL SITES">GLOBAL SITES</span>
+        <span class="text-[10px] font-mono text-emerald-600 flex items-center gap-1">
+          <span class="w-1.5 h-1.5 rounded-full bg-emerald-500 animate-pulse"></span>
+          <span data-zh="广州外贸直供" data-en="DDP DIRECT">GLOBAL HUB</span>
+        </span>
+      </div>
+      <div class="grid grid-cols-5 p-1 bg-neutral-100 rounded-lg border border-neutral-200 gap-1 text-xs">
+        <button type="button" class="mobile-lang-pill py-1.5 rounded text-center font-medium font-mono transition-all text-neutral-600 hover:text-neutral-900 cursor-pointer" data-lang="en">EN</button>
+        <button type="button" class="mobile-lang-pill py-1.5 rounded text-center font-medium transition-all text-neutral-600 hover:text-neutral-900 cursor-pointer" data-lang="zh">中文</button>
+        <button type="button" class="mobile-lang-pill py-1.5 rounded text-center font-medium font-mono transition-all text-neutral-600 hover:text-neutral-900 cursor-pointer" data-lang="es">ES</button>
+        <button type="button" class="mobile-lang-pill py-1.5 rounded text-center font-medium font-mono transition-all text-neutral-600 hover:text-neutral-900 cursor-pointer" data-lang="fr">FR</button>
+        <button type="button" class="mobile-lang-pill py-1.5 rounded text-center font-medium font-mono transition-all text-neutral-600 hover:text-neutral-900 cursor-pointer" data-lang="de">DE</button>
       </div>
     </div>
+
+    <!-- 3. Scrollable Navigation Content -->
+    <div class="overflow-y-auto flex-1 px-5 py-4 space-y-5">
+      
+      <!-- Core Products Section -->
+      <div>
+        <div class="flex items-center justify-between pb-2 mb-2.5 border-b border-neutral-100">
+          <span class="text-[11px] font-mono uppercase tracking-widest text-brand-gold-dark font-semibold" data-zh="核心瓶型系列" data-en="PRODUCT COLLECTIONS">PRODUCT COLLECTIONS</span>
+          <a href="/products" class="text-xs text-neutral-500 hover:text-brand-gold-dark transition-colors flex items-center space-x-0.5 font-medium">
+            <span data-zh="查看全部" data-en="View All">View All</span>
+            <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/></svg>
+          </a>
+        </div>
+
+        <!-- 2x2 Product Micro-Cards -->
+        <div class="grid grid-cols-2 gap-2">
+          <a href="/products?category=dropper" class="p-2.5 rounded-lg bg-neutral-50 hover:bg-neutral-100/80 border border-neutral-200/80 hover:border-brand-gold transition-all group flex flex-col justify-between min-h-[66px]">
+            <div class="flex items-center justify-between text-neutral-500 group-hover:text-brand-gold-dark">
+              <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.8" d="M19.428 15.428a2 2 0 00-1.022-.547l-2.387-.477a6 6 0 00-3.86.517l-.318.158a6 6 0 01-3.86.517L6.05 15.21a2 2 0 00-1.806.547M8 4h8l-1 1v5.172a2 2 0 00.586 1.414l5 5c1.26 1.26.367 3.414-1.415 3.414H4.828c-1.782 0-2.674-2.154-1.414-3.414l5-5A2 2 0 009 10.172V5L8 4z"/></svg>
+              <span class="text-[10px] font-mono text-neutral-400 bg-white px-1 py-0.2 rounded border border-neutral-200">15-50ml</span>
+            </div>
+            <span class="text-xs font-medium text-neutral-800 group-hover:text-brand-gold-dark" data-i18n="nav_droppers">Dropper Bottles</span>
+          </a>
+
+          <a href="/products?category=pump" class="p-2.5 rounded-lg bg-neutral-50 hover:bg-neutral-100/80 border border-neutral-200/80 hover:border-brand-gold transition-all group flex flex-col justify-between min-h-[66px]">
+            <div class="flex items-center justify-between text-neutral-500 group-hover:text-brand-gold-dark">
+              <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.8" d="M12 6V4m0 2a2 2 0 100 4m0-4a2 2 0 110 4m-6 8a2 2 0 100-4m0 4a2 2 0 110-4m0 4v2m0-6V4m6 6v10m6-2a2 2 0 100-4m0 4a2 2 0 110-4m0 4v2m0-6V4"/></svg>
+              <span class="text-[10px] font-mono text-neutral-400 bg-white px-1 py-0.2 rounded border border-neutral-200">30-100ml</span>
+            </div>
+            <span class="text-xs font-medium text-neutral-800 group-hover:text-brand-gold-dark" data-i18n="nav_pumps">Pump & Lotion</span>
+          </a>
+
+          <a href="/products?category=jar" class="p-2.5 rounded-lg bg-neutral-50 hover:bg-neutral-100/80 border border-neutral-200/80 hover:border-brand-gold transition-all group flex flex-col justify-between min-h-[66px]">
+            <div class="flex items-center justify-between text-neutral-500 group-hover:text-brand-gold-dark">
+              <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.8" d="M20 7l-8-4-8 4m16 0l-8 4m8-4v10l-8 4m0-10L4 7m8 4v10M4 7v10l8 4"/></svg>
+              <span class="text-[10px] font-mono text-neutral-400 bg-white px-1 py-0.2 rounded border border-neutral-200">15-50g</span>
+            </div>
+            <span class="text-xs font-medium text-neutral-800 group-hover:text-brand-gold-dark" data-i18n="nav_jars">Cream & Jars</span>
+          </a>
+
+          <a href="/products?category=spray" class="p-2.5 rounded-lg bg-neutral-50 hover:bg-neutral-100/80 border border-neutral-200/80 hover:border-brand-gold transition-all group flex flex-col justify-between min-h-[66px]">
+            <div class="flex items-center justify-between text-neutral-500 group-hover:text-brand-gold-dark">
+              <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.8" d="M5 3v4M3 5h4M6 17v4m-2-2h4m5-16l2.286 6.857L21 12l-5.714 2.143L13 21l-2.286-6.857L5 12l5.714-2.143L13 3z"/></svg>
+              <span class="text-[10px] font-mono text-neutral-400 bg-white px-1 py-0.2 rounded border border-neutral-200">50-100ml</span>
+            </div>
+            <span class="text-xs font-medium text-neutral-800 group-hover:text-brand-gold-dark" data-i18n="nav_spray">Mist & Spray</span>
+          </a>
+        </div>
+      </div>
+
+      <!-- VIP Free Sample Kit Card -->
+      <a href="/sample-kit" class="relative block overflow-hidden rounded-xl bg-gradient-to-r from-amber-50 to-amber-100/60 border border-amber-300/80 p-3.5 group hover:border-amber-400 transition-all shadow-xs">
+        <div class="flex items-center justify-between">
+          <div class="space-y-1">
+            <div class="flex items-center space-x-2">
+              <span class="text-xs font-bold text-amber-950 tracking-wide" data-i18n="nav_free_sample">Free Sample Kit</span>
+              <span class="px-1.5 py-0.5 bg-amber-500 text-white text-[9px] font-extrabold rounded" data-i18n="nav_free_badge">FREE</span>
+            </div>
+            <p class="text-[11px] text-amber-800/90" data-zh="含4款核心瓶型 + 表面工艺样板 • 48H极速直发" data-en="4 Core Bottles + Finish Swatches">
+              48-Hour Sample Dispatch • 4 Hot Bottles
+            </p>
+          </div>
+          <div class="w-7 h-7 rounded-full bg-amber-200/70 flex items-center justify-center text-amber-800 group-hover:bg-amber-500 group-hover:text-white transition-colors shrink-0">
+            <svg class="w-3.5 h-3.5 transform group-hover:translate-x-0.5 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M9 5l7 7-7 7"/></svg>
+          </div>
+        </div>
+      </a>
+
+      <!-- Factory & Capabilities Section -->
+      <div>
+        <span class="block text-[10px] font-mono uppercase tracking-widest text-neutral-400 font-semibold mb-2" data-zh="制造实力与服务" data-en="CAPABILITIES & FACTORY">CAPABILITIES & FACTORY</span>
+        <div class="space-y-1 text-xs">
+          <a href="/#customization" class="flex items-center justify-between py-2 px-3 rounded-lg hover:bg-neutral-50 transition-colors text-neutral-700 hover:text-neutral-900 group">
+            <div class="flex items-center space-x-2.5">
+              <svg class="w-4 h-4 text-brand-gold-dark shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.8" d="M7 21a4 4 0 01-4-4V5a2 2 0 012-2h4a2 2 0 012 2v12a4 4 0 01-4 4zm0 0h12a2 2 0 002-2v-4a2 2 0 00-2-2h-2.343M11 7.343l1.657-1.657a2 2 0 012.828 0l2.829 2.829a2 2 0 010 2.828l-8.486 8.485M7 17h.01"/></svg>
+              <span data-i18n="nav_custom_finishes">Custom Finishes</span>
+            </div>
+            <span class="text-[10px] text-neutral-500 bg-neutral-100 px-1.5 py-0.5 rounded" data-zh="丝印/烫金/磨砂" data-en="Pantone Match">丝印/烫金/磨砂</span>
+          </a>
+
+          <a href="/about" class="flex items-center justify-between py-2 px-3 rounded-lg hover:bg-neutral-50 transition-colors text-neutral-700 hover:text-neutral-900 group">
+            <div class="flex items-center space-x-2.5">
+              <svg class="w-4 h-4 text-brand-gold-dark shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.8" d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z"/></svg>
+              <span data-i18n="nav_about">About Factory & QA</span>
+            </div>
+            <span class="text-[10px] text-neutral-500 bg-neutral-100 px-1.5 py-0.5 rounded" data-zh="AQL 2.5 质检" data-en="ISO 9001 QA">AQL 2.5 质检</span>
+          </a>
+
+          <a href="/about#guangzhou-hub" class="flex items-center justify-between py-2 px-3 rounded-lg hover:bg-neutral-50 transition-colors text-neutral-700 hover:text-neutral-900 group">
+            <div class="flex items-center space-x-2.5">
+              <svg class="w-4 h-4 text-brand-gold-dark shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.8" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"/><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.8" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"/></svg>
+              <span data-i18n="nav_guangzhou_hub">Guangzhou Hub</span>
+            </div>
+            <span class="text-[10px] text-neutral-500 bg-neutral-100 px-1.5 py-0.5 rounded" data-zh="白云美妆供应链" data-en="Direct Export">白云美妆供应链</span>
+          </a>
+        </div>
+      </div>
+
+    </div>
+
+    <!-- 4. Drawer Bottom Action Area -->
+    <div class="p-5 pt-3 border-t border-neutral-200/80 bg-neutral-50/90 space-y-2.5 shrink-0">
+      
+      <!-- Primary Quote CTA -->
+      <button
+        type="button"
+        id="mobile-quote-trigger"
+        class="quick-quote-btn w-full py-3 px-4 bg-brand-dark hover:bg-neutral-800 text-white font-bold text-xs rounded-lg transition-all shadow-md flex items-center justify-center space-x-2 cursor-pointer"
+        data-product-title="General Wholesale Inquiry"
+        data-i18n="nav_request_quote"
+      >
+        <svg class="w-4 h-4 text-brand-gold" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 10h.01M12 10h.01M16 10h.01M9 16H5a2 2 0 01-2-2V6a2 2 0 012-2h14a2 2 0 012 2v8a2 2 0 01-2 2h-5l-5 5v-5z"/></svg>
+        <span>Request Wholesale Quote</span>
+      </button>
+
+      <!-- WeChat in Chinese mode -->
+      <button
+        type="button"
+        data-open-wechat
+        class="contact-lang-zh w-full py-2.5 px-3 bg-white hover:bg-neutral-50 border border-neutral-200 hover:border-[#07C160]/50 text-neutral-800 rounded-lg transition-colors flex items-center justify-between text-xs cursor-pointer group shadow-xs"
+      >
+        <div class="flex items-center space-x-2">
+          <svg class="w-4 h-4 text-[#07C160]" fill="currentColor" viewBox="0 0 24 24"><path d="M8.691 2.188C3.891 2.188 0 5.478 0 9.532c0 2.212 1.157 4.205 2.972 5.568l-.75 2.748 3.19-1.636c1.02.28 2.12.44 3.279.44.204 0 .405-.008.607-.021-.24-.707-.373-1.464-.373-2.253 0-4.054 3.891-7.344 8.691-7.344.296 0 .588.014.877.038C17.336 4.795 13.34 2.188 8.691 2.188zm-2.316 4.148c.677 0 1.226.549 1.226 1.226s-.549 1.226-1.226 1.226c-.676 0-1.225-.549-1.225-1.226s.549-1.226 1.225-1.226zm5.18 0c.677 0 1.226.549 1.226 1.226s-.549 1.226-1.226 1.226c-.677 0-1.226-.549-1.226-1.226s.549-1.226 1.226-1.226zm5.94 4.544c-4.106 0-7.435 2.82-7.435 6.297 0 3.478 3.329 6.297 7.435 6.297.915 0 1.792-.137 2.607-.386l2.454 1.258-.577-2.113c1.558-1.047 2.548-2.58 2.548-4.301 0-3.477-3.329-6.297-7.432-6.297zm-2.316 3.555c.58 0 1.05.47 1.05 1.051 0 .58-.47 1.05-1.05 1.05-.581 0-1.051-.47-1.051-1.05 0-.581.47-1.051 1.051-1.051zm4.436 0c.58 0 1.051.47 1.051 1.051 0 .58-.471 1.05-1.051 1.05-.58 0-1.05-.47-1.05-1.05 0-.581.47-1.051 1.05-1.051z"/></svg>
+          <span class="font-medium">官方微信直联</span>
+        </div>
+        <span class="font-mono text-[#07C160] text-[11px] group-hover:underline flex items-center gap-1 font-medium">
+          {site.wechatFormatted}
+          <span class="text-[10px] text-neutral-400 font-normal">(扫码)</span>
+        </span>
+      </button>
+
+      <!-- WhatsApp in English mode -->
+      <a
+        href={site.whatsappDirectUrl}
+        target="_blank"
+        rel="noopener noreferrer"
+        class="contact-lang-en w-full py-2.5 px-3 bg-white hover:bg-neutral-50 border border-neutral-200 hover:border-emerald-500 text-neutral-800 rounded-lg transition-colors flex items-center justify-between text-xs shadow-xs"
+      >
+        <div class="flex items-center space-x-2">
+          <svg class="w-4 h-4 text-emerald-500" fill="currentColor" viewBox="0 0 24 24"><path d="M.057 24l1.687-6.163c-1.041-1.804-1.588-3.849-1.587-5.946.003-6.556 5.338-11.891 11.893-11.891 3.181.001 6.167 1.24 8.413 3.488 2.245 2.248 3.481 5.236 3.48 8.414-.003 6.557-5.338 11.892-11.893 11.892-1.99-.001-3.951-.5-5.688-1.448l-6.305 1.654zm6.597-3.807c1.676.995 3.276 1.591 5.392 1.592 5.448 0 9.886-4.434 9.889-9.885.002-5.462-4.415-9.89-9.881-9.892-5.452 0-9.887 4.434-9.889 9.884-.001 2.225.651 3.891 1.746 5.634l-.999 3.648 3.742-.981zm11.387-5.464c-.074-.124-.272-.198-.57-.347-.297-.149-1.758-.868-2.031-.967-.272-.099-.47-.149-.669.149-.198.297-.768.967-.941 1.165-.173.198-.347.223-.644.074-.297-.149-1.255-.462-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.297-.347.446-.521.151-.172.2-.296.3-.495.099-.198.05-.372-.025-.521-.075-.148-.669-1.611-.916-2.206-.242-.579-.487-.501-.669-.51l-.57-.01c-.198 0-.52.074-.792.372s-1.04 1.016-1.04 2.479 1.065 2.876 1.213 3.074c.149.198 2.095 3.2 5.076 4.487.709.306 1.263.489 1.694.626.712.226 1.36.194 1.872.118.571-.085 1.758-.719 2.006-1.413.248-.695.248-1.29.173-1.414z"/></svg>
+         <span class="font-medium">Direct WhatsApp</span>
+       </div>
+       <span class="font-mono text-emerald-600 text-[11px] font-medium">Chat Now →</span>
+     </a>
+
+     <!-- Subtle micro assurance -->
+     <p class="text-[10px] text-neutral-400 text-center tracking-wider font-mono pt-0.5">
+       1,000 PCS MOQ • 48H DISPATCH • DDP DOOR-TO-DOOR
+     </p>
+   </div>
+
   </div>
-</header>
+</div>
 
 <script>
   // Mobile Menu Toggling logic
@@ -268,12 +386,27 @@ import site from '../data/site.json';
   const mobileQuoteBtn = document.getElementById('mobile-quote-trigger');
   const headerQuoteBtn = document.getElementById('header-quote-btn');
 
+  function syncActiveMobileLang() {
+    const currentLang = document.documentElement.lang || 'en';
+    mobileMenu?.querySelectorAll('.mobile-lang-pill').forEach((btn) => {
+      const bLang = btn.getAttribute('data-lang');
+      if (bLang === currentLang) {
+        btn.className = 'mobile-lang-pill py-1.5 rounded text-center font-bold font-mono transition-all bg-neutral-900 text-white shadow-sm';
+      } else {
+        btn.className = 'mobile-lang-pill py-1.5 rounded text-center font-medium font-mono transition-all text-neutral-600 hover:text-neutral-900 hover:bg-neutral-200/70';
+      }
+    });
+  }
+
   function openMenu() {
     mobileMenu?.classList.remove('hidden');
+    document.body.style.overflow = 'hidden';
+    syncActiveMobileLang();
   }
 
   function closeMenu() {
     mobileMenu?.classList.add('hidden');
+    document.body.style.overflow = '';
   }
 
   menuBtn?.addEventListener('click', openMenu);
@@ -282,9 +415,16 @@ import site from '../data/site.json';
     if (e.target === mobileMenu) closeMenu();
   });
 
+  mobileMenu?.querySelectorAll('a').forEach((link) => {
+    link.addEventListener('click', closeMenu);
+  });
+
   // Connect Quote triggers to the global Quote Modal
   function triggerQuoteModal() {
     closeMenu();
+    if ((window as any).openQuoteModal) {
+      (window as any).openQuoteModal('General Wholesale Inquiry');
+    }
     window.dispatchEvent(new CustomEvent('open-quote-modal', {
       detail: { productTitle: 'General Wholesale Inquiry' }
     }));
@@ -293,16 +433,28 @@ import site from '../data/site.json';
   headerQuoteBtn?.addEventListener('click', triggerQuoteModal);
   mobileQuoteBtn?.addEventListener('click', triggerQuoteModal);
 
-  // Language Switcher Options
-  document.querySelectorAll('.lang-select-opt').forEach((btn) => {
+  // Language Switcher Options (Navigates to static language URL)
+  document.querySelectorAll('.lang-select-opt, .mobile-lang-pill').forEach((btn) => {
     btn.addEventListener('click', (e) => {
       e.stopPropagation();
       const lang = btn.getAttribute('data-lang');
-      if (lang && lang === document.documentElement.lang) {
-        return; // Avoid redundant work if already on this language
-      }
-      if (lang && (window as any).setAuraLang) {
-        (window as any).setAuraLang(lang);
+      if (lang) {
+        try {
+          localStorage.setItem('aura_preferred_lang', lang);
+        } catch {}
+
+        const path = window.location.pathname;
+        const cleanPath = path.replace(/^\/(zh|es|fr|de)(\/|$)/, '$2') || '/';
+        const targetUrl = lang === 'en' ? cleanPath : `/${lang}${cleanPath === '/' ? '' : cleanPath}`;
+
+        if (targetUrl !== window.location.pathname) {
+          window.location.href = targetUrl;
+          return;
+        }
+
+        if ((window as any).setAuraLang) {
+          (window as any).setAuraLang(lang);
+        }
       }
     });
   });

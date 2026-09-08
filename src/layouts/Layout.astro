@@ -6,6 +6,7 @@ import InquiryDrawer from '../components/InquiryDrawer.astro';
 import WhatsAppButton from '../components/WhatsAppButton.astro';
 import WeChatModal from '../components/WeChatModal.astro';
 import site from '../data/site.json';
+import { getAssetUrl } from '../utils/assets';
 import '../styles/global.css';
 
 interface Props {
@@ -17,6 +18,7 @@ interface Props {
   image?: string;
   type?: 'website' | 'product' | 'article';
   schemaJson?: any;
+  lang?: string;
 }
 
 const {
@@ -28,9 +30,26 @@ const {
   image = 'https://images.unsplash.com/photo-1620916566398-39f1143ab7be?auto=format&fit=crop&w=1200&q=80',
   type = 'website',
   schemaJson,
+  lang = 'en',
 } = Astro.props;
 
 const canonicalURL = new URL(Astro.url.pathname, site.url);
+
+// Path calculation for SEO hreflangs
+const pathname = Astro.url.pathname;
+const cleanPath = pathname.replace(/^\/(zh|es|fr|de)(\/|$)/, '$2') || '/';
+const normalizedCleanPath = cleanPath.startsWith('/') ? cleanPath : `/${cleanPath}`;
+
+const getLangUrl = (locale: string) => {
+  if (locale === 'en') {
+    return `${site.url}${normalizedCleanPath}`;
+  }
+  const suffix = normalizedCleanPath === '/' ? '' : normalizedCleanPath;
+  return `${site.url}/${locale}${suffix}`;
+};
+
+const effectiveTitle = lang === 'zh' ? title_zh : title;
+const effectiveDescription = lang === 'zh' ? description_zh : description;
 
 // Global Organization Schema
 const orgSchema = {
@@ -39,7 +58,7 @@ const orgSchema = {
   name: site.companyName,
   alternateName: site.name,
   url: site.url,
-  logo: `${site.url}/images/logo.png`,
+  logo: getAssetUrl(site.assets?.logo || '/images/logo.png'),
   description: site.description,
   address: {
     '@type': 'PostalAddress',
@@ -52,19 +71,27 @@ const orgSchema = {
     telephone: site.whatsapp,
     email: site.email,
     contactType: 'Customer Support & B2B Sales',
-    availableLanguage: ['English', 'Chinese'],
+    availableLanguage: ['English', 'Chinese', 'Spanish', 'French', 'German'],
   },
 };
 ---
 
 <!doctype html>
-<html lang="en" class="scroll-smooth">
+<html lang={lang} class="scroll-smooth">
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link rel="icon" type="image/png" href="/favicon.png" />
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
     <meta name="generator" content={Astro.generator} />
+
+    <!-- Google Multi-Language Alternates (hreflang for SEO) -->
+    <link rel="alternate" hreflang="x-default" href={getLangUrl('en')} />
+    <link rel="alternate" hreflang="en" href={getLangUrl('en')} />
+    <link rel="alternate" hreflang="zh" href={getLangUrl('zh')} />
+    <link rel="alternate" hreflang="es" href={getLangUrl('es')} />
+    <link rel="alternate" hreflang="fr" href={getLangUrl('fr')} />
+    <link rel="alternate" hreflang="de" href={getLangUrl('de')} />
 
     <!-- Dual Language Meta Tags for Instant Switching -->
     <meta name="title-en" content={title} />
@@ -73,30 +100,31 @@ const orgSchema = {
     <meta name="description-zh" content={description_zh} />
 
     <!-- Primary Meta Tags -->
-    <title>{title}</title>
-    <meta name="title" content={title} />
-    <meta name="description" content={description} />
+    <title>{effectiveTitle}</title>
+    <meta name="title" content={effectiveTitle} />
+    <meta name="description" content={effectiveDescription} />
     <meta name="keywords" content={keywords} />
     <link rel="canonical" href={canonicalURL} />
 
     <!-- Open Graph / Facebook -->
     <meta property="og:type" content={type} />
     <meta property="og:url" content={canonicalURL} />
-    <meta property="og:title" content={title} />
-    <meta property="og:description" content={description} />
-    <meta property="og:image" content={image} />
+    <meta property="og:title" content={effectiveTitle} />
+    <meta property="og:description" content={effectiveDescription} />
+    <meta property="og:image" content={getAssetUrl(image)} />
 
     <!-- Twitter -->
     <meta property="twitter:card" content="summary_large_image" />
     <meta property="twitter:url" content={canonicalURL} />
-    <meta property="twitter:title" content={title} />
-    <meta property="twitter:description" content={description} />
-    <meta property="twitter:image" content={image} />
+    <meta property="twitter:title" content={effectiveTitle} />
+    <meta property="twitter:description" content={effectiveDescription} />
+    <meta property="twitter:image" content={getAssetUrl(image)} />
 
-    <!-- Preconnect to Google Fonts & CDN -->
+    <!-- Preconnect to Google Fonts & CDN with display=swap -->
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link rel="preconnect" href="https://images.unsplash.com" />
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Noto+Serif+SC:wght@400;500;600;700&family=Playfair+Display:ital,wght@0,400;0,500;0,600;0,700;1,400&display=swap" />
 
     <!-- Organization Structured Data -->
     <script type="application/ld+json" set:html={JSON.stringify(orgSchema)} />
@@ -106,10 +134,16 @@ const orgSchema = {
       <script type="application/ld+json" set:html={JSON.stringify(schemaJson)} />
     )}
 
-    <!-- Immediate Inline Language Pre-detection (Browser > IP, prevents FOIC) -->
+    <!-- Immediate Inline Language Pre-detection (Static Route > Browser > IP, prevents FOIC) -->
     <script is:inline>
       (function() {
         try {
+          var path = window.location.pathname;
+          var pathMatch = path.match(/^\/(zh|es|fr|de)(\/|$)/);
+          if (pathMatch) {
+            document.documentElement.lang = pathMatch[1];
+            return;
+          }
           var saved = localStorage.getItem('aura_preferred_lang');
           var target = 'en';
           if (saved && ['en', 'zh', 'es', 'fr', 'de'].indexOf(saved) !== -1) {
@@ -147,6 +181,16 @@ const orgSchema = {
       }
 
       async function initI18n() {
+        const path = window.location.pathname;
+        const pathMatch = path.match(/^\/(zh|es|fr|de)(\/|$)/);
+        if (pathMatch) {
+          const pathLang = pathMatch[1] as any;
+          document.documentElement.lang = pathLang;
+          applyTranslations(pathLang);
+          syncDocumentMetadata(pathLang);
+          return;
+        }
+
         const initialLang = (document.documentElement.lang || 'en') as any;
         applyTranslations(initialLang);
         syncDocumentMetadata(initialLang);
@@ -176,7 +220,7 @@ const orgSchema = {
     </script>
   </head>
 
-  <body class="min-h-screen flex flex-col bg-[#faf9f6] text-neutral-900 font-sans antialiased selection:bg-brand-gold selection:text-brand-dark">
+  <body class="min-h-screen flex flex-col bg-[#faf9f6] text-neutral-900 font-sans antialiased selection:bg-brand-gold selection:text-brand-dark overflow-x-hidden">
     <!-- Main Global Header -->
     <Header />
 

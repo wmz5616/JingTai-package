@@ -51,18 +51,35 @@ export function detectBrowserLang(): SupportedLang | null {
  */
 export async function detectIpLang(): Promise<SupportedLang | null> {
   try {
-    const controller = new AbortController();
-    const timeoutId = setTimeout(() => controller.abort(), 1200); // 1.2s timeout
+    // 1. Try Cloudflare Pages edge geo endpoint first (zero latency,同源安全)
+    const edgeController = new AbortController();
+    const edgeTimeout = setTimeout(() => edgeController.abort(), 800);
+    
+    let country = '';
+    try {
+      const edgeRes = await fetch('/api/geo', { signal: edgeController.signal });
+      clearTimeout(edgeTimeout);
+      if (edgeRes.ok) {
+        const edgeData = await edgeRes.json();
+        country = (edgeData.country || '').toUpperCase();
+      }
+    } catch {
+      clearTimeout(edgeTimeout);
+    }
 
-    const res = await fetch('https://api.country.is/', {
-      signal: controller.signal,
-    });
-    clearTimeout(timeoutId);
+    // 2. Fallback to external lookup if edge endpoint not responding (e.g. local preview)
+    if (!country) {
+      const controller = new AbortController();
+      const timeoutId = setTimeout(() => controller.abort(), 1200);
+      const res = await fetch('https://api.country.is/', { signal: controller.signal });
+      clearTimeout(timeoutId);
+      if (res.ok) {
+        const data = await res.json();
+        country = (data.country || '').toUpperCase();
+      }
+    }
 
-    if (res.ok) {
-      const data = await res.json();
-      const country = (data.country || '').toUpperCase();
-
+    if (country) {
       // Country to Language Mapping
       if (['CN', 'HK', 'TW', 'MO'].includes(country)) return 'zh';
       if (['ES', 'MX', 'AR', 'CO', 'CL', 'PE', 'VE', 'EC', 'GT', 'CU', 'DO', 'HN', 'PY', 'SV', 'NI', 'CR', 'PA', 'UY', 'BO'].includes(country)) return 'es';

@@ -1,4 +1,4 @@
 User-agent: *
 Allow: /
 
-Sitemap: https://aurapackaging.com/sitemap.xml
+Sitemap: https://jingtaipackaging.com/sitemap-index.xml

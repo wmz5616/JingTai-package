@@ -1,14 +1,43 @@
 ---
-import Layout from '../layouts/Layout.astro';
-import Button from '../components/Button.astro';
-import Badge from '../components/Badge.astro';
-import site from '../data/site.json';
+import Layout from '../../layouts/Layout.astro';
+import Button from '../../components/Button.astro';
+import Badge from '../../components/Badge.astro';
+import site from '../../data/site.json';
+
+export function getStaticPaths() {
+  return [
+    { params: { lang: 'zh' } },
+    { params: { lang: 'es' } },
+    { params: { lang: 'fr' } },
+    { params: { lang: 'de' } },
+  ];
+}
+
+const { lang } = Astro.params;
+
+let pageTitle = `About Us & Guangzhou Hub | ${site.name}`;
+let pageDesc = "Learn how Jingtai Packaging provides turnkey cosmetic packaging solutions, pre-shipment quality assurance, and agile Guangzhou supply chain management for global beauty brands.";
+
+if (lang === 'zh') {
+  pageTitle = `关于我们与广州工厂 | ${site.name}`;
+  pageDesc = "了解广州晶泰包装制品厂如何通过交钥匙级化妆品玻璃包材全案供应链、出厂前严苛质检与广州敏捷供应链管理，赋能全球高奢美妆品牌。";
+} else if (lang === 'es') {
+  pageTitle = `Sobre Nosotros y Centro de Guangzhou | ${site.name}`;
+  pageDesc = "Conozca cómo Jingtai Packaging ofrece soluciones integrales de envasado cosmético, control de calidad previo al envío y gestión de la cadena de suministro en Guangzhou.";
+} else if (lang === 'fr') {
+  pageTitle = `À Propos de Nous et Hub de Guangzhou | ${site.name}`;
+  pageDesc = "Découvrez comment Jingtai Packaging fournit des solutions d'emballage cosmétique clé en main, un contrôle qualité avant expédition et une logistique internationale fluide.";
+} else if (lang === 'de') {
+  pageTitle = `Über Uns & Guangzhou Hub | ${site.name}`;
+  pageDesc = "Erfahren Sie, wie Jingtai Packaging schlüsselfertige Kosmetikverpackungen, strenge Qualitätskontrollen vor dem Versand und eine agile Lieferkette bereitstellt.";
+}
 ---
 
 <Layout
-  title={`About Us & Guangzhou Hub | ${site.name}`}
+  lang={lang}
+  title={pageTitle}
   title_zh={`关于我们与广州工厂 | ${site.name}`}
-  description="Learn how Jingtai Packaging provides turnkey cosmetic packaging solutions, pre-shipment quality assurance, and agile Guangzhou supply chain management for global beauty brands."
+  description={pageDesc}
   description_zh="了解广州晶泰包装制品厂如何通过交钥匙级化妆品玻璃包材全案供应链、出厂前严苛质检与广州敏捷供应链管理，赋能全球高奢美妆品牌。"
 >
   <!-- Hero Section -->
@@ -209,7 +238,7 @@ import site from '../data/site.json';
       </div>
 
       <div class="mt-12 text-center">
-        <Button href="/sample-kit" variant="gold" size="lg">
+        <Button href={`/${lang}/sample-kit`} variant="gold" size="lg">
           <span data-zh="申请免费样品盒以供实验室评估 →" data-en="Request Free Sample Kit for Lab Evaluation →">Request Free Sample Kit for Lab Evaluation →</span>
         </Button>
       </div>

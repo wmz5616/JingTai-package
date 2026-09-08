@@ -1,5 +1,8 @@
 ---
 import site from "../data/site.json";
+import { getAssetUrl } from "../utils/assets";
+
+const qrUrl = getAssetUrl(site.assets?.wechatQr || "/images/wechat-qr.jpg");
 ---
 
 <!-- WeChat QR & Direct Contact Modal -->
@@ -69,7 +72,7 @@ import site from "../data/site.json";
       >
         <!-- Real WeChat QR Code -->
         <img
-          src="/images/wechat-qr.jpg"
+          src={qrUrl}
           alt="广州晶泰包装业务微信二维码"
           class="w-full h-full object-contain rounded select-none"
           loading="eager"
@@ -104,9 +107,10 @@ import site from "../data/site.json";
       <!-- Feedback Banner for Copy -->
       <div
         id="copy-feedback-toast"
-        class="hidden text-xs py-1.5 px-3 rounded bg-emerald-100 text-emerald-800 border border-emerald-300 transition-all"
+        class="hidden text-xs py-1.5 px-3 rounded bg-emerald-100 text-emerald-800 border border-emerald-300 transition-all text-center"
       >
-        ✓ 微信号已成功复制到剪贴板！
+        <svg class="w-3.5 h-3.5 text-emerald-600 inline-block mr-1 align-text-bottom" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M5 13l4 4L19 7"></path></svg>
+        <span>微信号已成功复制到剪贴板！</span>
       </div>
 
       <!-- Actions Button -->
@@ -249,10 +253,10 @@ import site from "../data/site.json";
     try {
       await copyText(wechatNum);
       if (copyToast) {
-        copyToast.innerHTML = "✓ 微信号已成功复制到剪贴板！";
+        copyToast.innerHTML = '<svg class="w-3.5 h-3.5 text-emerald-600 inline-block mr-1 align-text-bottom" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M5 13l4 4L19 7"></path></svg>微信号已成功复制到剪贴板！';
         copyToast.classList.remove("hidden");
       }
-      if (copyBtnLabel) copyBtnLabel.innerText = "✓ 微信号已复制！";
+      if (copyBtnLabel) copyBtnLabel.innerText = "微信号已复制！";
       setTimeout(() => {
         if (copyToast) copyToast.classList.add("hidden");
         if (copyBtnLabel)
@@ -271,7 +275,7 @@ import site from "../data/site.json";
 
     if (copyToast) {
       copyToast.innerHTML =
-        '✓ 微信号已自动复制！正在为您唤起微信...<br><span class="text-[11px] text-emerald-700 font-normal">进入微信后请在顶部右上角添加好友</span>';
+        '<svg class="w-3.5 h-3.5 text-emerald-600 inline-block mr-1 align-text-bottom" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M5 13l4 4L19 7"></path></svg>微信号已自动复制！正在为您唤起微信...<br><span class="text-[11px] text-emerald-700 font-normal">进入微信后请在顶部右上角添加好友</span>';
       copyToast.classList.remove("hidden");
     }
     if (launchBtnLabel) {

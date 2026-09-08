@@ -1,19 +1,23 @@
 ---
-import Layout from '../../layouts/Layout.astro';
-import Badge from '../../components/Badge.astro';
-import ProductCard from '../../components/ProductCard.astro';
-import products from '../../data/products.json';
-import site from '../../data/site.json';
-import { getAssetUrl } from '../../utils/assets';
+import Layout from '../../../layouts/Layout.astro';
+import Badge from '../../../components/Badge.astro';
+import ProductCard from '../../../components/ProductCard.astro';
+import products from '../../../data/products.json';
+import site from '../../../data/site.json';
+import translationsData from '../../../i18n/translations.json';
+import { getAssetUrl } from '../../../utils/assets';
 
 export async function getStaticPaths() {
-  return products.map((product) => ({
-    params: { id: product.id },
-    props: { product },
-  }));
+  const langs = ['zh', 'es', 'fr', 'de'];
+  return langs.flatMap((lang) =>
+    products.map((product) => ({
+      params: { lang, id: product.id },
+      props: { product, lang },
+    }))
+  );
 }
 
-const { product } = Astro.props;
+const { product, lang } = Astro.props;
 const fallbackImg = 'https://images.unsplash.com/photo-1620916566398-39f1143ab7be?auto=format&fit=crop&w=1200&q=80';
 const resolvedImages = (product.images || []).map((img) => getAssetUrl(img));
 
@@ -26,16 +30,16 @@ const relatedProducts = products
 const productSchema = {
   '@context': 'https://schema.org/',
   '@type': 'Product',
-  name: product.name,
+  name: lang === 'zh' ? (product.name_zh || product.name) : product.name,
   image: resolvedImages,
-  description: product.description,
+  description: lang === 'zh' ? (product.description_zh || product.description) : product.description,
   sku: product.id,
   mpn: product.id,
   brand: {
     '@type': 'Brand',
     name: site.name,
   },
-  category: product.category,
+  category: lang === 'zh' ? (product.category_zh || product.category) : product.category,
   offers: {
     '@type': 'AggregateOffer',
     priceCurrency: 'USD',
@@ -52,12 +56,31 @@ const productSchema = {
     },
   },
 };
+
+// Language-specific localized titles
+let pageTitle = `${product.name} Wholesale | ${site.name}`;
+let pageDesc = `${product.name} wholesale supply by ${site.name}. ${product.description} MOQ: ${product.moq} pcs. Fast DDP delivery from Guangzhou.`;
+
+if (lang === 'zh') {
+  pageTitle = `${product.name_zh || product.name} 工厂批发采购 | ${site.name}`;
+  pageDesc = `${product.name_zh || product.name} 广州源头工厂直供。${product.description_zh || product.description} 起订量：${product.moq} 只。支持欧美全球 DDP 门到门送达。`;
+} else if (lang === 'es') {
+  pageTitle = `${product.name} al por Mayor | ${site.name}`;
+  pageDesc = `Suministro al por mayor de ${product.name} de ${site.name}. Pedido mínimo: ${product.moq} piezas. Envío DDP puerta a puerta desde Guangzhou.`;
+} else if (lang === 'fr') {
+  pageTitle = `${product.name} Vente en Gros | ${site.name}`;
+  pageDesc = `Fourniture en gros de ${product.name} par ${site.name}. Commande minimum: ${product.moq} pièces. Livraison DDP depuis Guangzhou.`;
+} else if (lang === 'de') {
+  pageTitle = `${product.name} Großhandel | ${site.name}`;
+  pageDesc = `Großhandel für ${product.name} von ${site.name}. Mindestbestellmenge: ${product.moq} Stück. Zuverlässige DDP-Lieferung ab Guangzhou.`;
+}
 ---
 
 <Layout
-  title={`${product.name} Wholesale | ${site.name}`}
+  lang={lang}
+  title={pageTitle}
   title_zh={`${product.name_zh || product.name} 工厂批发采购 | ${site.name}`}
-  description={`${product.name} wholesale supply by ${site.name}. ${product.description} MOQ: ${product.moq} pcs. Fast DDP delivery from Guangzhou.`}
+  description={pageDesc}
   description_zh={`${product.name_zh || product.name} 广州源头工厂直供。${product.description_zh || product.description} 起订量：${product.moq} 只。支持欧美全球 DDP 门到门送达。`}
   image={resolvedImages[0]}
   type="product"
@@ -66,16 +89,16 @@ const productSchema = {
   <!-- Breadcrumb Navigation -->
   <nav class="bg-white border-b border-neutral-200 py-3 text-xs text-neutral-500">
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex items-center space-x-2">
-      <a href="/" class="hover:text-brand-dark" data-i18n="prod_breadcrumb_home">Home</a>
+      <a href={`/${lang}`} class="hover:text-brand-dark" data-i18n="prod_breadcrumb_home">Home</a>
       <span>/</span>
-      <a href="/products" class="hover:text-brand-dark" data-i18n="prod_breadcrumb_products">Products</a>
+      <a href={`/${lang}/products`} class="hover:text-brand-dark" data-i18n="prod_breadcrumb_products">Products</a>
       <span>/</span>
-      <a href={`/products?category=${product.categorySlug}`} class="hover:text-brand-dark">
-        <span data-en={product.category} data-zh={product.category_zh || product.category}>{product.category}</span>
+      <a href={`/${lang}/products?category=${product.categorySlug}`} class="hover:text-brand-dark">
+        <span data-en={product.category} data-zh={product.category_zh || product.category}>{lang === 'zh' ? (product.category_zh || product.category) : product.category}</span>
       </a>
       <span>/</span>
       <span class="text-neutral-900 font-medium truncate max-w-xs" data-en={product.name} data-zh={product.name_zh || product.name}>
-        {product.name}
+        {lang === 'zh' ? (product.name_zh || product.name) : product.name}
       </span>
     </div>
   </nav>
@@ -100,11 +123,11 @@ const productSchema = {
             <div class="absolute top-4 left-4 flex flex-col gap-2 pointer-events-none">
               {product.badge && (
                 <Badge variant="gold" size="sm">
-                  <span data-en={product.badge} data-zh={product.badge_zh || product.badge}>{product.badge}</span>
+                  <span data-en={product.badge} data-zh={product.badge_zh || product.badge}>{lang === 'zh' ? (product.badge_zh || product.badge) : product.badge}</span>
                 </Badge>
               )}
               <Badge variant="light" size="sm">
-                <span data-en={product.volume} data-zh={product.volume_zh || product.volume}>{product.volume}</span>
+                <span data-en={product.volume} data-zh={product.volume_zh || product.volume}>{lang === 'zh' ? (product.volume_zh || product.volume) : product.volume}</span>
               </Badge>
             </div>
           </div>
@@ -146,7 +169,7 @@ const productSchema = {
             </button>
 
             <a
-              href="/sample-kit"
+              href={`/${lang}/sample-kit`}
               class="py-3 px-4 bg-white hover:bg-amber-50 text-amber-900 border border-amber-300 font-semibold text-xs rounded-sm transition-colors flex items-center justify-center space-x-1.5 shadow-sm text-center"
             >
               <span data-i18n="prod_sample_box_btn">Request Free Sample Box</span>
@@ -184,19 +207,19 @@ const productSchema = {
           <div class="space-y-2">
             <div class="flex items-center space-x-3 text-xs font-mono uppercase tracking-wider text-neutral-500">
               <span class="text-brand-gold font-semibold" data-en={product.category} data-zh={product.category_zh || product.category}>
-                {product.category}
+                {lang === 'zh' ? (product.category_zh || product.category) : product.category}
               </span>
               <span>•</span>
               <span>SKU: {product.id}</span>
             </div>
 
             <h1 class="font-serif text-2xl sm:text-3xl lg:text-4xl font-bold text-brand-dark leading-tight" data-en={product.name} data-zh={product.name_zh || product.name}>
-              {product.name}
+              {lang === 'zh' ? (product.name_zh || product.name) : product.name}
             </h1>
 
             {product.subtitle && (
               <p class="text-sm text-neutral-600 font-medium" data-en={product.subtitle} data-zh={product.subtitle_zh || product.subtitle}>
-                {product.subtitle}
+                {lang === 'zh' ? (product.subtitle_zh || product.subtitle) : product.subtitle}
               </p>
             )}
           </div>
@@ -213,13 +236,13 @@ const productSchema = {
             </span>
             <span class="inline-flex items-center space-x-1 px-3 py-1 bg-neutral-100 text-neutral-700 border border-neutral-200 rounded font-medium">
               <svg class="w-3.5 h-3.5 text-neutral-600 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M5 13l4 4L19 7"></path></svg>
-              <span><span data-i18n="prod_lead_time_label">Lead Time:</span> <span data-en={product.leadTime} data-zh={product.leadTime_zh || product.leadTime}>{product.leadTime}</span></span>
+              <span><span data-i18n="prod_lead_time_label">Lead Time:</span> <span data-en={product.leadTime} data-zh={product.leadTime_zh || product.leadTime}>{lang === 'zh' ? (product.leadTime_zh || product.leadTime) : product.leadTime}</span></span>
             </span>
           </div>
 
           <!-- Product Detailed Description -->
           <p class="text-xs sm:text-sm text-neutral-600 leading-relaxed" data-en={product.description} data-zh={product.description_zh || product.description}>
-            {product.description}
+            {lang === 'zh' ? (product.description_zh || product.description) : product.description}
           </p>
 
           <!-- Core Feature Bullets -->
@@ -232,7 +255,7 @@ const productSchema = {
                 <li class="flex items-start space-x-2">
                   <svg class="w-3.5 h-3.5 text-brand-gold flex-shrink-0 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M5 13l4 4L19 7"></path></svg>
                   <span data-en={product.features?.[i] || feat} data-zh={product.features_zh?.[i] || feat}>
-                    {feat}
+                    {lang === 'zh' ? (product.features_zh?.[i] || feat) : (product.features?.[i] || feat)}
                   </span>
                 </li>
               ))}
@@ -343,14 +366,14 @@ const productSchema = {
               Related Packaging Models
             </h2>
           </div>
-          <a href="/products" class="text-xs font-semibold text-neutral-600 hover:text-brand-dark" data-i18n="prod_view_all">
+          <a href={`/${lang}/products`} class="text-xs font-semibold text-neutral-600 hover:text-brand-dark" data-i18n="prod_view_all">
             View All →
           </a>
         </div>
 
         <div class="grid grid-cols-1 sm:grid-cols-3 gap-6">
           {relatedProducts.map((rel) => (
-            <ProductCard product={rel} />
+            <ProductCard product={rel} lang={lang} />
           ))}
         </div>
       </div>

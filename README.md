@@ -13,6 +13,7 @@
 6. [询盘表单系统与防垃圾邮件机制](#六-询盘表单系统与防垃圾邮件机制)
 7. [海外 SEO 与 Schema 结构化数据](#七-海外-seo-与-schema-结构化数据)
 8. [本地运行与 Cloudflare Pages 部署指引](#八-本地运行与-cloudflare-pages-部署指引)
+9. [Telegram 频道云图床与素材部署待办](#九-telegram-频道云图床与素材部署待办)
 
 ---
 
@@ -133,8 +134,8 @@ d:\code\晶泰\
   - 利用 Astro 原生 `getStaticPaths()`，在构建阶段根据 `products.json` 自动生成各个产品的纯静态 HTML 页面（如 `/products/frosted-amber-dropper-30ml/`）。
 - **左侧多图交互画廊**：
   - 大图展示容器微距细节，下方多张缩略图点击即时平滑切换。
-- **CAD 刀模工程图免费索取 (Dieline Request)**：
-  - 专为海外美妆品牌的设计总监与包装设计师准备，提供 1:1 比例印刷区域图与螺纹尺寸图。
+- **AQL 2.5 负压气密防漏质检保证 (QA Inspection Guarantee)**：
+  - 专为海外美妆买家与品质总监准备，提供 -0.08 MPa 持续负压试漏与尺寸公差认证。
 - **右侧工业级技术参数表 (Specifications Table)**：
   - 严格规范列出：
     - 口径标准（Neck Thread: 18/410, 20/410 DIN 等）
@@ -156,7 +157,7 @@ d:\code\晶泰\
 - **零风险拿样政策 (Zero-Risk Guarantee)**：
   - 标语明确承诺：“Physical packaging samples are completely **FREE**. You only cover the express DHL courier charge ($25–$35 USD). **100% of this courier fee is credited back as an immediate cash discount on your first bulk order!**”
 - **样品盒分解清单 (What's in the Box)**：
-  - 3~5 款不同容量样品瓶 + 匹配胶头/精密压泵 + 表面工艺色板 + CAD 矢量刀模图。
+  - 3~5 款不同容量样品瓶 + 匹配胶头/精密压泵 + 表面工艺色板 + 出厂负压试漏与公差质检单。
 - **样品申领表单**：
   - 采集精准客户画像：客户姓名、企业邮箱、公司名称、DHL 快递送达地址（城市、州、国家）、关心的瓶型、配方类型（精油/精华/膏霜/香水）。
 
@@ -340,4 +341,24 @@ npm run preview
 
 ---
 
+## 九、 Telegram 频道云图床与素材部署待办
+
+全站已彻底解耦静态资源路径，支持零成本使用 Telegram 私有/公开频道作为无限量多媒体图床，并配合 Cloudflare Worker 提供全球边缘加速与 1 年不可变强缓存：
+
+- **详细待办备忘录与技术执行手册**：请参阅根目录下的 [`TG_CHANNEL_DEPLOYMENT_TODO.md`](./TG_CHANNEL_DEPLOYMENT_TODO.md)。
+- **一键检查与资产管理工具**：
+  ```bash
+  # 1. 检查全站素材状态与 TG 接入进度
+  node scripts/sync-tg-assets.cjs --status
+
+  # 2. 设置全局 Cloudflare Worker 反代 CDN 前缀
+  node scripts/sync-tg-assets.cjs --cdn https://cdn.yourdomain.com
+
+  # 3. 批量从映射表导入 TG 直链
+  node scripts/sync-tg-assets.cjs --map ./tg-mapping.json
+  ```
+
+---
+
 *手册制作完毕。如有规格调整或新增品类，直接修改 `src/data/products.json` 重新推送到 GitHub 即可自动触发 Cloudflare 极速更新！*
+

@@ -25,8 +25,18 @@
       "diameter": "33.0 mm",
       "weight": "48.5 g (Heavy Flint Glass)",
       "brimfulCapacity": "35.2 ml",
-      "surfaceHandling": ["Acid Frosted Etch", "Silk-screen Print", "Metallic Hot Stamping", "Custom Color Spray"],
-      "closureTypes": ["Medical NBR Rubber Pipette", "Child-Resistant CRC Cap", "Electroplated Gold Collar", "FSC Bamboo Collar"]
+      "surfaceHandling": [
+        "Acid Frosted Etch",
+        "Silk-screen Print",
+        "Metallic Hot Stamping",
+        "Custom Color Spray"
+      ],
+      "closureTypes": [
+        "Medical NBR Rubber Pipette",
+        "Child-Resistant CRC Cap",
+        "Electroplated Gold Collar",
+        "FSC Bamboo Collar"
+      ]
     },
     "features": [
       "99.4% UV Light Barrier: Shields Vitamin C, Retinol & Essential Oils from photo-oxidation",
@@ -42,7 +52,6 @@
     ],
     "description": "Architected specifically for clean skincare formulations and active dermatological serums. Made with high-flint recyclable amber glass providing pharmaceutical-grade UV blocking performance. Perfectly weighted with a thick bottom for exceptional luxury hand-feel.",
     "description_zh": "专为纯净美妆及高功效活性精华液量身打造。采用药用级高白料加厚茶色玻璃制成，具有优异的紫外线屏蔽遮光性能。底部加厚配重工艺，握持手感厚重大气，显著提升品牌陈列质感。",
-    "dielineUrl": "#download-dieline",
     "isFeatured": true,
     "badge": "Best Seller",
     "badge_zh": "热销爆款"
@@ -73,8 +82,17 @@
       "diameter": "38.2 mm",
       "weight": "86.0 g (Extra Heavy Base)",
       "brimfulCapacity": "56.8 ml",
-      "surfaceHandling": ["Gradual Spray Coating", "Frosted Finish", "Gold/Silver Hot Stamping", "Offset Silk Printing"],
-      "closureTypes": ["Push-button Aluminum Dropper", "White Silicone Pipette", "Matte Black Anodized Collar"]
+      "surfaceHandling": [
+        "Gradual Spray Coating",
+        "Frosted Finish",
+        "Gold/Silver Hot Stamping",
+        "Offset Silk Printing"
+      ],
+      "closureTypes": [
+        "Push-button Aluminum Dropper",
+        "White Silicone Pipette",
+        "Matte Black Anodized Collar"
+      ]
     },
     "features": [
       "Optical Super-Flint Clarity: Showcases colored serums, dual-phase oils, and botanical essences",
@@ -90,7 +108,6 @@
     ],
     "description": "The Nordic Clear collection features a distinctive 14mm solid glass base and crisp cylindrical silhouette. Crafted from optical-grade super flint glass, this bottle is the gold standard for high-end hydrating serums, facial oils, and botanical elixirs.",
     "description_zh": "北欧极简极透系列采用标志性的 14mm 实心厚底与利落直筒圆柱造型。精选光学级高白料玻璃制造，是高端补水修护精华、面部精油及高端护肤原液的行业黄金标杆包装。",
-    "dielineUrl": "#download-dieline",
     "isFeatured": true,
     "badge": "Prestige Line",
     "badge_zh": "高定奢品"
@@ -121,8 +138,17 @@
       "diameter": "32.8 mm",
       "weight": "51.0 g",
       "brimfulCapacity": "34.5 ml",
-      "surfaceHandling": ["Velvet Matte Finish", "Glossy UV Silk Screen", "Embossed Foil", "Metallic Trim"],
-      "closureTypes": ["Engineered Push-Button Pipette", "Screw Dropper", "Anodized Aluminum Shroud"]
+      "surfaceHandling": [
+        "Velvet Matte Finish",
+        "Glossy UV Silk Screen",
+        "Embossed Foil",
+        "Metallic Trim"
+      ],
+      "closureTypes": [
+        "Engineered Push-Button Pipette",
+        "Screw Dropper",
+        "Anodized Aluminum Shroud"
+      ]
     },
     "features": [
       "Complete 100% Total Opaque Protection: Ideal for sensitive retinol and peptide solutions",
@@ -138,7 +164,6 @@
     ],
     "description": "Engineered for medical-grade and clinical cosmetics. The opaque matte black ceramic finish shields delicate compounds from all ambient light while delivering an irresistible tactile sensation in the consumer's hand.",
     "description_zh": "专为院线级修护与轻医美配方打造。全哑光黑色陶瓷质感漆面不仅彻底阻断一切环境可见光与紫外线，更在手中带来温润如玉的丝绒握持体验。",
-    "dielineUrl": "#download-dieline",
     "isFeatured": false,
     "badge": "Clinical Aesthetic",
     "badge_zh": "院线轻医美"
@@ -169,8 +194,17 @@
       "diameter": "28.5 mm",
       "weight": "36.0 g",
       "brimfulCapacity": "18.2 ml",
-      "surfaceHandling": ["Frosted Surface", "Soy-based Ink Printing", "Hot Stamping", "Laser Engraved Bamboo"],
-      "closureTypes": ["FSC-Certified Real Bamboo Collar", "White TPE Pipette Bulb", "Recyclable Glass Tube"]
+      "surfaceHandling": [
+        "Frosted Surface",
+        "Soy-based Ink Printing",
+        "Hot Stamping",
+        "Laser Engraved Bamboo"
+      ],
+      "closureTypes": [
+        "FSC-Certified Real Bamboo Collar",
+        "White TPE Pipette Bulb",
+        "Recyclable Glass Tube"
+      ]
     },
     "features": [
       "FSC-Certified Sustainable Bamboo: Resonates strongly with US & European Eco-conscious buyers",
@@ -186,7 +220,6 @@
     ],
     "description": "Combining sustainable forestry materials with recyclable emerald flint glass. Tailored for organic, vegan, and clean skincare startups looking to communicate sustainability without compromising on shelf presence.",
     "description_zh": "将可持续天然林业竹木与高通透祖母绿玻璃巧妙融合。专为倡导纯净、有机、植萃理念的新锐护肤品牌打造，在展现实力的同时传达对地球友好的品牌主张。",
-    "dielineUrl": "#download-dieline",
     "isFeatured": false,
     "badge": "Eco Certified",
     "badge_zh": "环保认证"
@@ -217,8 +250,17 @@
       "diameter": "36.2 mm",
       "weight": "98.0 g",
       "brimfulCapacity": "55.0 ml",
-      "surfaceHandling": ["Silk Printing", "Hot Stamp Logo", "UV Spot Varnish", "Color Gradient Spray"],
-      "closureTypes": ["External Metal-Free Pump (0.2ml/stroke)", "Anodized Champagne Gold Collar", "Clear PETG Overcap"]
+      "surfaceHandling": [
+        "Silk Printing",
+        "Hot Stamp Logo",
+        "UV Spot Varnish",
+        "Color Gradient Spray"
+      ],
+      "closureTypes": [
+        "External Metal-Free Pump (0.2ml/stroke)",
+        "Anodized Champagne Gold Collar",
+        "Clear PETG Overcap"
+      ]
     },
     "features": [
       "Zero Formula Contact with Metal Spring: Prevents oxidation of active ingredients",
@@ -234,7 +276,6 @@
     ],
     "description": "A bestseller among dermatological and anti-aging brands. Equipped with a patented external spring pump where the lotion never touches metal parts. Satin frosted finish provides a finger-print resistant, velvety touch.",
     "description_zh": "抗衰与皮肤学专研品牌的常青热销款。搭载专利外置弹簧泵头，料体完全不接触金属部件。表面细腻酸洗蒙砂处理，防指纹触感如丝般顺滑。",
-    "dielineUrl": "#download-dieline",
     "isFeatured": true,
     "badge": "Best Seller",
     "badge_zh": "热销爆款"
@@ -265,8 +306,18 @@
       "diameter": "45.0 mm",
       "weight": "165.0 g (Substantial Weight)",
       "brimfulCapacity": "108.0 ml",
-      "surfaceHandling": ["Full Color Coating", "Silk-screen Decal", "Electrolytic Gold Plating", "Laser Etch"],
-      "closureTypes": ["0.5ml High-Output Lotion Pump", "Fine Mist Sprayer", "Disc Top Cap", "Screw Cap with Reducer Plug"]
+      "surfaceHandling": [
+        "Full Color Coating",
+        "Silk-screen Decal",
+        "Electrolytic Gold Plating",
+        "Laser Etch"
+      ],
+      "closureTypes": [
+        "0.5ml High-Output Lotion Pump",
+        "Fine Mist Sprayer",
+        "Disc Top Cap",
+        "Screw Cap with Reducer Plug"
+      ]
     },
     "features": [
       "Substantial 165g Heavy-Base Weight: Communicates immense luxury in the consumer's bathroom",
@@ -282,7 +333,6 @@
     ],
     "description": "Crafted for prestige toners, micellar cleansers, and body oils. The 165g heavyweight glass delivers commanding shelf presence and an unmistakable feeling of quality in the consumer's hand.",
     "description_zh": "专为高奢精粹水、卸妆精华油及奢养身体乳设计。165g 重底玻璃赋予产品在货架上强大的陈列压迫感，令终端消费者一触即感卓越品质。",
-    "dielineUrl": "#download-dieline",
     "isFeatured": false,
     "badge": "Heavyweight",
     "badge_zh": "加重实底"
@@ -313,8 +363,17 @@
       "diameter": "61.0 mm",
       "weight": "142.0 g (Solid Heavyweight)",
       "brimfulCapacity": "58.0 ml",
-      "surfaceHandling": ["Frosted Acid Etching", "Silk Printing", "Hot Foil Stamping", "Interior Color Coating"],
-      "closureTypes": ["Aluminum Electroplated Gold/Silver Cap", "Matte Wood/Bamboo Lid", "PP White Disc Liner"]
+      "surfaceHandling": [
+        "Frosted Acid Etching",
+        "Silk Printing",
+        "Hot Foil Stamping",
+        "Interior Color Coating"
+      ],
+      "closureTypes": [
+        "Aluminum Electroplated Gold/Silver Cap",
+        "Matte Wood/Bamboo Lid",
+        "PP White Disc Liner"
+      ]
     },
     "features": [
       "Airtight Sealing Disc Included: Pull-tab PE/PP shive prevents cream drying and leaks in transit",
@@ -330,7 +389,6 @@
     ],
     "description": "The quintessential packaging for prestige face creams, rich sleeping masks, and rejuvenating balms. Designed with a 15mm thick base that elevates the perceived value of your formulation on retail shelves.",
     "description_zh": "高端面霜、睡眠面膜及奢润修护膏的经典典范包装。底部厚达 15mm 的实心玻璃层，在丝芙兰等零售专柜中能显著拉高配方身价与品牌溢价。",
-    "dielineUrl": "#download-dieline",
     "isFeatured": true,
     "badge": "Prestige Jar",
     "badge_zh": "高定膏霜罐"
@@ -361,8 +419,18 @@
       "diameter": "52.0 mm",
       "weight": "92.0 g",
       "brimfulCapacity": "36.0 ml",
-      "surfaceHandling": ["Matte Finish", "High Gloss Amber", "Gold Stamping", "White Screen Print"],
-      "closureTypes": ["Matte Black Phenolic Cap", "Bakelite Dome Lid", "Real Bamboo Lid", "Induction Heat Seal Liner"]
+      "surfaceHandling": [
+        "Matte Finish",
+        "High Gloss Amber",
+        "Gold Stamping",
+        "White Screen Print"
+      ],
+      "closureTypes": [
+        "Matte Black Phenolic Cap",
+        "Bakelite Dome Lid",
+        "Real Bamboo Lid",
+        "Induction Heat Seal Liner"
+      ]
     },
     "features": [
       "Amber UV Protection: Keeps essential oil balms and antioxidant salves fresh without degradation",
@@ -378,7 +446,6 @@
     ],
     "description": "Ideal for clean, apothecary-inspired skincare, healing salves, and lip treatments. The amber glass blocks 99% of harmful light rays while offering a timeless vintage luxury visual appeal.",
     "description_zh": "专为纯净植萃、复古药妆、修护唇膜及芳香软膏设计。茶色玻璃天然阻隔 99% 破坏性光线，同时带来历久弥新的经典复古轻奢美感。",
-    "dielineUrl": "#download-dieline",
     "isFeatured": false,
     "badge": "Apothecary Line",
     "badge_zh": "复古药妆"
@@ -409,8 +476,17 @@
       "diameter": "48.0 x 32.0 mm (Rectangular)",
       "weight": "178.0 g (Substantial Luxury Weight)",
       "brimfulCapacity": "54.5 ml",
-      "surfaceHandling": ["Hand Polishing", "Color Gradient Lacquer", "Gold Metallization", "Embossed Metal Label"],
-      "closureTypes": ["Heavy Magnetic Zamac Cap", "Crystal Surlyn Cap", "Aluminum Crimpless Pump"]
+      "surfaceHandling": [
+        "Hand Polishing",
+        "Color Gradient Lacquer",
+        "Gold Metallization",
+        "Embossed Metal Label"
+      ],
+      "closureTypes": [
+        "Heavy Magnetic Zamac Cap",
+        "Crystal Surlyn Cap",
+        "Aluminum Crimpless Pump"
+      ]
     },
     "features": [
       "Optically Clear Invisible Dip Tube: Tube disappears when submerged in fragrance oil",
@@ -426,7 +502,6 @@
     ],
     "description": "Engineered for niche perfume houses and boutique fragrance lines. Featuring diamond-polished rectangular geometry, ultra-thick crystal glass base, and an invisible dip tube that creates an ethereal luxury presentation on retail counters.",
     "description_zh": "为小众沙龙香水与高定香氛工坊精心打造。拥有如钻石般切面的几何长方体瓶身，底部为加重水晶玻璃，配合浸入式隐形吸管，在专柜射灯下璀璨夺目。",
-    "dielineUrl": "#download-dieline",
     "isFeatured": true,
     "badge": "Haute Parfumerie",
     "badge_zh": "沙龙高定香氛"
@@ -457,8 +532,17 @@
       "diameter": "40.5 mm",
       "weight": "135.0 g",
       "brimfulCapacity": "106.0 ml",
-      "surfaceHandling": ["Satin Frosting", "Silk-screen Typography", "Metallic Hot Stamping", "Color Tinting"],
-      "closureTypes": ["Micro Fine-Mist Pump (Gold/Silver/Black)", "Full Cover Clear Cap", "Bamboo Sprayer Overcap"]
+      "surfaceHandling": [
+        "Satin Frosting",
+        "Silk-screen Typography",
+        "Metallic Hot Stamping",
+        "Color Tinting"
+      ],
+      "closureTypes": [
+        "Micro Fine-Mist Pump (Gold/Silver/Black)",
+        "Full Cover Clear Cap",
+        "Bamboo Sprayer Overcap"
+      ]
     },
     "features": [
       "Ultra-Fine Micro Particle Spray: Generates a soft hydrating cloud without wetting clothes",
@@ -474,7 +558,6 @@
     ],
     "description": "The ideal partner for hydrating facial mists, floral waters, and setting sprays. Fitted with an ultra-fine atomizing pump that produces a velvety mist cloud, packaged in an elegant satin-frosted cylindrical glass flacon.",
     "description_zh": "面部补水喷雾、花水纯露及定妆喷雾的理想搭配。搭载超细雾化泵芯，喷洒出宛若天鹅绒般的轻柔水雾，配以典雅修长的圆柱磨砂瓶身。",
-    "dielineUrl": "#download-dieline",
     "isFeatured": false,
     "badge": "Fine Mist",
     "badge_zh": "微米细雾"

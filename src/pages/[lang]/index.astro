@@ -1,18 +1,46 @@
 ---
-import Layout from '../layouts/Layout.astro';
-import ProductCard from '../components/ProductCard.astro';
-import Button from '../components/Button.astro';
-import Badge from '../components/Badge.astro';
-import products from '../data/products.json';
-import site from '../data/site.json';
+import Layout from '../../layouts/Layout.astro';
+import ProductCard from '../../components/ProductCard.astro';
+import Button from '../../components/Button.astro';
+import Badge from '../../components/Badge.astro';
+import products from '../../data/products.json';
+import site from '../../data/site.json';
 
-const featuredProducts = products.filter(p => p.isFeatured);
+export function getStaticPaths() {
+  return [
+    { params: { lang: 'zh' } },
+    { params: { lang: 'es' } },
+    { params: { lang: 'fr' } },
+    { params: { lang: 'de' } },
+  ];
+}
+
+const { lang } = Astro.params;
+const featuredProducts = products.filter((p) => p.isFeatured);
+
+let pageTitle = `${site.name} | Luxury Cosmetic Glass Packaging & Turnkey Supply Chain`;
+let pageDesc = site.description;
+
+if (lang === 'zh') {
+  pageTitle = `${site.name} | 广州高端美妆玻璃包材源头供应链 • 现货小批量起订`;
+  pageDesc = site.description_zh;
+} else if (lang === 'es') {
+  pageTitle = `${site.name} | Envases de Vidrio Cosmético de Lujo y Cadena de Suministro`;
+  pageDesc = "Su socio integral de envases cosméticos en Guangzhou. Botellas de vidrio de alta pureza, bombas dosificadoras de precisión y envíos DDP puerta a puerta.";
+} else if (lang === 'fr') {
+  pageTitle = `${site.name} | Emballages en Verre Cosmétique Haut de Gamme`;
+  pageDesc = "Votre partenaire d'emballage cosmétique clé en main à Guangzhou. Flacons en verre de haute qualité, pompes de précision et livraison DDP.";
+} else if (lang === 'de') {
+  pageTitle = `${site.name} | Erstklassige Glasverpackungen für Kosmetik`;
+  pageDesc = "Ihr Komplettpartner für Kosmetikverpackungen in Guangzhou. Hochweißes Glas, Präzisionspumpen und DDP-Lieferung ab 1.000 Stück.";
+}
 ---
 
 <Layout
-  title={`${site.name} | Luxury Cosmetic Glass Packaging & Turnkey Supply Chain`}
+  lang={lang}
+  title={pageTitle}
   title_zh={`${site.name} | 广州高端美妆玻璃包材源头供应链 • 现货小批量起订`}
-  description={site.description}
+  description={pageDesc}
   description_zh={site.description_zh}
 >
   <!-- 1. HERO SECTION -->
@@ -42,11 +70,11 @@ const featuredProducts = products.filter(p => p.isFeatured);
 
           <!-- CTAs -->
           <div class="pt-2 flex flex-col sm:flex-row items-center justify-center lg:justify-start gap-4">
-            <Button href="/sample-kit" variant="gold" size="lg" class="w-full sm:w-auto shadow-gold">
+            <Button href={`/${lang}/sample-kit`} variant="gold" size="lg" class="w-full sm:w-auto shadow-gold">
               <span data-i18n="hero_cta_sample">Order Free Sample Kit</span>
               <span class="bg-brand-dark/20 text-brand-dark text-xs px-2 py-0.5 rounded font-bold ml-1" data-i18n="nav_free_badge">FREE</span>
             </Button>
-            <Button href="/products" variant="outline" size="lg" class="w-full sm:w-auto text-white border-neutral-600 hover:border-brand-gold hover:text-brand-gold">
+            <Button href={`/${lang}/products`} variant="outline" size="lg" class="w-full sm:w-auto text-white border-neutral-600 hover:border-brand-gold hover:text-brand-gold">
               <span data-i18n="hero_cta_catalog">Explore 2026 Catalog →</span>
             </Button>
           </div>
@@ -105,7 +133,7 @@ const featuredProducts = products.filter(p => p.isFeatured);
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
       <div class="grid grid-cols-2 lg:grid-cols-4 gap-4">
         
-        <a href="/products?category=dropper" class="p-3.5 sm:p-5 rounded-sm border border-neutral-200 hover:border-brand-gold hover:shadow-md transition-all group bg-neutral-50/50 hover:bg-white flex flex-col justify-between h-full min-h-[120px]">
+        <a href={`/${lang}/products?category=dropper`} class="p-3.5 sm:p-5 rounded-sm border border-neutral-200 hover:border-brand-gold hover:shadow-md transition-all group bg-neutral-50/50 hover:bg-white flex flex-col justify-between h-full min-h-[120px]">
           <div>
             <div class="flex items-center justify-between mb-2">
               <span class="text-xs font-mono font-semibold text-brand-gold uppercase" data-i18n="cat_01_tag">01 / Dropper</span>
@@ -118,7 +146,7 @@ const featuredProducts = products.filter(p => p.isFeatured);
           <p class="text-xs text-neutral-500 mt-2 min-h-[2rem] leading-relaxed" data-i18n="cat_01_desc">15ml, 30ml, 50ml for Serums & Oils</p>
         </a>
 
-        <a href="/products?category=pump" class="p-3.5 sm:p-5 rounded-sm border border-neutral-200 hover:border-brand-gold hover:shadow-md transition-all group bg-neutral-50/50 hover:bg-white flex flex-col justify-between h-full min-h-[120px]">
+        <a href={`/${lang}/products?category=pump`} class="p-3.5 sm:p-5 rounded-sm border border-neutral-200 hover:border-brand-gold hover:shadow-md transition-all group bg-neutral-50/50 hover:bg-white flex flex-col justify-between h-full min-h-[120px]">
           <div>
             <div class="flex items-center justify-between mb-2">
               <span class="text-xs font-mono font-semibold text-brand-gold uppercase" data-i18n="cat_02_tag">02 / Pump</span>
@@ -131,7 +159,7 @@ const featuredProducts = products.filter(p => p.isFeatured);
           <p class="text-xs text-neutral-500 mt-2 min-h-[2rem] leading-relaxed" data-i18n="cat_02_desc">External-spring treatment pumps</p>
         </a>
 
-        <a href="/products?category=jar" class="p-3.5 sm:p-5 rounded-sm border border-neutral-200 hover:border-brand-gold hover:shadow-md transition-all group bg-neutral-50/50 hover:bg-white flex flex-col justify-between h-full min-h-[120px]">
+        <a href={`/${lang}/products?category=jar`} class="p-3.5 sm:p-5 rounded-sm border border-neutral-200 hover:border-brand-gold hover:shadow-md transition-all group bg-neutral-50/50 hover:bg-white flex flex-col justify-between h-full min-h-[120px]">
           <div>
             <div class="flex items-center justify-between mb-2">
               <span class="text-xs font-mono font-semibold text-brand-gold uppercase" data-i18n="cat_03_tag">03 / Jars</span>
@@ -144,7 +172,7 @@ const featuredProducts = products.filter(p => p.isFeatured);
           <p class="text-xs text-neutral-500 mt-2 min-h-[2rem] leading-relaxed" data-i18n="cat_03_desc">Heavy bottom thick-wall cosmetic pots</p>
         </a>
 
-        <a href="/products?category=spray" class="p-3.5 sm:p-5 rounded-sm border border-neutral-200 hover:border-brand-gold hover:shadow-md transition-all group bg-neutral-50/50 hover:bg-white flex flex-col justify-between h-full min-h-[120px]">
+        <a href={`/${lang}/products?category=spray`} class="p-3.5 sm:p-5 rounded-sm border border-neutral-200 hover:border-brand-gold hover:shadow-md transition-all group bg-neutral-50/50 hover:bg-white flex flex-col justify-between h-full min-h-[120px]">
           <div>
             <div class="flex items-center justify-between mb-2">
               <span class="text-xs font-mono font-semibold text-brand-gold uppercase" data-i18n="cat_04_tag">04 / Spray</span>
@@ -179,7 +207,7 @@ const featuredProducts = products.filter(p => p.isFeatured);
         </div>
 
         <a
-          href="/products"
+          href={`/${lang}/products`}
           class="inline-flex items-center space-x-2 text-sm font-semibold text-brand-dark hover:text-brand-gold transition-colors pb-1 border-b border-neutral-300 hover:border-brand-gold"
         >
           <span data-i18n="feat_view_all">View All 10+ Models & Specifications →</span>
@@ -189,7 +217,7 @@ const featuredProducts = products.filter(p => p.isFeatured);
       <!-- Product Cards Grid -->
       <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
         {featuredProducts.map((product) => (
-          <ProductCard product={product} />
+          <ProductCard product={product} lang={lang} />
         ))}
       </div>
 
@@ -361,7 +389,7 @@ const featuredProducts = products.filter(p => p.isFeatured);
           </div>
 
           <div class="pt-4">
-            <Button href="/about" variant="gold" size="md">
+            <Button href={`/${lang}/about`} variant="gold" size="md">
               <span data-i18n="gz_learn_more">Learn More About Our Quality Lab →</span>
             </Button>
           </div>
@@ -506,7 +534,7 @@ const featuredProducts = products.filter(p => p.isFeatured);
         Speak directly with our Guangzhou packaging engineers. Receive technical specifications, wholesale volume tiers, and fast sample shipping within 2-4 business hours.
       </p>
       <div class="pt-4 flex flex-col sm:flex-row items-center justify-center gap-4">
-        <Button href="/sample-kit" variant="gold" size="lg" class="shadow-gold w-full sm:w-auto">
+        <Button href={`/${lang}/sample-kit`} variant="gold" size="lg" class="shadow-gold w-full sm:w-auto">
           <span data-i18n="cta_btn_sample">Order Free Sample Kit (Credited) →</span>
         </Button>
         <button

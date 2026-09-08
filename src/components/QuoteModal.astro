@@ -10,11 +10,11 @@ import site from "../data/site.json";
   aria-labelledby="quote-modal-title"
 >
   <div
-    class="relative w-full max-w-2xl bg-white rounded-sm shadow-2xl border border-neutral-200 overflow-hidden my-8 animate-in fade-in zoom-in-95 duration-200"
+    class="relative w-full max-w-2xl bg-white rounded-sm shadow-2xl border border-neutral-200 overflow-hidden my-auto max-h-[92vh] flex flex-col animate-in fade-in zoom-in-95 duration-200"
   >
     <!-- Modal Header -->
     <div
-      class="bg-brand-dark text-white p-6 flex items-start justify-between border-b border-neutral-800"
+      class="bg-brand-dark text-white p-4 sm:p-6 flex items-start justify-between border-b border-neutral-800 flex-shrink-0"
     >
       <div class="space-y-1">
         <div class="flex items-center space-x-2">
@@ -27,7 +27,7 @@ import site from "../data/site.json";
         </div>
         <h2
           id="quote-modal-title"
-          class="font-serif text-2xl font-bold text-white tracking-wide"
+          class="font-serif text-xl sm:text-2xl font-bold text-white tracking-wide"
           data-i18n="modal_quote_title"
         >
           Request Wholesale B2B Quote
@@ -63,7 +63,7 @@ import site from "../data/site.json";
       id="quote-modal-form"
       action={site.formspreeEndpoint}
       method="POST"
-      class="p-6 sm:p-8 space-y-5"
+      class="p-4 sm:p-8 space-y-5 overflow-y-auto flex-1"
     >
       <!-- Anti-Spam Honeypot -->
       <input
@@ -267,10 +267,10 @@ import site from "../data/site.json";
             <input
               type="checkbox"
               name="services[]"
-              value="Dieline CAD Needed"
+              value="Pre-Shipment Video Inspection"
               class="text-brand-gold rounded focus:ring-brand-gold"
             />
-            <span data-i18n="modal_svc_dieline">Need Dieline CAD</span>
+            <span data-i18n="modal_svc_inspection">Pre-Shipment Video Inspection</span>
           </label>
           <label class="flex items-center space-x-2 cursor-pointer">
             <input
@@ -327,9 +327,8 @@ import site from "../data/site.json";
           class="hidden text-center text-xs p-3 rounded bg-emerald-50 text-emerald-800 border border-emerald-200"
           data-i18n="modal_feedback_success"
         >
-          ✓ Inquiry received! Our Guangzhou packaging engineer will reply to
-          your email/WhatsApp with complete pricing and spec sheet within 2-4
-          hours.
+          <svg class="w-4 h-4 text-emerald-600 inline-block mr-1.5 align-text-bottom flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M5 13l4 4L19 7"></path></svg>
+          <span>Inquiry received! Our Guangzhou packaging engineer will reply to your email/WhatsApp within 2-4 hours.</span>
         </div>
         <p
           class="text-center text-[11px] text-neutral-400 flex items-center justify-center space-x-1.5"
@@ -407,6 +406,13 @@ import site from "../data/site.json";
     }
   });
 
+  // Listen to custom open-quote-modal event dispatched from Header or other components
+  window.addEventListener("open-quote-modal", (e: any) => {
+    const productTitle =
+      e.detail?.productTitle || "General Catalog RFQ";
+    openQuoteModal(productTitle);
+  });
+
   // AJAX Submission with Formspree
   form?.addEventListener("submit", async (e) => {
     e.preventDefault();
@@ -430,36 +436,57 @@ import site from "../data/site.json";
         },
       });
 
+      const successIconSvg = '<svg class="w-4 h-4 text-emerald-600 inline-block mr-1.5 align-text-bottom flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M5 13l4 4L19 7"></path></svg>';
+      const errorIconSvg = '<svg class="w-4 h-4 text-red-600 inline-block mr-1.5 align-text-bottom flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z"></path></svg>';
+
       if (response.ok) {
         form.reset();
-        feedback?.classList.remove("hidden");
-        submitBtn.innerText =
-          document.documentElement.lang === "zh"
-            ? "询盘提交成功 ✓"
-            : "RFQ Sent Successfully ✓";
-      } else {
-        feedback?.classList.remove("hidden");
         if (feedback) {
+          feedback.className = "text-center text-xs p-3 rounded bg-emerald-50 text-emerald-800 border border-emerald-200";
           feedback.innerHTML =
             document.documentElement.lang === "zh"
-              ? "✓ 询盘已登记！广州专员将在 2-4 小时内联系您。"
-              : "✓ Inquiry recorded! Our Guangzhou team will email you shortly.";
+              ? `${successIconSvg}询盘提交成功！广州工厂工程师将在 2-4 小时内向您的邮箱/WhatsApp 发送报价单与图纸。`
+              : `${successIconSvg}RFQ sent successfully! Our Guangzhou packaging engineer will reply to your email/WhatsApp within 2-4 hours.`;
+          feedback.classList.remove("hidden");
         }
+        submitBtn.innerText =
+          document.documentElement.lang === "zh"
+            ? "询盘提交成功"
+            : "RFQ Sent Successfully";
+        setTimeout(closeQuoteModal, 3000);
+      } else {
+        if (feedback) {
+          feedback.className = "text-center text-xs p-3 rounded bg-red-50 text-red-800 border border-red-200";
+          feedback.innerHTML =
+            document.documentElement.lang === "zh"
+              ? `${errorIconSvg}提交未能送达，请直接添加微信: <strong>159 1312 8180</strong> 或拨打 <strong>+86 159 1312 8180</strong> 极速对接！`
+              : `${errorIconSvg}Submission issue encountered. Please message our packaging desk directly on WhatsApp: <a href='https://wa.me/8618318105616' target='_blank' class='underline font-bold'>+86 183 1810 5616</a> or email: <a href='mailto:lih093269@gmail.com' class='underline font-bold'>lih093269@gmail.com</a>.`;
+          feedback.classList.remove("hidden");
+        }
+        submitBtn.innerText =
+          document.documentElement.lang === "zh"
+            ? "提交遇到问题，请重试"
+            : "Please try again or WhatsApp us";
       }
     } catch {
-      feedback?.classList.remove("hidden");
+      const errorIconSvg = '<svg class="w-4 h-4 text-red-600 inline-block mr-1.5 align-text-bottom flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z"></path></svg>';
       if (feedback) {
+        feedback.className = "text-center text-xs p-3 rounded bg-red-50 text-red-800 border border-red-200";
         feedback.innerHTML =
           document.documentElement.lang === "zh"
-            ? "询盘已收到！您也可直接添加微信: <strong>159 1312 8180</strong> 快速沟通。"
-            : "✓ Inquiry received! For priority 1-hour reply, you can also message us directly on WhatsApp: <strong>+86 183 1810 5616</strong>.";
+            ? `${errorIconSvg}网络连接异常，请直接添加微信: <strong>159 1312 8180</strong> 或拨打 <strong>+86 159 1312 8180</strong> 极速对接！`
+            : `${errorIconSvg}Network connection error. Please message our packaging desk directly on WhatsApp: <a href='https://wa.me/8618318105616' target='_blank' class='underline font-bold'>+86 183 1810 5616</a> or email: <a href='mailto:lih093269@gmail.com' class='underline font-bold'>lih093269@gmail.com</a>.`;
+        feedback.classList.remove("hidden");
       }
+      submitBtn.innerText =
+        document.documentElement.lang === "zh"
+          ? "网络异常，请重试"
+          : "Network error, please retry";
     } finally {
       setTimeout(() => {
         submitBtn.disabled = false;
         submitBtn.innerText = originalBtnText;
-        setTimeout(closeQuoteModal, 3000);
-      }, 2500);
+      }, 3500);
     }
   });
 

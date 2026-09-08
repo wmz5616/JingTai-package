@@ -1,8 +1,6 @@
 interface Env {
   TELEGRAM_BOT_TOKEN?: string;
   TELEGRAM_CHAT_ID?: string;
-  RESEND_API_KEY?: string;
-  NOTIFY_EMAIL?: string;
 }
 
 interface EventContext<T = Record<string, unknown>> {
@@ -10,6 +8,31 @@ interface EventContext<T = Record<string, unknown>> {
   env: T;
   [key: string]: any;
 }
+
+function escapeHtml(str: string): string {
+  return str
+    .replace(/&/g, '&amp;')
+    .replace(/</g, '&lt;')
+    .replace(/>/g, '&gt;')
+    .replace(/"/g, '&quot;')
+    .replace(/'/g, '&#039;');
+}
+
+const CORS_HEADERS = {
+  'Access-Control-Allow-Origin': '*',
+  'Access-Control-Allow-Methods': 'POST, OPTIONS',
+  'Access-Control-Allow-Headers': 'Content-Type, Accept',
+};
+
+export const onRequestOptions = async (): Promise<Response> => {
+  return new Response(null, {
+    status: 204,
+    headers: {
+      ...CORS_HEADERS,
+      'Access-Control-Max-Age': '86400',
+    },
+  });
+};
 
 export const onRequestPost = async (context: EventContext<Env>): Promise<Response> => {
   try {
@@ -21,35 +44,36 @@ export const onRequestPost = async (context: EventContext<Env>): Promise<Respons
       // Silently discard spam bots
       return new Response(JSON.stringify({ success: true, message: 'Received' }), {
         status: 200,
-        headers: { 'Content-Type': 'application/json' }
+        headers: { ...CORS_HEADERS, 'Content-Type': 'application/json' }
       });
     }
 
-    const name = formData.get('name')?.toString() || 'Anonymous';
-    const email = formData.get('email')?.toString() || '';
-    const whatsapp = formData.get('whatsapp')?.toString() || 'N/A';
-    const company = formData.get('company')?.toString() || 'N/A';
-    const product = formData.get('product_name')?.toString() || 'General Inquiry';
-    const quantity = formData.get('quantity')?.toString() || 'Not specified';
-    const message = formData.get('message')?.toString() || '';
+    const name = (formData.get('name')?.toString() || 'Anonymous').slice(0, 100);
+    const email = (formData.get('email')?.toString() || '').trim().slice(0, 200);
+    const whatsapp = (formData.get('whatsapp')?.toString() || 'N/A').slice(0, 100);
+    const company = (formData.get('company')?.toString() || 'N/A').slice(0, 100);
+    const product = (formData.get('product_name')?.toString() || 'General Inquiry').slice(0, 200);
+    const quantity = (formData.get('quantity')?.toString() || 'Not specified').slice(0, 100);
+    const message = (formData.get('message')?.toString() || '').slice(0, 2000);
 
-    if (!email) {
-      return new Response(JSON.stringify({ error: 'Email is required' }), {
+    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    if (!email || !emailRegex.test(email)) {
+      return new Response(JSON.stringify({ error: 'A valid email address is required' }), {
         status: 400,
-        headers: { 'Content-Type': 'application/json' }
+        headers: { ...CORS_HEADERS, 'Content-Type': 'application/json' }
       });
     }
 
-    // 2. Optional Telegram Real-time Push to Phone (Zero Cost)
+    // 2. Telegram Real-time Push (Using HTML mode with safe entity escaping)
     if (context.env.TELEGRAM_BOT_TOKEN && context.env.TELEGRAM_CHAT_ID) {
-      const tgText = `🔔 *New Cosmetic Packaging RFQ!*\n\n` +
-        `📦 *Product:* ${product}\n` +
-        `🔢 *Quantity:* ${quantity}\n` +
-        `👤 *Name:* ${name}\n` +
-        `🏢 *Company:* ${company}\n` +
-        `✉️ *Email:* ${email}\n` +
-        `📱 *WhatsApp:* ${whatsapp}\n` +
-        `💬 *Message:* ${message}`;
+      const tgText = `<b>[RFQ LEAD] New Cosmetic Packaging Inquiry</b>\n\n` +
+        `<b>Product:</b> ${escapeHtml(product)}\n` +
+        `<b>Quantity:</b> ${escapeHtml(quantity)}\n` +
+        `<b>Name:</b> ${escapeHtml(name)}\n` +
+        `<b>Company:</b> ${escapeHtml(company)}\n` +
+        `<b>Email:</b> ${escapeHtml(email)}\n` +
+        `<b>WhatsApp:</b> ${escapeHtml(whatsapp)}\n` +
+        `<b>Message:</b> ${escapeHtml(message || 'No additional project details provided')}`;
 
       await fetch(`https://api.telegram.org/bot${context.env.TELEGRAM_BOT_TOKEN}/sendMessage`, {
         method: 'POST',
@@ -57,9 +81,11 @@ export const onRequestPost = async (context: EventContext<Env>): Promise<Respons
         body: JSON.stringify({
           chat_id: context.env.TELEGRAM_CHAT_ID,
           text: tgText,
-          parse_mode: 'Markdown'
+          parse_mode: 'HTML'
         })
-      }).catch(() => {});
+      }).catch((err) => {
+        console.error('Telegram notification error:', err);
+      });
     }
 
     return new Response(JSON.stringify({
@@ -68,15 +94,16 @@ export const onRequestPost = async (context: EventContext<Env>): Promise<Respons
     }), {
       status: 200,
       headers: {
-        'Content-Type': 'application/json',
-        'Access-Control-Allow-Origin': '*'
+        ...CORS_HEADERS,
+        'Content-Type': 'application/json'
       }
     });
 
   } catch (err: any) {
-    return new Response(JSON.stringify({ error: err.message || 'Internal error' }), {
+    console.error('API /api/quote processing error:', err);
+    return new Response(JSON.stringify({ error: 'Internal server error. Please contact us via WhatsApp or WeChat.' }), {
       status: 500,
-      headers: { 'Content-Type': 'application/json' }
+      headers: { ...CORS_HEADERS, 'Content-Type': 'application/json' }
     });
   }
 };

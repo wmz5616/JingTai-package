@@ -1,8 +1,11 @@
 ---
 import site from '../data/site.json';
+import { getAssetUrl } from '../utils/assets';
+
+const logoWhiteUrl = getAssetUrl(site.assets?.logoWhite || '/images/logo-white.png');
 ---
 
-<footer class="bg-brand-dark text-neutral-300 pt-16 pb-12 border-t border-neutral-800">
+<footer class="bg-brand-dark text-neutral-300 pt-16 pb-28 sm:pb-16 border-t border-neutral-800">
   <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
     <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-12 gap-8 lg:gap-8 pb-12 border-b border-neutral-800">
       
@@ -10,7 +13,7 @@ import site from '../data/site.json';
       <div class="lg:col-span-4 space-y-4">
         <div class="flex items-center space-x-3">
           <img
-            src="/images/logo-white.png"
+            src={logoWhiteUrl}
             alt="广州晶泰包装制品厂 JINGTAI PACKAGING"
             class="h-10 sm:h-11 w-auto object-contain"
           />
@@ -19,44 +22,50 @@ import site from '../data/site.json';
           {site.description}
         </p>
         <div class="pt-2 flex flex-wrap gap-2 text-xs">
-          <span class="inline-flex items-center px-2.5 py-1 bg-neutral-800 text-neutral-300 rounded border border-neutral-700" data-zh="✓ 广州供应链枢纽" data-en="✓ Guangzhou Hub">
-            ✓ Guangzhou Hub
+          <span class="inline-flex items-center space-x-1.5 px-2.5 py-1 bg-neutral-800 text-neutral-300 rounded border border-neutral-700">
+            <svg class="w-3.5 h-3.5 text-brand-gold flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M5 13l4 4L19 7"></path></svg>
+            <span data-zh="广州供应链枢纽" data-en="Guangzhou Hub">Guangzhou Hub</span>
           </span>
-          <span class="inline-flex items-center px-2.5 py-1 bg-neutral-800 text-neutral-300 rounded border border-neutral-700" data-zh="✓ 1,000 只小单试做" data-en="✓ 1,000 MOQ Trial Orders">
-            ✓ 1,000 MOQ Trial Orders
+          <span class="inline-flex items-center space-x-1.5 px-2.5 py-1 bg-neutral-800 text-neutral-300 rounded border border-neutral-700">
+            <svg class="w-3.5 h-3.5 text-brand-gold flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M5 13l4 4L19 7"></path></svg>
+            <span data-zh="1,000 只小单试做" data-en="1,000 MOQ Trial Orders">1,000 MOQ Trial Orders</span>
           </span>
-          <span class="inline-flex items-center px-2.5 py-1 bg-neutral-800 text-neutral-300 rounded border border-neutral-700" data-zh="✓ DDP 门到门包税双清" data-en="✓ DDP Door-to-Door Freight">
-            ✓ DDP Door-to-Door Freight
+          <span class="inline-flex items-center space-x-1.5 px-2.5 py-1 bg-neutral-800 text-neutral-300 rounded border border-neutral-700">
+            <svg class="w-3.5 h-3.5 text-brand-gold flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M5 13l4 4L19 7"></path></svg>
+            <span data-zh="DDP 门到门包税双清" data-en="DDP Door-to-Door Freight">DDP Door-to-Door Freight</span>
           </span>
         </div>
       </div>
 
-      <!-- Quick Links -->
-      <div class="lg:col-span-2 space-y-3">
-        <h3 class="text-xs font-semibold text-brand-gold uppercase tracking-wider font-sans" data-i18n="footer_products_title">
-          Products & Solutions
-        </h3>
-        <ul class="space-y-2 text-sm text-neutral-400">
-          <li><a href="/products?category=dropper" class="hover:text-white transition-colors" data-i18n="nav_droppers">Dropper Bottles (15-50ml)</a></li>
-          <li><a href="/products?category=pump" class="hover:text-white transition-colors" data-i18n="nav_pumps">Serum & Lotion Pumps</a></li>
-          <li><a href="/products?category=jar" class="hover:text-white transition-colors" data-i18n="nav_jars">Heavy-Base Cream Jars</a></li>
-          <li><a href="/products?category=spray" class="hover:text-white transition-colors" data-i18n="nav_spray">Perfume & Mist Sprayers</a></li>
-          <li><a href="/products" class="hover:text-white transition-colors" data-i18n="nav_all_collections">View All Packaging →</a></li>
-        </ul>
-      </div>
+      <!-- Links Wrapper: Side-by-side 2-col on mobile, 4-col total on lg -->
+      <div class="grid grid-cols-2 gap-6 lg:col-span-4 lg:grid-cols-2">
+        <!-- Quick Links -->
+        <div class="space-y-3">
+          <h3 class="text-xs font-semibold text-brand-gold uppercase tracking-wider font-sans" data-i18n="footer_products_title">
+            Products & Solutions
+          </h3>
+          <ul class="space-y-2 text-xs sm:text-sm text-neutral-400">
+            <li><a href="/products?category=dropper" class="hover:text-white transition-colors" data-i18n="nav_droppers">Dropper Bottles (15-50ml)</a></li>
+            <li><a href="/products?category=pump" class="hover:text-white transition-colors" data-i18n="nav_pumps">Serum & Lotion Pumps</a></li>
+            <li><a href="/products?category=jar" class="hover:text-white transition-colors" data-i18n="nav_jars">Heavy-Base Cream Jars</a></li>
+            <li><a href="/products?category=spray" class="hover:text-white transition-colors" data-i18n="nav_spray">Perfume & Mist Sprayers</a></li>
+            <li><a href="/products" class="hover:text-brand-gold text-brand-gold font-medium transition-colors" data-i18n="nav_all_collections">View All Packaging →</a></li>
+          </ul>
+        </div>
 
-      <!-- OEM & Services -->
-      <div class="lg:col-span-2 space-y-3">
-        <h3 class="text-xs font-semibold text-brand-gold uppercase tracking-wider font-sans" data-i18n="footer_oem_title">
-          OEM & Sourcing
-        </h3>
-        <ul class="space-y-2 text-sm text-neutral-400">
-          <li><a href="/sample-kit" class="hover:text-white transition-colors text-amber-300 font-medium" data-i18n="nav_free_sample">Free Sample Kit Request</a></li>
-          <li><a href="/#customization" class="hover:text-white transition-colors" data-i18n="nav_custom_finishes">Surface Decoration & Printing</a></li>
-          <li><a href="/about" class="hover:text-white transition-colors" data-zh="品质管控与 AQL 2.5 质检" data-en="Quality Control & AQL 2.5">Quality Control & AQL 2.5</a></li>
-          <li><a href="/about#guangzhou-hub" class="hover:text-white transition-colors" data-i18n="nav_guangzhou_hub">Guangzhou Supply Chain Hub</a></li>
-          <li><a href="/#faq" class="hover:text-white transition-colors" data-zh="外贸采购常见问答" data-en="B2B Trade FAQs">B2B Trade FAQs</a></li>
-        </ul>
+        <!-- OEM & Services -->
+        <div class="space-y-3">
+          <h3 class="text-xs font-semibold text-brand-gold uppercase tracking-wider font-sans" data-i18n="footer_oem_title">
+            OEM & Sourcing
+          </h3>
+          <ul class="space-y-2 text-xs sm:text-sm text-neutral-400">
+            <li><a href="/sample-kit" class="hover:text-white transition-colors text-amber-300 font-medium" data-i18n="nav_free_sample">Free Sample Kit Request</a></li>
+            <li><a href="/#customization" class="hover:text-white transition-colors" data-i18n="nav_custom_finishes">Surface Decoration & Printing</a></li>
+            <li><a href="/about" class="hover:text-white transition-colors" data-zh="品质管控与 AQL 2.5 质检" data-en="Quality Control & AQL 2.5">Quality Control & AQL 2.5</a></li>
+            <li><a href="/about#guangzhou-hub" class="hover:text-white transition-colors" data-i18n="nav_guangzhou_hub">Guangzhou Supply Chain Hub</a></li>
+            <li><a href="/#faq" class="hover:text-white transition-colors" data-zh="外贸采购常见问答" data-en="B2B Trade FAQs">B2B Trade FAQs</a></li>
+          </ul>
+        </div>
       </div>
 
       <!-- Contact & Hours -->
@@ -103,43 +112,43 @@ import site from '../data/site.json';
     </div>
 
     <!-- International Compliance Badges -->
-    <div class="py-8 border-b border-neutral-800">
+    <div class="py-6 sm:py-8 border-b border-neutral-800/80">
       <p class="text-xs text-neutral-400 uppercase tracking-widest text-center mb-4 font-semibold" data-i18n="footer_compliance_title">
         Global Compliance & Export Certifications
       </p>
-      <div class="flex flex-wrap justify-center items-center gap-6 sm:gap-10 text-xs text-neutral-400">
-        <div class="flex items-center space-x-2">
-          <span class="w-2 h-2 rounded-full bg-brand-gold"></span>
-          <span data-zh="ISO 9001:2015 国际质量体系认证" data-en="ISO 9001:2015 Quality System">ISO 9001:2015 Quality System</span>
+      <div class="grid grid-cols-2 sm:flex sm:flex-wrap sm:justify-center gap-2 sm:gap-3 text-xs">
+        <div class="flex items-center space-x-2 bg-neutral-900/70 border border-neutral-800 px-3 py-2 rounded-sm text-neutral-300">
+          <span class="w-1.5 h-1.5 rounded-full bg-brand-gold shrink-0"></span>
+          <span data-zh="ISO 9001:2015 体系认证" data-en="ISO 9001:2015 Quality">ISO 9001:2015 Quality</span>
         </div>
-        <div class="flex items-center space-x-2">
-          <span class="w-2 h-2 rounded-full bg-brand-gold"></span>
-          <span data-zh="美国 FDA 21 CFR 食品接触级安全检测" data-en="FDA 21 CFR Food-Contact Safe">FDA 21 CFR Food-Contact Safe</span>
+        <div class="flex items-center space-x-2 bg-neutral-900/70 border border-neutral-800 px-3 py-2 rounded-sm text-neutral-300">
+          <span class="w-1.5 h-1.5 rounded-full bg-brand-gold shrink-0"></span>
+          <span data-zh="美国 FDA 21 CFR 食品级" data-en="FDA 21 CFR Food-Contact">FDA 21 CFR Food-Contact</span>
         </div>
-        <div class="flex items-center space-x-2">
-          <span class="w-2 h-2 rounded-full bg-brand-gold"></span>
-          <span data-zh="欧盟 EU 1223/2009 化妆品法规合规" data-en="EU 1223/2009 Cosmetic Standard">EU 1223/2009 Cosmetic Standard</span>
+        <div class="flex items-center space-x-2 bg-neutral-900/70 border border-neutral-800 px-3 py-2 rounded-sm text-neutral-300">
+          <span class="w-1.5 h-1.5 rounded-full bg-brand-gold shrink-0"></span>
+          <span data-zh="欧盟 EU 1223/2009 合规" data-en="EU 1223/2009 Cosmetic">EU 1223/2009 Cosmetic</span>
         </div>
-        <div class="flex items-center space-x-2">
-          <span class="w-2 h-2 rounded-full bg-brand-gold"></span>
-          <span data-zh="美国加州 65 号提案无铅无毒认证" data-en="California Prop 65 Lead-Free">California Prop 65 Lead-Free</span>
+        <div class="flex items-center space-x-2 bg-neutral-900/70 border border-neutral-800 px-3 py-2 rounded-sm text-neutral-300">
+          <span class="w-1.5 h-1.5 rounded-full bg-brand-gold shrink-0"></span>
+          <span data-zh="加州 65 号提案无铅检测" data-en="California Prop 65">California Prop 65</span>
         </div>
-        <div class="flex items-center space-x-2">
-          <span class="w-2 h-2 rounded-full bg-emerald-400"></span>
-          <span data-zh="100% 可回收高白料玻璃 (支持 PCR)" data-en="100% Recyclable Flint Glass (PCR Ready)">100% Recyclable Flint Glass (PCR Ready)</span>
+        <div class="col-span-2 sm:col-span-1 flex items-center justify-center sm:justify-start space-x-2 bg-neutral-900/70 border border-neutral-800 px-3 py-2 rounded-sm text-neutral-300">
+          <span class="w-1.5 h-1.5 rounded-full bg-emerald-400 shrink-0"></span>
+          <span data-zh="100% 可回收高白料玻璃 (PCR Ready)" data-en="100% Recyclable Glass (PCR Ready)">100% Recyclable Glass (PCR Ready)</span>
         </div>
       </div>
     </div>
 
-    <!-- Copyright & Disclaimer -->
-    <div class="pt-8 flex flex-col sm:flex-row items-center justify-between text-xs text-neutral-500 gap-4">
+    <!-- Copyright & Legal Links -->
+    <div class="pt-6 sm:pt-8 flex flex-col md:flex-row items-center justify-between text-xs text-neutral-500 gap-4 text-center md:text-left">
       <p data-zh={`© ${new Date().getFullYear()} 广州晶泰包装制品厂 版权所有。`} data-en={`© ${new Date().getFullYear()} Guangzhou Jingtai Packaging Products Factory. All rights reserved.`}>
         © {new Date().getFullYear()} {site.companyName}. All rights reserved.
       </p>
-      <div class="flex items-center space-x-6">
-        <a href="/about" class="hover:text-neutral-400" data-i18n="footer_privacy">Privacy Policy</a>
-        <a href="/about" class="hover:text-neutral-400" data-i18n="footer_terms">Terms of Supply</a>
-        <a href="/sample-kit" class="hover:text-brand-gold text-neutral-400 font-medium" data-i18n="nav_free_sample">Request Free Sample Kit</a>
+      <div class="flex flex-wrap items-center justify-center md:justify-end gap-x-6 gap-y-2">
+        <a href="/about#privacy" class="hover:text-neutral-400 transition-colors" data-i18n="footer_privacy">Privacy Policy</a>
+        <a href="/about#terms" class="hover:text-neutral-400 transition-colors" data-i18n="footer_terms">Terms of Supply</a>
+        <a href="/sample-kit" class="hover:text-brand-gold text-amber-300/90 font-medium transition-colors" data-i18n="nav_free_sample">Request Free Sample Kit</a>
       </div>
     </div>
 

@@ -87,3 +87,13 @@ html:not([lang="zh"]) .contact-lang-zh,
 html[lang="en"] .contact-lang-zh {
   display: none !important;
 }
+
+/* Hide scrollbar for clean mobile swipe gestures */
+.no-scrollbar::-webkit-scrollbar {
+  display: none;
+}
+.no-scrollbar {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
+

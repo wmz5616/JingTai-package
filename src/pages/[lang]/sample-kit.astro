@@ -1,13 +1,41 @@
 ---
-import Layout from "../layouts/Layout.astro";
-import Badge from "../components/Badge.astro";
-import site from "../data/site.json";
+import Layout from "../../layouts/Layout.astro";
+import Badge from "../../components/Badge.astro";
+import site from "../../data/site.json";
+
+export function getStaticPaths() {
+  return [
+    { params: { lang: 'zh' } },
+    { params: { lang: 'es' } },
+    { params: { lang: 'fr' } },
+    { params: { lang: 'de' } },
+  ];
+}
+
+const { lang } = Astro.params;
+
+let pageTitle = `Request Free Packaging Sample Kit | ${site.name}`;
+let pageDesc = "Order a curated cosmetics glass bottle sample kit. Free physical samples with 100% courier fee credited back on your first wholesale order. Dispatched from Guangzhou in 48 hours.";
+
+if (lang === 'zh') {
+  pageTitle = `申请免费化妆品玻璃瓶样品盒 | ${site.name}`;
+  pageDesc = "免费申请高品质化妆品玻璃瓶、滴管与乳液泵物理实物样品盒。48小时广州极速寄出，首笔大货订单100%全额抵扣返还国际快递运费。";
+} else if (lang === 'es') {
+  pageTitle = `Solicite Kit de Muestras Gratis | ${site.name}`;
+  pageDesc = "Solicite un kit de muestras de frascos cosméticos de vidrio. Muestras físicas gratis con reembolso del 100% del costo de envío en su primer pedido al por mayor.";
+} else if (lang === 'fr') {
+  pageTitle = `Demande de Kit d'Échantillons Gratuit | ${site.name}`;
+  pageDesc = "Commandez un kit d'échantillons de flacons en verre. Échantillons gratuits avec remboursement à 100% des frais de port sur votre première commande en gros.";
+} else if (lang === 'de') {
+  pageTitle = `Kostenloses Kosmetik-Musterset Anfordern | ${site.name}`;
+  pageDesc = "Bestellen Sie ein kostenloses Musterset für Kosmetikglasflaschen. 100% der Kuriergebühren werden bei der ersten Großbestellung gutgeschrieben.";
+}
 ---
 
 <Layout
   title={`Request Free Packaging Sample Kit | ${site.name}`}
   title_zh={`申请免费化妆品玻璃瓶样品盒 | ${site.name}`}
-  description="Order a curated cosmetics glass bottle sample kit. Free physical samples with 100% courier fee credited back on your first wholesale order. Dispatched from Guangzhou in 48 hours."
+  description={pageDesc}
   description_zh="免费申请高品质化妆品玻璃瓶、滴管与乳液泵物理实物样品盒。48小时广州极速寄出，首笔大货订单100%全额抵扣返还国际快递运费。"
 >
   <!-- Hero Section -->
